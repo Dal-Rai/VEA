@@ -1,0 +1,9 @@
+<div>
+  <%= form_tag('/authentications/' + String(@user.id) + '/password', method: :put) %>
+    <%= hidden_field_tag(:invitation_token, @user.invitation_token) %>
+    <%= label_tag(:password, "Password:") %>
+    <%= password_field_tag(:password) %><br>
+    <%= label_tag(:password_confirmation, "Confirm Password:") %>
+    <%= password_field_tag(:password_confirmation) %><br>
+    <%= submit_tag 'Submit' %>
+</div>

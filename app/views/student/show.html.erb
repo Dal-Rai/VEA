@@ -1,0 +1,19 @@
+<!--<div>-->
+  <%#= form_tag(String(@user.id) + '/accept_invitation', method: :put) %>
+  <%#= email_field_tag(:email, @user.email) %>
+  <%#= label_tag(:password, "Password:") %>
+<!--  <%#= password_field_tag(:password, @user.password) %><br>-->
+  <%#= label_tag(:password_confirmation, "Confirm Password:") %>
+<!--  <%#= password_field_tag(:password_confirmation, @user.password) %><br>-->
+  <%#= submit_tag 'Submit' %>
+<!--</div>-->
+
+
+<%= form_for @user, url: {action: "update", method: :put} do |f| %>
+  <%= f.text_field :email %><br>
+  <%= f.password_field :password %><br>
+  <%= f.text_field :firstname %><br>
+  <%= f.text_field :lastname %><br>
+  <%= f.submit 'Login' %>
+
+<% end %>

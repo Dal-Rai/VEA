@@ -1,0 +1,7 @@
+Welcome <%= @user.name %>
+You can confirm your account email through the link below:
+<a href="<%= root_url %>authentications/accept_invitation?invitation_token=<%= @user.invitation_token %>" style="text-decoration:
+  none;">
+  <button type="button">Accept Invitation</button>
+</a><br><br>
+</a><br><br>

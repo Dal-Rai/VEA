@@ -1,0 +1,18 @@
+<div>
+  <%= render(partial: "home/home_nav") %>
+</div>
+
+<div>
+  <%= form_tag(String(@user.id) + '/accept_invitation', method: :put) %>
+  <%= hidden_field_tag(:invitation_token, @user.invitation_token) %>
+  <span class="labelText">
+    <%= label_tag(:password, "Password:") %>
+  </span>
+  <span class="textBoxLarge">
+    <%= password_field_tag(:password) %><br>
+  </span>
+
+  <%= label_tag(:password_confirmation, "Confirm Password:") %>
+  <%= password_field_tag(:password_confirmation) %><br>
+  <%= submit_tag 'Submit' %>
+</div>
