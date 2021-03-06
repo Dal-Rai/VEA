@@ -1,0 +1,18 @@
+<div>
+  <%= render(partial: "home/student_nav") %>
+</div>
+
+
+<% if params[:type].eql? 'suggestion' %>
+
+<%elsif params[:type].eql? 'recommendation'%>
+  <%= render(partial: "users/profiles/student_recommendation") %>
+
+<%else%>
+  <%= render(partial: "users/profiles/student_profile") %>
+<%end %>
+
+
+
+
+

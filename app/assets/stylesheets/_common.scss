@@ -1,34 +1,87 @@
 //Dal Bdr Rai
 
 .labelText{
+  width: 200px;
+  padding: 0px;
+  height: 60px;
+  outline: none;
+  font-size: 20px;
+}
+
+
+.largeInput{
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  border: 1px solid #848484;
+  outline:0;
+  height:40px;
+  width: 300px;
+  font-size: 20px;
+}
+
+.mediumInput{
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  border: 1px solid #848484;
+  outline:0;
+  height:40px;
+  width: 200px;
+  font-size: 20px;
+}
+
+.smallInput{
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  border: 1px solid #848484;
+  outline:0;
+  height:40px;
   width: 100px;
-  border: 3px solid #00B4CC;
-  padding: 5px;
-  height: 50px;
-  border-radius: 5px 5px 5px 5px;
-  outline: none;
-  color: #9DBFAF;
-}
-
-
-input[type=password]{
-  padding: 5px;
-  height: 30px;
-  position: relative;
-  left: 10px;
-  outline: none;
-  border: 1px solid #cdcdcd;
-  border-color: rgba(0,0,0,.15);
-  background-color: white;
-  font-size: 16px;
-}
-
-.textBoxMedium{
+  font-size: 20px;
 
 }
 
-.textBoxSmall{
+.mediumSubmit{
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  border: 1px solid #848484;
+  outline:0;
+  height:40px;
+  width: 100px;
+  background-color: #2e6da4;
+  font-size: 20px;
+}
 
+.largeSubmit{
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  border: 1px solid #848484;
+  outline:0;
+  height:40px;
+  width: 200px;
+  background-color: #2e6da4;
+  font-size: 20px;
+}
+
+.alignCenter{
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.loginBG{
+  background: image_url("background.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 //*{
 //  padding: 0;

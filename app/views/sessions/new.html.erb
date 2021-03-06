@@ -1,41 +1,18 @@
-<!--<div>-->
-  <%#= form_tag('sign_in', method: :post, html: {autocomplete: 'off'}) %>
-  <%#= label_tag(:email, "Email:") %>
-<!--  <%#= email_field_tag(:user, :email) %><br>-->
-  <%#= label_tag(:password, "Password:") %>
-<!--  <%#= password_field_tag(:user, :password) %><br>-->
-  <%#= submit_tag 'Submit' %>
-<!--</div>-->
-
 <div>
   <%= render(partial: "home/home_nav") %>
 </div>
 
-<div class="container">
-  <section id="content">
-    <%= form_for User.new, url: {action: "create", method: :post} do |f| %>
-      <%= f.text_field :email %>
-      <%= f.password_field :password %>
-      <%= f.submit 'Login' %>
-    <% end %>
-  </section>
+<div class="loginBG">
+  <span class="alignCenter">
+    <%= form_for User.new, url: {action: :create, method: :post} do |f| %>
+      <%= label_tag(:email, "Email:", class: 'labelText') %>
+      <%= f.text_field :email, class: 'largeInput' %><br><br>
+
+      <%= label_tag(:password, "Password:", class: 'labelText') %>
+      <%= f.password_field :password, class: 'largeInput', autocomplete: "off"%><br>
+
+      <%= label_tag(:submit, "", class: 'labelText') %>
+      <%= f.submit 'Login', class: 'mediumSubmit' %>
+      <% end %>
+  </span>
 </div>
-
-
-<!--<div class="container">-->
-<!--  <section id="content">-->
-<!--    <form action="">-->
-<!--      <h1>Password Confirmation</h1>-->
-<!--      <div>-->
-<!--        <input type="text" placeholder="Password" required="" id="username" />-->
-<!--      </div>-->
-<!--      <div>-->
-<!--        <input type="password" placeholder="Confirm password" required="" id="password" />-->
-<!--      </div>-->
-<!--      <div>-->
-<!--        <input type="submit" value="Submit" />-->
-<!--      </div>-->
-<!--    </form><!-- form -->
-
-<!--  </section><!-- content -->
-<!--</div><!-- container -->

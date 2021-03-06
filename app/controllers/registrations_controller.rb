@@ -15,7 +15,6 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def create
-    binding.pry
     resource.save
     yield resource if block_given?
     if resource.persisted?

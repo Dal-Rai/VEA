@@ -3,76 +3,101 @@
 </div>
 
 <div class="Personal">
-  <h4>Personal Details:</h4>
-  <form>
-    <label for="fname">First name:</label><br>
-    <input type="text" id="fname" name="fname" value=""><br>
-    <label for="mname">Middle name:</label><br>
-    <input type="text" id="lname" name="lname" value=""><br>
-    <label for="lname">Last name:</label><br>
-    <input type="text" id="lname" name="lname" value=""><br>
-    <label for="lname">E-mail:</label><br>
-    <input type="text" id="lname" name="lname" value=""><br>
-    <label for="lname">Mobile Number:</label><br>
-    <input type="text" id="lname" name="lname" value=""><br>
-    <label for="lname">Date of Birth:</label><br>
-    <input type="text" id="lname" name="lname" value=""><br>
-    <label for="lname">Gender:</label><br>
-    <input type="text" id="lname" name="lname" value=""><br>
-    <label for="lname">Passport Number:</label><br>
-    <input type="text" id="lname" name="lname" value=""><br>
-    <label for="lname">Country:</label><br>
-    <input type="text" id="lname" name="lname" value=""><br>
-  </form>
+
+  <span class="alignCenter">
+    <%= form_for @user, url: {controller: :student, action: :create, method: :post} do |f| %>
+      <%= label_tag(:email, "Email:", class: 'labelText') %>
+      <%= f.text_field :email, class: 'largeInput' %><br><br>
+      <%= f.fields_for :profile do |g| %>
+        <%= label_tag(:firstname, "First Name:", class: 'labelText') %>
+        <%= g.text_field :firstname, class: 'largeInput' %><br><br>
+
+        <%= label_tag(:middlename, "Middle Name:", class: 'labelText') %>
+        <%= g.text_field :middlename, class: 'largeInput' %><br><br>
+
+        <%= label_tag(:lastname, "Last Name:", class: 'labelText') %>
+        <%= g.text_field :lastname, class: 'largeInput' %><br><br>
+
+        <%= label_tag(:mobile_no, "Mobile No:", class: 'labelText') %>
+        <%= g.text_field :mobile_no, class: 'largeInput' %><br><br>
+      <% end %>
+
+
+      <%= label_tag(:submit, "", class: 'labelText') %>
+      <%= f.submit 'Create Account', class: 'largeSubmit' %>
+  <% end %>
+  </span>
 </div>
 
-<div class="Present">
-  <h4>Present Address:</h4>
-  <form>
-    <label for="fname">Street Number:</label><br>
-    <input type="text" id="fname" name="fname" value=""><br>
-    <label for="mname">Street Name:</label><br>
-    <input type="text" id="lname" name="lname" value=""><br>
-    <label for="lname">Suburb:</label><br>
-    <input type="text" id="lname" name="lname" value=""><br>
-    <label for="lname">Post Code:</label><br>
-    <input type="text" id="lname" name="lname" value=""><br>
-    <label for="lname">City:</label><br>
-    <input type="text" id="lname" name="lname" value=""><br>
-    <label for="lname">Country:</label><br>
-    <input type="text" id="lname" name="lname" value=""><br>
-  </form>
-</div>
-<div class="Academic">
-  <h4>Academic Scores:</h4>
-  <form>
-    <label for="lname">Subject:</label><br>
-    <input type="text" id="lname" name="lname" value=""><br>
-    <label for="lname">Score:</label><br>
-    <input type="text" id="lname" name="lname" value=""><br>
-  </form>
+<!--  <form>-->
+<!--    <label for="fname">First name:</label><br>-->
+<!--    <input type="text" id="fname" name="fname" value=""><br>-->
+<!--    <label for="mname">Middle name:</label><br>-->
+<!--    <input type="text" id="lname" name="lname" value=""><br>-->
+<!--    <label for="lname">Last name:</label><br>-->
+<!--    <input type="text" id="lname" name="lname" value=""><br>-->
+<!--    <label for="lname">E-mail:</label><br>-->
+<!--    <input type="text" id="lname" name="lname" value=""><br>-->
+<!--    <label for="lname">Mobile Number:</label><br>-->
+<!--    <input type="text" id="lname" name="lname" value=""><br>-->
+<!--    <label for="lname">Date of Birth:</label><br>-->
+<!--    <input type="text" id="lname" name="lname" value=""><br>-->
+<!--    <label for="lname">Gender:</label><br>-->
+<!--    <input type="text" id="lname" name="lname" value=""><br>-->
+<!--    <label for="lname">Passport Number:</label><br>-->
+<!--    <input type="text" id="lname" name="lname" value=""><br>-->
+<!--    <label for="lname">Country:</label><br>-->
+<!--    <input type="text" id="lname" name="lname" value=""><br>-->
+<!--  </form>-->
+<!--</div>-->
 
-</div>
-<div class="English">
-  <h4>English Competence:</h4>
-  <form>
-    <label for="lname">Type:</label><br>
-    <input type="text" id="lname" name="lname" value=""><br>
-    <label for="lname">Score:</label><br>
-    <input type="text" id="lname" name="lname" value=""><br>
-    <label for="lname">Valid Until:</label><br>
-    <input type="text" id="lname" name="lname" value=""><br>
-  </form>
+<!--<div class="Present">-->
+<!--  <h4>Present Address:</h4>-->
+<!--  <form>-->
+<!--    <label for="fname">Street Number:</label><br>-->
+<!--    <input type="text" id="fname" name="fname" value=""><br>-->
+<!--    <label for="mname">Street Name:</label><br>-->
+<!--    <input type="text" id="lname" name="lname" value=""><br>-->
+<!--    <label for="lname">Suburb:</label><br>-->
+<!--    <input type="text" id="lname" name="lname" value=""><br>-->
+<!--    <label for="lname">Post Code:</label><br>-->
+<!--    <input type="text" id="lname" name="lname" value=""><br>-->
+<!--    <label for="lname">City:</label><br>-->
+<!--    <input type="text" id="lname" name="lname" value=""><br>-->
+<!--    <label for="lname">Country:</label><br>-->
+<!--    <input type="text" id="lname" name="lname" value=""><br>-->
+<!--  </form>-->
+<!--</div>-->
+<!--<div class="Academic">-->
+<!--  <h4>Academic Scores:</h4>-->
+<!--  <form>-->
+<!--    <label for="lname">Subject:</label><br>-->
+<!--    <input type="text" id="lname" name="lname" value=""><br>-->
+<!--    <label for="lname">Score:</label><br>-->
+<!--    <input type="text" id="lname" name="lname" value=""><br>-->
+<!--  </form>-->
 
-</div>
-<div class="Preferred">
-  <h4>Preferred Universities:</h4>
-  <form>
-    <label for="lname">University Name:</label><br>
-    <input type="text" id="lname" name="lname" value=""><br>
-    <label for="lname">Course:</label><br>
-    <input type="text" id="lname" name="lname" value=""><br>
-    <button type="reset">Reset</button>
-    <button type="submit">Submit</button>
-  </form>
-</div>
+<!--</div>-->
+<!--<div class="English">-->
+<!--  <h4>English Competence:</h4>-->
+<!--  <form>-->
+<!--    <label for="lname">Type:</label><br>-->
+<!--    <input type="text" id="lname" name="lname" value=""><br>-->
+<!--    <label for="lname">Score:</label><br>-->
+<!--    <input type="text" id="lname" name="lname" value=""><br>-->
+<!--    <label for="lname">Valid Until:</label><br>-->
+<!--    <input type="text" id="lname" name="lname" value=""><br>-->
+<!--  </form>-->
+
+<!--</div>-->
+<!--<div class="Preferred">-->
+<!--  <h4>Preferred Universities:</h4>-->
+<!--  <form>-->
+<!--    <label for="lname">University Name:</label><br>-->
+<!--    <input type="text" id="lname" name="lname" value=""><br>-->
+<!--    <label for="lname">Course:</label><br>-->
+<!--    <input type="text" id="lname" name="lname" value=""><br>-->
+<!--    <button type="reset">Reset</button>-->
+<!--    <button type="submit">Submit</button>-->
+<!--  </form>-->
+<!--</div>-->

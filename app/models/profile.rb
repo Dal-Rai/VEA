@@ -1,5 +1,5 @@
 class Profile < ApplicationRecord
-  validates_presence_of :salutation, :firstname, :middlename, :lastname
+  validates_presence_of :firstname, :middlename, :lastname
 
   has_attached_file :avatar,
                     {

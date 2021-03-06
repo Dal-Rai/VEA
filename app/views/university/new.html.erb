@@ -2,58 +2,71 @@
   <%= render(partial: "home/home_nav") %>
 </div>
 
+<div class="Personal">
 
-<div class="regform">
-  <h1>
-    Registration Form</h1>
-</div>
-<div class="main">
+  Activate Account
 
-  <form method="POST">
-    <div id="name">
-      <h2 class="name">
-        Name </h2>
-      <input class="firstname" type="text" name="first_name"><br>
-      <label class="firstlabel">first name</label>
-      <input class="lastname" type="text" name="last_name"><br>
-      <label class="lastlabel">last name</label>
-    </div>
+  <div>
+    <%= form_tag(root_url+"/university/search", method: :get) %>
 
-    Email</h2>
-    <input class="email" type="email" name="email">
-    <h2 class="name">
-      Phone</h2>
-    <input class="Code" type="text" name="area_code">
-    <label class="area-code">Area Code</label>
-    <input class="number" type="text" name="phone">
-    <label class="phone-number">Phone Number</label>
+    <%= label_tag(:token, "Token:", class: "labelText") %>
+    <span class="largeInput">
+      <%= text_field_tag(:token) %>
+    </span>
+
+    <%= submit_tag('search', class: "mediumSubmit") %>
+  </div>
+  <br><br>
+
+  <%= form_for @uni, url: {action: :create, method: :post} do |f| %>
+    <%= label_tag(:uni_name, "University Name:", class: 'labelText') %>
+    <%= f.text_field :name, class: 'largeInput' %><br><br>
+
+    <%= label_tag(:weblink, "Website Link:", class: 'labelText') %>
+    <%= f.text_field :weblink, class: 'largeInput' %><br><br>
+
+    <%= label_tag(:remark, "Remark:", class: 'labelText') %>
+    <%= f.text_area :remark, class: 'largeInput' %><br><br>
+
+    <%= f.fields_for :focal_contact do |g| %>
+      <%= label_tag(:firstname, "First Name:", class: 'labelText') %>
+      <%= g.text_field :firstname, class: 'largeInput' %><br><br>
+
+      <%= label_tag(:middlename, "Middle Name:", class: 'labelText') %>
+      <%= g.text_field :middlename, class: 'largeInput' %><br><br>
+
+      <%= label_tag(:lastname, "Last Name:", class: 'labelText') %>
+      <%= g.text_field :lastname, class: 'largeInput' %><br><br>
+
+      <%= label_tag(:email, "Email:", class: 'labelText') %>
+      <%= g.text_field :email, class: 'largeInput' %><br><br>
+
+      <%= label_tag(:phone_no, "Phone No:", class: 'labelText') %>
+      <%= g.text_field :phone_number, class: 'largeInput' %><br><br>
+    <% end %>
+
+    <%= f.fields_for :address do |g| %>
+      <%= label_tag(:street_no, "Street_no:", class: 'labelText') %>
+      <%= g.text_field :street_no, class: 'mediumInput' %>
+
+      <%= label_tag(:street_name, "street Name:", class: 'labelText') %>
+      <%= g.text_field :street_name, class: 'mediumInput' %><br><br>
+
+      <%= label_tag(:suburb, "Suburb:", class: 'labelText') %>
+      <%= g.text_field :suburb, class: 'mediumInput' %>
+
+      <%= label_tag(:post_code, "Post Code:", class: 'labelText') %>
+      <%= g.text_field :post_code, class: 'mediumInput' %><br><br>
+
+      <%= label_tag(:city, "City:", class: 'labelText') %>
+      <%= g.text_field :city, class: 'mediumInput' %>
+
+      <%= label_tag(:country, "Country:", class: 'labelText') %>
+      <%= g.text_field :country, class: 'mediumInput' %><br><br>
+    <% end %>
 
 
-    <h2 class="name">
-      Subject</h2>
-    <select class="option" name="subject">
-      <option disabled="disabled" selected="selected">--Choose option--</option>
-      <option>Subject 1</option>
-      <option>Subject 2</option>
-      <option>Subject 3</option>
-    </select>
-
-    <h2 id="coustomer">
-      Are you beginner?</h2>
-    <label class="radio">
-      <input class="radio-one" type="radio" checked="checked" name="rdiobtn">
-      <span class="checkmark"></span>
-      Yes
-    </label>
-
-    <label class="radio">
-      <input class="radio-two" type="radio" name="rdiobtn">
-      <span class="checkmark"></span>
-      No
-    </label>
-
-    <button type="submit">Register</button>
-
-
-  </form>
+    <%= label_tag(:submit, "", class: 'labelText') %>
+    <%= f.submit 'Create Account', class: 'largeSubmit' %>
+<% end %>
 </div>

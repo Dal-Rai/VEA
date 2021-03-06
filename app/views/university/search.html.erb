@@ -1,0 +1,27 @@
+<div>
+  <%= render(partial: "home/home_nav") %>
+</div>
+
+<%= form_for @uni, url: {action: :activate, method: :put, id: @uni.id} do |f| %>
+  <%= f.hidden_field :token %>
+  <%= label_tag(:uni_name, "University Name:", class: 'labelText') %>
+  <%= f.text_field :name, class: 'largeInput' %><br><br>
+
+  <%= f.fields_for :focal_contact do |g| %>
+    <%= label_tag(:name, "Name:", class: 'labelText') %>
+    <%= g.text_field :name, class: 'largeInput' %><br><br>
+
+    <%= label_tag(:email, "Email:", class: 'labelText') %>
+    <%= g.text_field :email, class: 'largeInput' %><br><br>
+
+    <%= label_tag(:phone_no, "Phone No:", class: 'labelText') %>
+    <%= g.text_field :phone_number, class: 'largeInput' %><br><br>
+  <% end %>
+
+  <%= label_tag(:amount, "Amount:", class: 'labelText') %>
+  <%= text_field_tag(:amount) %><br><br>
+
+
+  <%= label_tag(:submit, "", class: 'labelText') %>
+  <%= f.submit 'Activate', class: 'largeSubmit' %>
+<% end %>

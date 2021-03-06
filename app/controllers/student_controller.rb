@@ -3,6 +3,7 @@ class StudentController < ApplicationController
   def create
     @user = User.new(stud_params)
     @user.user_type = :student
+    @user.password = 'Selise88'
 
     if @user.save
       render json: {message: 'Student created', success: true}, status: :ok
@@ -16,7 +17,10 @@ class StudentController < ApplicationController
   end
 
 
-  def new; end
+  def new
+    @user = User.new
+    @profile = @user.build_profile
+  end
 
   private
 

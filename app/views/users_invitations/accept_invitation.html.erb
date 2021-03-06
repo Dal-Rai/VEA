@@ -1,9 +1,84 @@
-<!--<div>-->
-  <%#= form_tag(String(@user.id) + '/accept_invitation', method: :put) %>
-  <%#= hidden_field_tag(:invitation_token, @user.invitation_token) %>
-  <%#= label_tag(:password, "Password:") %>
-<!--  <%#= password_field_tag(:password) %><br>-->
-  <%#= label_tag(:password_confirmation, "Confirm Password:") %>
-<!--  <%#= password_field_tag(:password_confirmation) %><br>-->
-  <%#= submit_tag 'Submit' %>
-<!--</div>-->
+<body class="login-bg">
+<%= error_messages!(@user) %>
+<div class="sign-up-box">
+  <!-- multistep form
+  -->
+  <%= form_for(@user, url: registration_path(@user), html: {id: 'signUpForm'}) do |f| %>
+    <!-- progressbar
+    -->
+    <ul id="progressbar">
+      <li class="active">Account Setup</li>
+      <li>Personal Details</li>
+      <li>Company Details</li>
+    </ul>
+    <!-- fieldsets
+    -->
+    <fieldset data-step="0">
+      <h2 class="fs-title">Create your account</h2>
+      <div class="form-group">
+        <%= f.email_field :email, id: 'EmailAddress', "aria-invalid" => "true", "aria-required" => "true", placeholder: "Email Address", required: 'required' %>
+      </div>
+      <div class="form-group">
+        <%= f.password_field :password, autocomplete: "off", id: 'password', "aria-invalid" => "true", "aria-required" => "true", placeholder: "Password", required: 'required' %>
+      </div>
+      <div class="form-group">
+        <%= f.password_field :password_confirmation, autocomplete: "off", id: 'password', "aria-invalid" => "true", "aria-required" => "true", placeholder: "PasswordConfirmation", required: 'required' %>
+      </div>
+      <!-- STEP BUTTON gfyhjuhujhjy
+      -->
+      <%= link_to "Login", new_session_path(resource_name), class: 'login-btn2 action-button' %>
+      <input class="next action-button" name="next" type="button" value="Next">/</input>
+    </fieldset>
+    <fieldset data-step="1">
+      <h2 class="fs-title">Personal Details</h2>
+      <%= f.fields_for :profile do |g| %>
+        <div class="form-group">
+          <%= g.collection_select :salutation, [t('user.mr'), t('user.mrs'), t('user.ms')], :to_s, :to_s, {:prompt => t('commom.please_select')}, html: {required: 'required'} %>
+          <%= g.collection_select :gender, Profile.genders, :first, :first, {:prompt => t('commom.please_select')}, html: {required: 'required'} %>
+        </div>
+        <div class="form-group">
+          <%= g.text_field :firstname,  placeholder: "Firstname", required: 'required' %>
+        </div>
+        <div class="form-group">
+          <%= g.text_field :lastname, placeholder: "Lastname", required: 'required' %>
+        </div>
+        <div class="form-group">
+          <%= g.text_field :designation,  placeholder: "Designation", required: 'required' %>
+        </div>
+        <div class="form-group">
+          <%= g.text_field :phone, placeholder: "Phone", required: 'required' %>
+        </div>
+        <!-- STEP BUTTON
+        -->
+        <input class="previous action-button" name="previous" type="button" value="Previous">/</input>
+        <input class="next action-button" name="next" type="button" value="Next">/</input>
+      <% end %>
+    </fieldset>
+    <fieldset data-step="2">
+      <h2 class="fs-title">> Company Details</h2>
+      <%= f.fields_for :company do |g| %>
+        \-
+        <div class="form-group">
+          <%= g.text_field :company_type, placeholder: "CompanyType", required: 'required' %>
+        </div>
+        <div class="form-group">
+          <%= g.text_field :name,  placeholder: "Name", required: 'required' %>
+        </div>
+        <div class="form-group">
+          <%= g.email_field :email,  placeholder: "Email", required: 'required' %>
+        </div>
+        <div class="form-group">
+          <%= g.number_field :phone,  placeholder: "Phone", required: 'required' %>
+        </div>
+        <div class="form-group">
+          <%= g.url_field :website, placeholder: "Website", required: 'required' %>
+        </div>
+        <!-- STEP BUTTON
+        -->
+        <input class="previous action-button" name="previous" type="button" value="Previous">/</input>
+        <%= f.button 'Sign up', class: "submit action-button" %>
+      <% end %>
+    </fieldset>
+  <% end %>
+</div>
+</body>

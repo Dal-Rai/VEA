@@ -15,11 +15,17 @@ Rails.application.routes.draw do
 
   resources :university do
     collection do
-      get :activate
+      get :valid_token
+      get :search
+    end
+
+    member do
+      patch :activate
     end
   end
 
   resources :student
+  resources :uni_admin
   resources :users_invitations do
     collection do
       get :valid_token
@@ -29,6 +35,8 @@ Rails.application.routes.draw do
       put :accept_invitation
     end
   end
+
+  resources :users, only: [:show]
 
   get 'js/widget.js' => 'ticketings#widget', defaults: {format: 'js'}
 
