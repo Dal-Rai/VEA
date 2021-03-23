@@ -1,0 +1,53 @@
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+  <% if current_user.nil? %>
+    <%= render(partial: "home/home_nav") %>
+    <div class="col-lg-2">
+      <%= label_tag :space, "" %>
+    </div>
+
+    <div>
+      <div class="col-lg-8 search-center">
+        <form method="get" action="search_engine" id="search-form">
+          <div class="input-group main-form-inputs search-text">
+            <input type="text" name="term" id="term" class="form-control search-text" value="<%= params[:term] %>"
+                   placeholder="search by name">
+            <span class="input-group-btn">
+            <button class="btn btn-default search-btn" type="submit">Search</button>
+          </span>
+          </div>
+        </form>
+
+        <div>
+          <%= render(partial: "search_engine/search_result") %>
+        </div>
+      </div>
+    </div>
+
+  <% else %>
+    <div class="col-lg-4">
+      <%= render(partial: "home/student_nav") %>
+    </div>
+    <div class="col-lg-8">
+      <span class="search-center">
+        <form method="get" action="search_engine" id="search-form">
+          <div class="input-group main-form-inputs search-text">
+            <input type="text" name="term" id="term" class="form-control search-text" value="<%= params[:term] %>"
+                   placeholder="search by name">
+            <span class="input-group-btn">
+              <button class="btn btn-default search-btn" type="submit">Search</button>
+            </span>
+          </div>
+        </form>
+
+        <div>
+          <%= render(partial: "search_engine/search_result") %>
+        </div>
+      </span>
+    </div>
+  <% end %>
+</div>
+
+  <%# else %>
+    <%# controller.redirect_to(controller: :users, action: :show, id: current_user.id) %>
+  <%# end %>
+</div>

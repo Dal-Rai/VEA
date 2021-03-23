@@ -10,11 +10,14 @@ class UniversityController < ApplicationController
   end
 
   def show
-    @uni = University.find(token: params.permit(:token))
+    @university = University.find(params[:id])
+    @user = User.uni_admin.first
   end
 
   def update
-    unless university.update_attributes(uni_params)
+    if university.update_attributes(uni_params)
+      render json: {message: 'University Updated', success: true}, status: :ok
+    else
       invalid_resource!(university)
     end
   end
@@ -48,8 +51,11 @@ class UniversityController < ApplicationController
     params
       .require(:university)
       .permit(:id, :name, :weblink, :remark, :token,
-        focal_contact_attributes: [:firstname, :middlename, :lastname, :email, :phone_number],
-        address_attributes: [:street_no, :street_name, :suburb, :post_code, :city, :country]
+        focal_contact_attributes: [:id, :firstname, :middlename, :lastname, :email, :phone_number],
+        english_competencies_attributes: [:id, :overall_band, :expiry, :competency_type, :speaking, :listening, :writing,
+          :reading],
+        academic_eligibilities_attributes: [:id, :code, :eligibility_type, :minimum_score],
+        address_attributes: [:id, :street_no, :street_name, :suburb, :post_code, :city, :country]
       )
   end
 end

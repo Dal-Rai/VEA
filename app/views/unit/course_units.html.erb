@@ -1,0 +1,61 @@
+<div class="col-lg-2">
+  <%= render(partial: "home/uni_admin_nav") %>
+</div>
+
+<div class="col-lg-10">
+  <div>
+    <%= render(partial: "unit/text_change") %>
+  </div>
+
+  <style>
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+  </style>
+
+
+  <div>
+    <a href="<%= root_url %>course/<%= @course.id %>/unit/new">Add Units</a><br><br>
+  </div>
+
+
+  <table>
+    <tr>
+      <th width="300", height="40">Name</th>
+      <th width="200", height="40">Code</th>
+      <th width="200">Credit Point</th>
+      <th width="200">Level</th>
+      <th width="200">Action</th>
+    </tr>
+    <% @course_units.each do |cor_unit| %>
+      <tr>
+        <td height="40">
+          <%= cor_unit.unit.code %>
+        </td>
+
+        <td height="40">
+          <%= cor_unit.unit.name %>
+        </td>
+
+        <td height="40">
+          <%= cor_unit.unit.credit_point %>
+        </td>
+
+        <td height="40">
+          <%= cor_unit.unit.level %>
+        </td>
+
+        <td height="40">
+          <a href="<%= root_url %>course/<%= @course.id %>/unit/<%= cor_unit.unit.id %>">Edit</a>
+          ||
+          <%= link_to "Delete", courses_unit_path(id: cor_unit.id, login_aei: params[:login_aei]), method: :delete,
+            data: {
+            confirm: 'Are you sure?'
+          }%>
+        </td>
+      </tr>
+    <%end%>
+
+  </table>
+</div>

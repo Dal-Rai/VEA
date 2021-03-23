@@ -1,0 +1,76 @@
+<div class="col-lg-2">
+  <%= render(partial: "home/uni_admin_nav") %>
+</div>
+
+<style>
+  table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+</style>
+
+<div class="alignCenter">
+  <h1>Unit Creation</h1><br>
+
+  <div>
+    <%= form_for @unit, url: {action: :create, method: :post, params:{course_id: @course.id}} do |f| %>
+      <%= f.hidden_field :course_id, value: @course.id %><br><br>
+      <%= label_tag(:name, "Code:", class: 'labelLarge') %>
+      <%= f.text_field :code, class: 'largeInput' %><br><br>
+
+      <%= label_tag(:name, "Name:", class: 'labelLarge') %>
+      <%= f.text_field :name, class: 'largeInput' %><br><br>
+
+      <%= label_tag(:credit_point, "Credit Point:", class: 'labelLarge') %>
+      <%= f.text_field :credit_point, class: 'largeInput' %><br>
+
+      <%= label_tag(:level, "Level:", class: 'labelLarge') %>
+      <%= f.text_field :level, class: 'largeInput', placeholder: "G or GP" %><br><br>
+
+      <%= label_tag(:submit, "", class: 'labelLarge') %>
+      <%= f.submit 'Create', class: 'mediumSubmit' %>
+    <% end %>
+  </div><br><br>
+
+  <div>
+    <table border="1">
+      <tr>
+        <th width="300", height="40">Name</th>
+        <th width="200", height="40">Code</th>
+        <th width="200">Credit Point</th>
+        <th width="200">Level</th>
+        <th width="200">Action</th>
+      </tr>
+      <% @units.each do |unit| %>
+        <tr>
+          <td height="40">
+            <%= unit.code %>
+          </td>
+
+          <td height="40">
+            <%= unit.name %>
+          </td>
+
+          <td height="40">
+            <%= unit.credit_point %>
+          </td>
+
+          <td height="40">
+            <%= unit.level %>
+          </td>
+
+          <td height="40">
+            <a href="<%= root_url %>course/<%= params[:course_id] %>/unit/<%= unit.id %>">Edit</a>
+            ||
+            <%= link_to "Delete", course_unit_path(course_id: params[:course_id], id: unit.id), method: :delete, data: {
+              confirm: 'Are you sure?'
+            }%>
+          </td>
+        </tr>
+      <%end%>
+
+    </table>
+  </div>
+</div>
+
+

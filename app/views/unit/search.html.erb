@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<style>
+  table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+</style>
+
+<table>
+  <tr>
+    <th width="300", height="40">Name</th>
+    <th width="200", height="40">Code</th>
+    <th width="200">Credit Point</th>
+    <th width="200">Level</th>
+  </tr>
+  <% @units.each do |unit| %>
+    <tr>
+      <td height="40">
+        <%= unit.code %>
+      </td>
+
+      <td height="40">
+        <%= unit.name %>
+      </td>
+
+      <td height="40">
+        <%= unit.credit_point %>
+      </td>
+
+      <td height="40">
+        <%= unit.level %>
+      </td>
+
+      <td height="40">
+        <a href="<%= root_url %>unit/<%= unit.id %>">Edit</a>
+      </td>
+    </tr>
+  <%end%>
+
+</table>
+
+
+</body>
+</html>

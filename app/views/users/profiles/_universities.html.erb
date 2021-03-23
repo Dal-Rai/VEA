@@ -1,0 +1,28 @@
+<style>
+  td {
+    border: 1px solid black;
+    height: 30px;
+  }
+</style>
+
+<table>
+  <tr>
+    <th>University Name</th>
+    <th>Weblink</th>
+    <th>Focal Contact Name</th>
+    <th>Focal Contact Email</th>
+    <th>Focal Contact Phone</th>
+    <th>Faculty Count</th>
+  </tr>
+  <% @universities.each do |uni| %>
+    <tr>
+      <td><%= uni.name %></td>
+      <td><%= uni.weblink  %></td>
+      <td><%= uni.focal_contact.firstname %></td>
+      <td><%= uni.focal_contact.email %></td>
+      <td><%= uni.focal_contact.phone_number %></td>
+      <td><%= uni.faculties.count %></td>
+    </tr>
+
+  <% end %>
+</table>

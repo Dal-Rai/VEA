@@ -1,16 +1,18 @@
-<div>
+<div class="col-lg-4">
   <%= render(partial: "home/student_nav") %>
 </div>
 
-
-<% if params[:type].eql? 'suggestion' %>
-
-<%elsif params[:type].eql? 'recommendation'%>
-  <%= render(partial: "users/profiles/student_recommendation") %>
-
-<%else%>
-  <%= render(partial: "users/profiles/student_profile") %>
-<%end %>
+<div class="col-lg-8">
+  <% if params[:type].eql? 'profile' %>
+    <%= render(partial: "users/profiles/student_profile") %>
+  <%elsif params[:type].eql? 'portfolio'%>
+    <%= render(partial: "users/profiles/portfolio") %>
+  <%elsif params[:type].eql? 'recommendation'%>
+    <%= render(partial: "users/profiles/student_recommendation") %>
+  <%else%>
+    <%= render(partial: "users/profiles/student_search") %>
+  <%end %>
+</div>
 
 
 

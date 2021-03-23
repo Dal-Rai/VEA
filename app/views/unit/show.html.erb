@@ -1,0 +1,25 @@
+<div class="col-lg-2">
+  <%= render(partial: "home/uni_admin_nav") %>
+</div>
+
+<span class="alignCenter">
+  <h1>Unit Update</h1><br>
+
+  <%= form_for @unit, url: {action: :update, method: :put} do |f| %>
+    <%= f.hidden_field :course_id, value: @course.id %><br>
+    <%= label_tag(:name, "Code:", class: 'labelLarge') %>
+    <%= f.text_field :code, class: 'largeInput' %><br><br>
+
+    <%= label_tag(:name, "Name:", class: 'labelLarge') %>
+    <%= f.text_field :name, class: 'largeInput' %><br><br>
+
+    <%= label_tag(:credit_point, "Credit Point:", class: 'labelLarge') %>
+    <%= f.text_field :credit_point, class: 'largeInput' %><br>
+
+    <%= label_tag(:level, "Level:", class: 'labelLarge') %>
+    <%= f.text_field :level, class: 'largeInput' %><br><br>
+
+    <%= label_tag(:submit, "", class: 'labelLarge') %>
+    <%= f.submit 'Update', class: 'mediumSubmit' %>
+    <% end %>
+</span>

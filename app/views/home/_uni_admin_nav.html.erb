@@ -1,0 +1,45 @@
+<style>
+  body {
+    margin: 0;
+  }
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 15%;
+    background-color: #f1f1f1;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+  }
+
+  li a {
+    display: block;
+    color: #000;
+    padding: 8px 16px;
+    text-decoration: none;
+  }
+
+  li a.active {
+    background-color: #4CAF50;
+    color: white;
+  }
+
+  li a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+  }
+</style>
+
+<h2>
+  <ul>
+    <li><a class="active" href="<%= root_url %>/users/<%= current_user.id%>?type=profile">Profile</a></li><br>
+    <li><a href="<%= root_url %>/university/<%= current_user.university_id%>?type=university">University</a></li><br>
+    <li><a href="<%= root_url %>/university/<%= current_user.university_id%>?type=criteria">Criteria</a></li><br>
+    <li><a href="<%= root_url %>/university/<%= current_user.university_id%>/faculty?type=faculty">Faculty</a></li><br>
+    <li><a href="">students</a></li><br>
+    <li><%= button_to "logout", destroy_user_session_path, method: :delete  %></li>
+  </ul>
+</h2>
+</div>

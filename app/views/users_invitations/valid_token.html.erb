@@ -2,18 +2,16 @@
   <%= render(partial: "home/home_nav") %>
 </div>
 
-<div>
+<div class="alignCenter">
   <%= form_tag(String(@user.id) + '/accept_invitation', method: :put) %>
   <%= hidden_field_tag(:invitation_token, @user.invitation_token) %>
 
-  <%= label_tag(:password, "Password:", class: "labelText") %>
-  <span class="largeInput">
-    <%= password_field_tag(:password) %><br>
-  </span>
+  <%= label_tag(:password, "Password:", class: "labelExtraLarge") %>
+  <%= password_field_tag(:password, params[:password], class: 'largeInput') %><br>
 
-  <%= label_tag(:password_confirmation, "Confirm Password:", class: "labelText") %>
-  <span class="largeInput">
-    <%= password_field_tag(:password_confirmation, class: "largeInput") %><br>
-  </span>
+
+  <%= label_tag(:password_confirmation, "Confirm Password:", class: "labelExtraLarge") %>
+  <%= password_field_tag(:password_confirmation, params[:password_confirmation], class: "largeInput") %><br>
+  <%= label_tag(:submit, "", class: "labelExtraLarge") %>
   <%= submit_tag('Submit', class: "mediumSubmit") %>
 </div>

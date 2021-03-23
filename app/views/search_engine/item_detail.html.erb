@@ -1,0 +1,25 @@
+<div>
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+  <% if current_user.nil? %>
+    <%= render(partial: "home/home_nav") %>
+    <div class="col-lg-2">
+      <%= label_tag :space, "" %>
+    </div>
+    <div class="col-lg-8">
+      <span class="search-center">
+        <%= ['Course', 'Unit'].include?(@result.class.name)? @result.code : @result.name %>
+        <%= @result.search_detail %>
+      </span>
+    </div>
+  <% else %>
+    <div class="col-lg-4">
+      <%= render(partial: "home/student_nav") %>
+    </div>
+    <div class="col-lg-8">
+      <span class="search-center">
+        <%= ['Course', 'Unit'].include?(@result.class.name)? @result.code : @result.name %>
+        <%= @result.search_detail %>
+      </span>
+    </div>
+  <% end %>
+</div>

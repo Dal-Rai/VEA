@@ -1,0 +1,50 @@
+<% unless  params[:term].nil? %>
+  <div class="row">
+    <div class="col-xs-9 search-results-container">
+      <% if(@results[:courses].size + @results[:units].size + @results[:universities].size) > 0 %>
+        <h4> <%= (@results[:courses].size + @results[:units].size + @results[:universities].size) %> results found.</h4><br>
+
+        <% @results[:universities].each do |uni| %>
+          <div class="list-group row">
+            <div class="faculty-details search-result">
+              <a href="search_engine/item_detail?name=<%= @results[:universities].klass.name %>&id=<%= uni.id %>"
+                 class="list-group-item">
+                <h4 class="list-group-item-heading"><%= uni.name %></h4>
+                <p class="list-group-item-text"><%= uni.remark %>
+                </p>
+              </a>
+            </div>
+          </div>
+        <% end %>
+
+        <% @results[:courses].each do |course| %>
+          <div class="list-group row">
+            <div class="col-xs-10 faculty-details search-result">
+              <a href="search_engine/item_detail?name=<%= @results[:courses].klass.name %>&id=<%= course.id
+              %>"
+                 class="list-group-item">
+                <h4 class="list-group-item-heading"><%= course.code %></h4>
+                <p class="list-group-item-text"><%= course.name %></p>
+              </a>
+            </div>
+          </div>
+        <% end %>
+
+        <% @results[:units].each do |unit| %>
+          <div class="list-group row">
+            <div class="col-xs-10 faculty-details search-result">
+              <a href="search_engine/item_detail?name=<%= @results[:units].klass.name %>&id=<%= unit.id %>"
+                 class="list-group-item">
+                <h4 class="list-group-item-heading"><%= unit.code %></h4>
+                <p class="list-group-item-text"><%= unit.name %></p>
+              </a>
+            </div>
+          </div>
+        <% end %>
+
+      <% else %>
+        <h3> No results found.</h3>
+      <% end %>
+    </div>
+  </div>
+<% end %>

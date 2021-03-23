@@ -1,15 +1,36 @@
+require 'elasticsearch/model'
 class University < ApplicationRecord
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+
   validates_presence_of :name, :weblink
 
   has_one :focal_contact, inverse_of: :university, dependent: :destroy
   has_one :address, as: :addressable, dependent: :destroy
+  has_one :selection_criteria, inverse_of: :university, dependent: :destroy
   has_many :users, inverse_of: :university, dependent: :destroy
+  has_many :faculties, inverse_of: :university, dependent: :destroy
+  has_many :english_competencies, as: :competenciable, dependent: :destroy
+  has_many :academic_eligibilities, as: :eligiable, dependent: :destroy
 
   accepts_nested_attributes_for :focal_contact, allow_destroy: true
   accepts_nested_attributes_for :address, allow_destroy: true
+  accepts_nested_attributes_for :english_competencies, allow_destroy: true
+  accepts_nested_attributes_for :academic_eligibilities, allow_destroy: true
 
   before_create :assign_token
-  after_commit :notify_portal_admin
+  after_create :notify_portal_admin
+
+  settings do
+    mappings dynamic: false do
+      indexes :name, type: :text
+      indexes :remark, type: :text
+    end
+  end
+
+  def search_detail
+    "#{name} has #{faculties.count} departments"
+  end
 
   def assign_token
     self.token = Devise.token_generator.generate(self.class, :token).second
@@ -17,6 +38,40 @@ class University < ApplicationRecord
 
   def notify_portal_admin
     UniversityMailer.notify_portal_admin(self).deliver_now
+  end
+
+  def english_competencies
+    return super unless super.empty?
+    super.build(
+      [{
+        competency_type: :IELTS,
+        overall_band: 6.5,
+        speaking: 6.0,
+        writing: 6.0,
+        reading: 6.0,
+        listening: 6.0
+       },
+      {
+        competency_type: :PTE,
+        overall_band: 6.5,
+        speaking: 6.0,
+        writing: 6.0,
+        reading: 6.0,
+        listening: 6.0
+      }]
+    )
+  end
+
+  def academic_eligibilities
+    return super unless super.empty?
+    super.build(
+           [
+             { eligibility_type: 'Post Graduate', minimum_score: 60, code: 'PG' },
+             { eligibility_type: 'Under Graduate', minimum_score: 60, code: 'UG'},
+             { eligibility_type: 'Diploma', minimum_score: 60, code: 'DIP' },
+             { eligibility_type: 'Certificate Or High School', minimum_score: 60, code: 'HS' }
+           ]
+    )
   end
 
 end

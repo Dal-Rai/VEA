@@ -2,31 +2,32 @@
   <%= render(partial: "home/home_nav") %>
 </div>
 
-<div class="Personal">
+<span class="col-lg-3">
+  <%= label_tag nil %>
+</span>
 
-  <span class="alignCenter">
-    <%= form_for @user, url: {controller: :student, action: :create, method: :post} do |f| %>
-      <%= label_tag(:email, "Email:", class: 'labelText') %>
-      <%= f.text_field :email, class: 'largeInput' %><br><br>
-      <%= f.fields_for :profile do |g| %>
-        <%= label_tag(:firstname, "First Name:", class: 'labelText') %>
-        <%= g.text_field :firstname, class: 'largeInput' %><br><br>
+<div class="col-lg-9">
+  <%= form_for @user, url: {controller: :student, action: :create, method: :post} do |f| %>
+    <%= label_tag(:email, "Email:", class: 'labelLarge') %>
+    <%= f.text_field :email, class: 'largeInput' %><br><br>
+    <%= f.fields_for :profile do |g| %>
+      <%= label_tag(:firstname, "First Name:", class: 'labelLarge') %>
+      <%= g.text_field :firstname, class: 'largeInput' %><br><br>
 
-        <%= label_tag(:middlename, "Middle Name:", class: 'labelText') %>
-        <%= g.text_field :middlename, class: 'largeInput' %><br><br>
+      <%= label_tag(:middlename, "Middle Name:", class: 'labelLarge') %>
+      <%= g.text_field :middlename, class: 'largeInput' %><br><br>
 
-        <%= label_tag(:lastname, "Last Name:", class: 'labelText') %>
-        <%= g.text_field :lastname, class: 'largeInput' %><br><br>
+      <%= label_tag(:lastname, "Last Name:", class: 'labelLarge') %>
+      <%= g.text_field :lastname, class: 'largeInput' %><br><br>
 
-        <%= label_tag(:mobile_no, "Mobile No:", class: 'labelText') %>
-        <%= g.text_field :mobile_no, class: 'largeInput' %><br><br>
-      <% end %>
+      <%= label_tag(:mobile_no, "Mobile No:", class: 'labelLarge') %>
+      <%= g.text_field :mobile_no, class: 'largeInput' %><br><br>
+    <% end %>
 
 
-      <%= label_tag(:submit, "", class: 'labelText') %>
-      <%= f.submit 'Create Account', class: 'largeSubmit' %>
-  <% end %>
-  </span>
+    <%= label_tag(:submit, "", class: 'labelLarge') %>
+    <%= f.submit 'Create Account', class: 'largeSubmit' %>
+<% end %>
 </div>
 
 <!--  <form>-->

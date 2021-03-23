@@ -4,7 +4,7 @@ class User < ApplicationRecord
 
   validates_presence_of :email, :password, on: :create
   devise :invitable, :database_authenticatable, :registerable, :lockable,
-    :recoverable, :rememberable, :trackable, :validatable
+    :recoverable, :rememberable, :trackable, :validatable, :timeoutable
 
   validates_uniqueness_of :email
   validate :password_strength
@@ -12,15 +12,21 @@ class User < ApplicationRecord
   has_one :profile, inverse_of: :user, dependent: :destroy
   belongs_to :university, inverse_of: :users, optional: true
   has_one :address, as: :addressable, dependent: :destroy
+  has_many :english_competencies, as: :competenciable, dependent: :destroy
+  has_many :qualifications, inverse_of: :user, dependent: :destroy
+  has_many :experiences, inverse_of: :user, dependent: :destroy
 
   accepts_nested_attributes_for :profile, allow_destroy: true
   accepts_nested_attributes_for :address, allow_destroy: true
+  accepts_nested_attributes_for :english_competencies, allow_destroy: true
+  accepts_nested_attributes_for :qualifications, allow_destroy: true
+  accepts_nested_attributes_for :experiences, allow_destroy: true
 
   enum user_type: {portal_admin: 0, uni_admin: 1, student: 2}
 
   after_create :send_invitation
 
-  delegate :name, to: :company, prefix: true, allow_nil: :false
+  delegate :name, to: :university, prefix: true, allow_nil: :true
   delegate :salutation, :firstname, :lastname, to: :profile, allow_nil: :false
 
   paginates_per 10

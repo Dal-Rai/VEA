@@ -32,10 +32,16 @@
   }
 </style>
 
-<ul>
-  <li><a class="active" href="<%= root_url %>/users/<%= @user.id%>?type=profile">Profile</a></li>
-  <li><a class="active" href="<%= root_url %>/users/<%= @user.id%>?type=recommendation">Recommendations</a></li>
-  <li><a href="#contact">Universities</a></li>
-  <li><a href="#about">Suggesstion</a></li>
-</ul>
+<h3>
+  <ul>
+    <li><a class="active" href="<%= root_url %>/users/<%= current_user.id%>?type=search">Search</a></li><br>
+    <li><a class="active" href="<%= root_url %>/users/<%= current_user.id%>?type=profile">Profile</a></li><br>
+    <li><a class="active" href="<%= root_url %>/users/<%= current_user.id%>?type=portfolio">Academic
+      Portfolio</a></li>
+    <li><a class="active" href="<%= root_url %>/users/<%= current_user.id%>?type=recommendation"></a></li><br>
+    <li><a class="active" href="#contact">Recommendation</a></li><br>
+    <li><a class="active" href="#about">Suggesstion</a></li><br>
+    <li><%= button_to "logout", destroy_user_session_path, method: :delete  %></li>
+  </ul>
+</h3>
 </div>

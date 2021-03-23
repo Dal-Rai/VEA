@@ -1,0 +1,74 @@
+<div class="col-lg-9">
+  <%= form_for @user, url: {controller: :student, action: :update, method: :put} do |f| %>
+    <div class="line">
+      English Competency
+    </div><br><br><br><br><br>
+
+    <%= f.fields_for :english_competencies do |g| %>
+      <%= label_tag(:competency_type, "Type:", class: 'labelLarge') %>
+      <%= g.select :competency_type, ["IELTS", "PTE"] %><br><br>
+
+      <%= label_tag(:expiry, "Expiry:", class: 'labelLarge') %>
+      <%= g.date_field :expiry, class: 'mediumInput' %><br><br>
+
+      <%= label_tag(:overall_band, "Overall Band:", class: 'labelLarge') %>
+      <%= g.text_field :overall_band, class: 'mediumInput' %><br><br>
+
+      <%= label_tag(:speaking, "Speaking:", class: 'labelLarge') %>
+      <%= g.text_field :speaking, class: 'smallInput' %><br><br>
+
+      <%= label_tag(:writing, "Writing:", class: 'labelLarge') %>
+      <%= g.text_field :writing, class: 'mediumInput' %><br><br>
+
+      <%= label_tag(:reading, "Reading:", class: 'labelLarge') %>
+      <%= g.text_field :reading, class: 'mediumInput' %><br><br>
+
+      <%= label_tag(:listening, "Listening:", class: 'labelLarge') %>
+      <%= g.text_field :listening, class: 'mediumInput' %><br><br>
+    <% end %>
+
+    <div class="line">
+      Highest Qualification
+    </div><br><br><br><br><br>
+
+    <%= f.fields_for :qualifications do |g| %>
+      <%= label_tag(:highest_qualification, "Qualification:", class: 'labelLarge') %>
+      <%= g.select :highest_qualification, [["PHD", "phd"], ["Post Graduate", "post_graduate"], ["Under Graduate",
+        "graduate"], ["Diploma", "diploma"],
+        ["Certificate Or High School", "high_school"]], class: 'mediumInput' %><br><br>
+
+      <%= label_tag(:course, "Course:", class: 'labelLarge') %>
+      <%= g.text_field :course, class: 'mediumInput' %><br><br>
+
+      <%= label_tag(:overall_percentage, "Percentage:", class: 'labelLarge') %>
+      <%= g.text_field :overall_percentage, class: 'mediumInput' %><br><br>
+
+      <%= label_tag(:completed_year, "Completed Year:", class: 'labelLarge') %>
+      <%= g.date_field :completed_year, class: 'mediumInput' %><br><br>
+    <% end %>
+
+    <div class="line">
+      Experiences
+    </div><br><br><br><br><br>
+
+    <%= f.fields_for :experiences do |g| %>
+      <%= label_tag(:job_type, "Job Name:", class: 'labelLarge') %>
+      <%= g.text_field :job_type, class: 'mediumInput' %><br><br>
+
+      <%= label_tag(:start, "Start Date:", class: 'labelLarge') %>
+      <%= g.date_field :start, class: 'mediumInput' %><br><br>
+
+      <%= label_tag(:end, "End Date:", class: 'labelLarge') %>
+      <%= g.date_field :end, class: 'mediumInput' %><br><br>
+
+      <%= label_tag(:company, "Company Name:", class: 'labelLarge') %>
+      <%= g.text_field :company, class: 'mediumInput' %><br><br>
+
+      <%= label_tag(:responsibility, "Responsibility:", class: 'labelLarge') %>
+      <%= g.text_field :responsibility, class: 'mediumInput' %><br><br>
+    <% end %>
+
+    <%= label_tag(:submit, "", class: 'labelLarge') %>
+    <%= f.submit 'Update', class: 'largeSubmit' %>
+  <% end %>
+</div>

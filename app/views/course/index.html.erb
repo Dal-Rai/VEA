@@ -1,0 +1,57 @@
+<div class="col-lg-2">
+  <%= render(partial: "home/uni_admin_nav") %>
+</div>
+
+<style>
+  table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+</style>
+
+<div class="col-lg-10">
+  <a href="<%= root_url %>course/new?faculty_id=<%= @faculty.id %>">Add Course</a><br>
+
+  <table>
+    <tr>
+      <th width="300", height="40">Name</th>
+      <th width="200", height="40">Code</th>
+      <th width="200">Duration</th>
+      <th width="200">Rank</th>
+      <th width="200">Unit Count</th>
+      <th width="200">Action</th>
+    </tr>
+    <% @courses.each do |course| %>
+      <tr>
+        <td height="40">
+          <%= course.name %>
+        </td>
+
+        <td height="40">
+          <%= course.code %>
+        </td>
+
+        <td height="40">
+          <%= course.duration %> semester
+        </td>
+
+        <td height="40">
+          <%= course.rank %>
+        </td>
+
+        <td height="40">
+          <%= link_to course.course_units.count, course_units_course_unit_index_path(course_id: course.id), method: :get %>
+        </td>
+
+        <td height="40">
+          <a href="<%= root_url %>course/<%= course.id %>">Edit</a>
+          ||
+          <%= link_to "Delete", course_path(id: course.id), method: :delete, data: {
+            confirm: 'Are you sure?'
+          }%>
+        </td>
+      </tr>
+    <%end%>
+
+  </table>
+</div>

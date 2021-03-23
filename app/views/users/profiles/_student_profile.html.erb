@@ -1,25 +1,55 @@
 <div class="Personal">
+  <span class="col-lg-2">
+    <%= label_tag(:email, "", class: 'labelLarge') %>
+  </span>
 
-  <span class="alignCenter">
-    <%= form_for @user, url: {controller: :student, action: :create, method: :post} do |f| %>
-      <%= label_tag(:email, "Email:", class: 'labelText') %>
+  <span class="col-lg-7">
+    <div class="line">
+        Personal Details
+      </div><br><br><br><br><br>
+
+    <%= form_for @user, url: {controller: :student, action: :update, method: :put} do |f| %>
+      <%= label_tag(:email, "Email:", class: 'labelLarge') %>
       <%= f.text_field :email, class: 'largeInput' %><br><br>
       <%= f.fields_for :profile do |g| %>
-        <%= label_tag(:firstname, "First Name:", class: 'labelText') %>
+        <%= label_tag(:firstname, "First Name:", class: 'labelLarge') %>
         <%= g.text_field :firstname, class: 'largeInput' %><br><br>
 
-        <%= label_tag(:middlename, "Middle Name:", class: 'labelText') %>
+        <%= label_tag(:middlename, "Middle Name:", class: 'labelLarge') %>
         <%= g.text_field :middlename, class: 'largeInput' %><br><br>
 
-        <%= label_tag(:lastname, "Last Name:", class: 'labelText') %>
+        <%= label_tag(:lastname, "Last Name:", class: 'labelLarge') %>
         <%= g.text_field :lastname, class: 'largeInput' %><br><br>
 
-        <%= label_tag(:mobile_no, "Mobile No:", class: 'labelText') %>
+        <%= label_tag(:mobile_no, "Mobile No:", class: 'labelLarge') %>
         <%= g.text_field :mobile_no, class: 'largeInput' %><br><br>
       <% end %>
 
+      <div class="line">
+        Present Address
+      </div><br><br><br><br><br>
 
-      <%= label_tag(:submit, "", class: 'labelText') %>
+      <%= f.fields_for :address do |g| %>
+        <%= label_tag(:street_no, "Street No:", class: 'labelLarge') %>
+        <%= g.text_field :street_no, class: 'smallInput' %><br><br>
+
+        <%= label_tag(:street_name, "street Name:", class: 'labelLarge') %>
+        <%= g.text_field :street_name, class: 'mediumInput' %><br><br>
+
+        <%= label_tag(:suburb, "Suburb:", class: 'labelLarge') %>
+        <%= g.text_field :suburb, class: 'mediumInput' %><br><br>
+
+        <%= label_tag(:post_code, "Post Code:", class: 'labelLarge') %>
+        <%= g.text_field :post_code, class: 'smallInput' %><br><br>
+
+        <%= label_tag(:city, "City:", class: 'labelLarge') %>
+        <%= g.text_field :city, class: 'mediumInput' %><br><br>
+
+        <%= label_tag(:country, "Country:", class: 'labelLarge') %>
+        <%= g.text_field :country, class: 'mediumInput' %><br><br>
+      <% end %>
+
+      <%= label_tag(:submit, "", class: 'labelLarge') %>
       <%= f.submit 'Update', class: 'largeSubmit' %>
   <% end %>
   </span>

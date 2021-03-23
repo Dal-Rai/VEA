@@ -1,18 +1,27 @@
 <div>
-  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
   <% if current_user.nil? %>
     <%= render(partial: "home/home_nav") %>
-
-    <div class="wrap">
-      <div class="search">
-        <input type="text" class="searchTerm" placeholder="What are you looking for?">
-        <button type="submit" class="searchButton">
-          <i class="fa fa-search"></i>
-        </button>
-      </div>
+    <div class="col-lg-2">
+      <%= label_tag :space, "" %>
     </div>
 
-  <% else %>
-    <%= render(partial: "home/home_nav") %>
+    <div class="col-lg-8 ">
+      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+      <span class="search-center">
+        <form method="get" action="search_engine" id="search-form">
+          <div class="input-group main-form-inputs search-text">
+            <input type="text" name="term" id="term" class="form-control search-text" value="<%= params[:term] %>"
+                   placeholder="search by name">
+            <span class="input-group-btn">
+              <button class="btn btn-default search-btn" type="submit">Search</button>
+            </span>
+          </div>
+        </form>
+      </span>
+    </div>
+
+<% else %>
+    <% controller.redirect_to(controller: :users, action: :show, id: current_user.id) %>
   <% end %>
 </div>

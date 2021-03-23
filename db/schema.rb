@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210301143317) do
+ActiveRecord::Schema.define(version: 20210323043208) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "academic_eligibilities", force: :cascade do |t|
+    t.integer  "eligiable_id"
+    t.string   "eligiable_type"
+    t.string   "eligibility_type"
+    t.decimal  "minimum_score"
+    t.integer  "code"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
 
   create_table "addresses", force: :cascade do |t|
     t.integer  "street_no",        null: false
@@ -34,6 +44,56 @@ ActiveRecord::Schema.define(version: 20210301143317) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.index ["attachable_type", "attachable_id"], name: "index_attachments_on_attachable_type_and_attachable_id", using: :btree
+  end
+
+  create_table "course_units", force: :cascade do |t|
+    t.integer  "course_id"
+    t.integer  "unit_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "courses", force: :cascade do |t|
+    t.string   "code"
+    t.string   "name"
+    t.integer  "duration"
+    t.integer  "rank"
+    t.integer  "faculty_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "english_competencies", force: :cascade do |t|
+    t.integer  "competency_type"
+    t.date     "expiry"
+    t.decimal  "overall_band"
+    t.decimal  "speaking"
+    t.decimal  "reading"
+    t.decimal  "writing"
+    t.decimal  "listening"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.integer  "competenciable_id"
+    t.string   "competenciable_type"
+  end
+
+  create_table "experiences", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "job_type"
+    t.datetime "start"
+    t.datetime "end"
+    t.string   "company"
+    t.text     "responsibility"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  create_table "faculties", force: :cascade do |t|
+    t.string   "code"
+    t.string   "name"
+    t.integer  "university_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "focal_contacts", force: :cascade do |t|
@@ -77,6 +137,35 @@ ActiveRecord::Schema.define(version: 20210301143317) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.index ["user_id"], name: "index_profiles_on_user_id", using: :btree
+  end
+
+  create_table "qualifications", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "highest_qualification"
+    t.string   "course"
+    t.decimal  "overall_percentage"
+    t.json     "subject",               default: {}
+    t.date     "completed_year"
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+  end
+
+  create_table "selection_criteria", force: :cascade do |t|
+    t.integer  "university_id"
+    t.decimal  "english_competency"
+    t.decimal  "academic"
+    t.decimal  "experience"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  create_table "units", force: :cascade do |t|
+    t.string   "code"
+    t.string   "name"
+    t.integer  "credit_point"
+    t.integer  "level"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "universities", force: :cascade do |t|

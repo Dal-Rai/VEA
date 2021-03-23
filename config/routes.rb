@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   # mount ActionCable.server => '/cable'
 
   resources :university do
+    resources :faculty
     collection do
       get :valid_token
       get :search
@@ -24,7 +25,17 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :course do
+    resources :unit do
+      collection do
+        get :course_units
+        get :search
+      end
+    end
+  end
+
   resources :student
+  resources :courses_unit, only: [:create, :destroy]
   resources :uni_admin
   resources :users_invitations do
     collection do
@@ -36,7 +47,20 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users, only: [:show]
+  resources :search_engine do
+    collection do
+      get :search_unit
+      get :item_detail
+    end
+  end
+
+
+  resources :users do
+    collection do
+      get :students
+      get :universities
+    end
+  end
 
   get 'js/widget.js' => 'ticketings#widget', defaults: {format: 'js'}
 

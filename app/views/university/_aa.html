@@ -1,0 +1,107 @@
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js">-->
+  <!--(function() {-->
+    <!--var button=document.getElementById("add-user");-->
+    <!--button.addEventListener('click', function(event) {-->
+      <!--event.preventDefault();-->
+      <!--var cln = document.getElementsByClassName("user")[0].cloneNode(true);-->
+      <!--document.getElementById("users").insertBefore(cln,this);-->
+      <!--return false;-->
+    <!--});-->
+  <!--})();-->
+<!--</script>-->
+
+<!--<form id="users" action="form_sent.php" method="post">-->
+  <!--<div class="user">-->
+  <!--<input name="name" type="text" placeholder="Name"><br>-->
+  <!--<input name="phone" type="text" placeholder="Phone"><br>-->
+  <!--<input name="email" type="text" placeholder="E-Mail"><br><br>-->
+  <!--</div>-->
+  <!--<button id='add-user'>Add more fields</button><br><br>-->
+  <!--<input type="submit">-->
+<!--</form>-->
+
+<!--<script type="text/javascript">-->
+  <!--$(document).ready(function() {-->
+    <!--var addButton = $('.add_button');-->
+    <!--var wrapper = $('.field_wrapper');-->
+    <!--var fieldHTML = '<div>'+-->
+      <!--'<form id="users" action="" method="post">'-->
+      <!--'<input name="name" type="text" placeholder="Name"><br>'-->
+      <!--'<input name="phone" type="text" placeholder="Phone"><br>'-->
+      <!--'<input name="email" type="text" placeholder="E-Mail"><br><br>'-->
+      <!--'<a href="javascript:void(0);" class="add_button" title="Add field">add btn</a>'-->
+    <!--'<input type="submit">'-->
+      <!--</form>'-->
+      <!--'</div>';-->
+
+    <!--//Once add button is clicked-->
+    <!--$(addButton).click(function(){-->
+      <!--alert('came here')-->
+        <!--$(wrapper).append(fieldHTML); //Add field html-->
+    <!--});-->
+
+    <!--//Once remove button is clicked-->
+    <!--$(wrapper).on('click', '.remove_button', function(e){-->
+      <!--e.preventDefault();-->
+      <!--$(this).parent('div').remove();-->
+    <!--});-->
+
+  <!--});-->
+<!--</script>-->
+
+
+<!--<div class="field_wrapper">-->
+  <!--<form id="users" action="" method="post">-->
+    <!--<input name="name" type="text" placeholder="Name"><br>-->
+    <!--<input name="phone" type="text" placeholder="Phone"><br>-->
+    <!--<input name="email" type="text" placeholder="E-Mail"><br><br>-->
+    <!--<a href="javascript:void(0);" class="add_button" title="Add field">add btn</a>-->
+  <!--</form>-->
+<!--</div>-->
+
+
+
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    var maxField = 2; //Input fields increment limitation
+    var addButton = $('.add_button'); //Add button selector
+    var wrapper = $('.field_wrapper'); //Input field wrapper
+    var fieldHTML = '<div>'+
+      '<form id="users" action="" method="post">' +
+      '<input name="name" type="text" placeholder="Name"><br>' +
+      '<input name="phone" type="text" placeholder="Phone"><br>' +
+      '<input name="email" type="text" placeholder="E-Mail">' +
+      '<a href="javascript:void(0);" class="add_button" title="Add field">add btn</a>' +
+      '</form>' +
+      '</div>'; //New input field html
+    var x = 1; //Initial field counter is 1
+
+    //Once add button is clicked
+    $(addButton).click(function(){
+      if(x < maxField){
+        x++; //Increment field counter
+        $(wrapper).append(fieldHTML); //Add field html
+      }
+    });
+
+    //Once remove button is clicked
+    $(wrapper).on('click', '.remove_button', function(e){
+      e.preventDefault();
+      $(this).parent('div').remove(); //Remove field html
+      x--;
+    });
+  });
+</script>
+
+<div class="field_wrapper">
+  <div>
+    <form id="users" action="" method="post">
+      <input name="name" type="text" placeholder="Name"><br>
+      <input name="phone" type="text" placeholder="Phone"><br>
+      <input name="email" type="text" placeholder="E-Mail">
+      <a href="javascript:void(0);" class="add_button" title="Add field">add btn</a>
+  </form>'
+
+  </div>
+</div>

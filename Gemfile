@@ -88,3 +88,11 @@ gem 'local_time'
 gem 'rubyzip', '= 1.0.0'
 gem 'axlsx', '= 2.0.1'
 gem 'axlsx_rails'
+
+# gem 'sunspot_rails'
+# gem 'sunspot_solr'
+gem 'elasticsearch-model', github: 'elastic/elasticsearch-rails', branch: 'master'
+gem 'elasticsearch-rails', github: 'elastic/elasticsearch-rails', branch: 'master'
+gem 'searchkick'
+
+gem 'tire'

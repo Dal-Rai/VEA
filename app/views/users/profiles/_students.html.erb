@@ -1,0 +1,20 @@
+<style>
+  td {
+    border: 1px solid black;
+    height: 30px;
+  }
+</style>
+
+<table>
+  <tr>
+    <th>Student Name</th>
+    <th>Email</th>
+  </tr>
+  <% @students.each do |std| %>
+    <tr>
+      <td><%= std.name %></td>
+      <td><%= std.email  %></td>
+    </tr>
+
+  <% end %>
+</table>

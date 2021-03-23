@@ -1,0 +1,16 @@
+<div class="col-lg-3">
+  <%= render(partial: "home/portal_admin_nav") %>
+</div>
+
+<div class="col-lg-9">
+  <% if params[:type].eql? 'students' %>
+    <%= render(partial: "users/profiles/students") %>
+  <%else%>
+    <%= render(partial: "users/profiles/universities") %>
+  <%end %>
+</div>
+
+
+
+
+
