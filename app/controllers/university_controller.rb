@@ -24,6 +24,7 @@ class UniversityController < ApplicationController
 
   def search
      @uni = University.find_by(token: params[:token])
+     @uni.build_wallet if @uni.wallet.nil?
   end
 
   def activate

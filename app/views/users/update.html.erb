@@ -1,0 +1,50 @@
+<div class="col-lg-3">
+  <%= label_tag nil %>
+</div>
+
+<div class="col-lg-9">
+  <div class="top-space">
+    <div class="line">
+      Personal Detail
+    </div><br><br>
+    <div>
+      <% flash.each do |name, msg| %>
+        <% if name.eql?('error') %>
+          <div class="alert alert-danger">
+            <% msg.each do |n, g|%>
+              <b><%= n %></b>: <%= g.to_sentence %>
+            <%end%>
+          </div>
+        <%else %>
+          <div class='alert alert-<%= name %>'>
+            <%= msg %>
+          </div>
+        <%end%>
+      <% end %>
+    </div>
+    <br><br><br><br><br>
+    <div>
+      <%= form_for @user, url: { action: :update, method: :put, id: @user.id} do |f| %>
+        <%= label_tag(:email, "Email:", class: 'labelLarge') %>
+        <%= f.text_field :email, class: 'largeInput' %><br><br>
+        <%= f.fields_for :profile do |g| %>
+          <%= label_tag(:firstname, "First Name:", class: 'labelLarge') %>
+          <%= g.text_field :firstname, class: 'largeInput' %><br><br>
+
+          <%= label_tag(:middlename, "Middle Name:", class: 'labelLarge') %>
+          <%= g.text_field :middlename, class: 'largeInput' %><br><br>
+
+          <%= label_tag(:lastname, "Last Name:", class: 'labelLarge') %>
+          <%= g.text_field :lastname, class: 'largeInput' %><br><br>
+
+          <%= label_tag(:mobile_no, "Mobile No:", class: 'labelLarge') %>
+          <%= g.text_field :mobile_no, class: 'largeInput' %><br><br>
+        <% end %>
+
+
+        <%= label_tag(:submit, "", class: 'labelLarge') %>
+        <%= f.submit 'Update', class: 'largeSubmit' %>
+      <% end %>
+    </div>
+  </div>
+</div>

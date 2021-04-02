@@ -1,13 +1,22 @@
-<div>
-  <%= render(partial: "home/home_nav") %>
-</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+  $(document).ready(function(){
+    $("#university_wallet_temp_amount").change(function(){
+      var oED = new Date("<%= @uni.wallet.end_date || DateTime.now %>");
+      var tempAmount = document.getElementById("university_wallet_temp_amount").value;
+      var noOfDays = tempAmount/1.6;
+      var newExpiryDate=new Date(oED.getFullYear(),oED.getMonth(),oED.getDate()+noOfDays);
+      document.getElementById("university_wallet_end_date").value = newExpiryDate.toISOString().slice(0, 10);
+    });
+  });
+</script>
 
 <span class="col-lg-3">
   <%= label_tag nil %>
 </span>
 
 <div class="col-lg-9">
-  <%= form_for @uni, url: {action: :activate, method: :put, id: @uni.id} do |f| %>
+  <%= form_for @uni, url: {controller: :paypals, action: :start_payment, method: :post} do |f| %>
     <%= f.hidden_field :token %>
     <%= label_tag(:uni_name, "University Name:", class: 'labelLarge') %>
     <%= f.text_field :name, class: 'largeInput' %><br><br>
@@ -22,8 +31,16 @@
       <%= label_tag(:phone_no, "Phone No:", class: 'labelLarge') %>
       <%= g.text_field :phone_number, class: 'largeInput' %><br><br>
 
+    <% end %>
+
+    Activated until: <%= @uni.wallet.end_date %><br>
+
+    <%= f.fields_for @uni.wallet do |g| %>
       <%= label_tag(:amount, "Amount:", class: 'labelLarge') %>
-      <%= g.text_field(:id, class: 'largeInput') %><br><br>
+      <%= g.text_field :temp_amount, class: 'largeInput' %><br><br>
+
+      <%= label_tag(:end_date, "Membership Until:", class: 'labelLarge') %>
+      <%= g.date_field :end_date, class: 'largeInput', readonly: "readonly" %><br><br>
     <% end %>
 
 
@@ -31,3 +48,4 @@
     <%= f.submit 'Activate', class: 'largeSubmit' %>
   <% end %>
 </div>
+

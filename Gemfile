@@ -94,5 +94,6 @@ gem 'axlsx_rails'
 gem 'elasticsearch-model', github: 'elastic/elasticsearch-rails', branch: 'master'
 gem 'elasticsearch-rails', github: 'elastic/elasticsearch-rails', branch: 'master'
 gem 'searchkick'
+gem 'paypal-recurring'
 
 gem 'tire'

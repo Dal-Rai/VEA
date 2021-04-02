@@ -1,0 +1,13 @@
+<div class="col-lg-4">
+  <%= render(partial: "home/student_nav") %>
+</div>
+
+<div class="col-lg-8">
+  <% if params[:type].eql?('english') %>
+    <%= render(partial: "users/profiles/student_academic_nav", locals: {tabName: 'english_tab'}) %>
+   <% elsif params[:type].eql?('experience')  %>
+    <%= render(partial: "users/profiles/student_academic_nav", locals: {tabName: 'experience_tab'}) %>
+  <% else %>
+    <%= render(partial: "users/profiles/student_academic_nav", locals: {tabName: 'qualification_tab'}) %>
+  <% end %>
+</div>

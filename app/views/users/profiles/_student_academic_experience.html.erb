@@ -1,0 +1,40 @@
+<%= form_for current_user, url: {controller: :student, action: :add_experience, method: :patch, id: current_user.id} do
+|f| %>
+
+  <%= f.fields_for current_user.experiences.new do |g| %>
+    <%= label_tag(:job_type, "Job Name:", class: 'labelLarge') %>
+    <%= g.text_field :job_type, class: 'mediumInput' %><br><br>
+
+    <%= label_tag(:start, "Start Date:", class: 'labelLarge') %>
+    <%= g.date_field :start, class: 'mediumInput' %><br><br>
+
+    <%= label_tag(:end, "End Date:", class: 'labelLarge') %>
+    <%= g.date_field :end, class: 'mediumInput' %><br><br>
+
+    <%= label_tag(:company, "Company Name:", class: 'labelLarge') %>
+    <%= g.text_field :company, class: 'mediumInput' %><br><br>
+
+    <%= label_tag(:responsibility, "Responsibility:", class: 'labelLarge') %>
+    <%= g.text_field :responsibility, class: 'extraLargeInput' %><br><br>
+  <% end %>
+
+  <%= label_tag(:submit, "", class: 'labelLarge') %>
+  <%= f.submit 'Update', class: 'mediumSubmit' %>
+<% end %><br>
+
+<table>
+  <tr>
+    <th>Job Type</th><th>Start Date</th><th>End Date
+    </th><th>Company</th><th>Responsibility</th><th>Action</th>
+  </tr>
+  <% current_user.experiences.select(&:persisted?).each do |g| %>
+    <tr>
+      <th><%= g.job_type %></th>
+      <td><%= g.start %></td>
+      <td><%= g.end %></td>
+      <td><%= g.company %></td>
+      <td><%= g.responsibility %></td>
+      <td><a href="<%= root_url %>/student/<%= current_user.id %>/reload?destroy=true&type=experience&type_id=<%= g.id %>">delete</a></td>
+    </tr>
+  <% end%>
+</table>

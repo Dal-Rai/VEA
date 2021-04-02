@@ -6,7 +6,7 @@
 
         <% @results[:universities].each do |uni| %>
           <div class="list-group row">
-            <div class="faculty-details search-result">
+            <div class="col-xs-10 faculty-details search-result">
               <a href="search_engine/item_detail?name=<%= @results[:universities].klass.name %>&id=<%= uni.id %>"
                  class="list-group-item">
                 <h4 class="list-group-item-heading"><%= uni.name %></h4>

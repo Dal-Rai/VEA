@@ -8,6 +8,7 @@ class University < ApplicationRecord
   has_one :focal_contact, inverse_of: :university, dependent: :destroy
   has_one :address, as: :addressable, dependent: :destroy
   has_one :selection_criteria, inverse_of: :university, dependent: :destroy
+  has_one :wallet, as: :payee, dependent: :destroy
   has_many :users, inverse_of: :university, dependent: :destroy
   has_many :faculties, inverse_of: :university, dependent: :destroy
   has_many :english_competencies, as: :competenciable, dependent: :destroy
@@ -72,6 +73,11 @@ class University < ApplicationRecord
              { eligibility_type: 'Certificate Or High School', minimum_score: 60, code: 'HS' }
            ]
     )
+  end
+
+  def activated?
+    return false if wallet.nil?
+    wallet.end_date > DateTime.now
   end
 
 end

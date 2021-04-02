@@ -1,7 +1,5 @@
 <div>
-
   <% if current_user.nil? %>
-    <%= render(partial: "home/home_nav") %>
     <div class="col-lg-2">
       <%= label_tag :space, "" %>
     </div>
@@ -21,7 +19,7 @@
       </span>
     </div>
 
-<% else %>
-    <% controller.redirect_to(controller: :users, action: :show, id: current_user.id) %>
+<%# else %>
+    <%# controller.redirect_to(controller: :users, action: :show, id: current_user.id) %>
   <% end %>
 </div>

@@ -43,6 +43,14 @@
       <%= label_tag(:overall_percentage, "Percentage:", class: 'labelLarge') %>
       <%= g.text_field :overall_percentage, class: 'mediumInput' %><br><br>
 
+      <%= g.text_field :subject, readonly: 'readonly' %>
+
+      <%= label_tag(:subject, "Subject:", class: 'labelLarge') %>
+      <input type="text" class="mediumInput">
+      <%= label_tag(:score, "Score:", class: 'labelSmall') %>
+      <input type="text" class="smallInput"><br>
+
+
       <%= label_tag(:completed_year, "Completed Year:", class: 'labelLarge') %>
       <%= g.date_field :completed_year, class: 'mediumInput' %><br><br>
     <% end %>

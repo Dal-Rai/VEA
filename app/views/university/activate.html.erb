@@ -4,4 +4,20 @@
   University focal contact: <%= @uni.focal_contact %><br>
   University Remark: <%= @uni.remark %><br>
 
+  <span class="alignCenter">
+    <%= form_for Wallet.new, url: {controller: :paypals, action: :start_payment, method: :post} do |f| %>
+      <%= label_tag(:amount, "Amount:", class: 'labelLarge') %>
+      <%= f.text_field :amount, class: 'largeInput' %><br><br>
+
+      <%= label_tag(:start_date, "Start Date:", class: 'labelLarge') %>
+      <%= f.date_select :start_date, class: 'largeInput', autocomplete: "off"%><br>
+
+      <%= label_tag(:end_date, "End Date:", class: 'labelLarge') %>
+      <%= f.date_select :end_date, class: 'largeInput', autocomplete: "off"%><br>
+
+      <%= label_tag(:submit, "", class: 'labelLarge') %>
+      <%= f.submit 'Login', class: 'mediumSubmit' %>
+      <% end %>
+  </span>
+  </div>
 </div>

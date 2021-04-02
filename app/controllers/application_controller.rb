@@ -5,8 +5,7 @@ class ApplicationController < ActionController::Base
   # include Pagination
   # include Renderer
   # before_action :authenticate_user!
-
-
+  add_flash_types :danger, :info, :success, :warning
 
   rescue_from ArgumentError, with: :argument_error
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found

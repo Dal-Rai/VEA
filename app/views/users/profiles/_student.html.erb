@@ -1,12 +1,12 @@
 <div class="col-lg-4">
-  <%= render(partial: "home/student_nav") %>
+  <%= label_tag :space, "" %>
 </div>
 
 <div class="col-lg-8">
   <% if params[:type].eql? 'profile' %>
     <%= render(partial: "users/profiles/student_profile") %>
   <%elsif params[:type].eql? 'portfolio'%>
-    <%= render(partial: "users/profiles/portfolio") %>
+    <%= render(partial: "users/profiles/student_academic_portfolio") %>
   <%elsif params[:type].eql? 'recommendation'%>
     <%= render(partial: "users/profiles/student_recommendation") %>
   <%else%>

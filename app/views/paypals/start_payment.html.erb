@@ -1,0 +1,7 @@
+<center><h1>Please do not refresh this page...</h1></center>
+<form method="POST" action="<%= @response.checkout_url %>" name="f">
+</form>
+
+<%= javascript_tag do %>
+  document.f.submit();
+<% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210323043208) do
+ActiveRecord::Schema.define(version: 20210401144314) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -108,6 +108,18 @@ ActiveRecord::Schema.define(version: 20210323043208) do
     t.integer  "university_id"
   end
 
+  create_table "paypal_carts", force: :cascade do |t|
+    t.string   "token"
+    t.decimal  "amount",     default: "0.0"
+    t.integer  "user_id"
+    t.integer  "wallet_id"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.date     "end_date"
+    t.index ["user_id"], name: "index_paypal_carts_on_user_id", using: :btree
+    t.index ["wallet_id"], name: "index_paypal_carts_on_wallet_id", using: :btree
+  end
+
   create_table "premium_payments", force: :cascade do |t|
     t.datetime "end_date"
     t.datetime "start_date"
@@ -141,13 +153,12 @@ ActiveRecord::Schema.define(version: 20210323043208) do
 
   create_table "qualifications", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "highest_qualification"
+    t.integer  "level"
     t.string   "course"
     t.decimal  "overall_percentage"
-    t.json     "subject",               default: {}
     t.date     "completed_year"
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
 
   create_table "selection_criteria", force: :cascade do |t|
@@ -157,6 +168,16 @@ ActiveRecord::Schema.define(version: 20210323043208) do
     t.decimal  "experience"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+  end
+
+  create_table "subjects", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.decimal  "percentage",       default: "0.0"
+    t.integer  "qualification_id"
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.index ["qualification_id"], name: "index_subjects_on_qualification_id", using: :btree
   end
 
   create_table "units", force: :cascade do |t|
@@ -212,6 +233,17 @@ ActiveRecord::Schema.define(version: 20210323043208) do
     t.index ["invited_by_id"], name: "index_users_on_invited_by_id", using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
+  end
+
+  create_table "wallets", force: :cascade do |t|
+    t.integer  "payee_id"
+    t.string   "payee_type"
+    t.decimal  "amount",      default: "0.0"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.decimal  "temp_amount"
   end
 
   add_foreign_key "profiles", "users"

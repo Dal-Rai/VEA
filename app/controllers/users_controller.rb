@@ -31,6 +31,19 @@ class UsersController < ApplicationController
   end
 
   def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      flash[:success] = "User details updated successfully"
+    else
+      flash[:error] = @user.errors.messages
+    end
+  end
 
+  private
+
+  def user_params
+    params
+      .require(:user)
+      .permit(:email, profile_attributes:[:firstname, :middlename, :lastname, :mobile_no])
   end
 end

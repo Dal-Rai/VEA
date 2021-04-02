@@ -1,0 +1,48 @@
+<div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</div>
+
+<%= form_for current_user, url: {controller: :student, action: :add_qualification, method: :patch, id: current_user.id} do
+|f| %>
+
+  <%= f.fields_for current_user.qualifications.new do |g| %>
+    <%= label_tag(:highest_qualification, "Qualification:", class: 'labelLarge') %>
+    <%= g.select :level, [["PHD", "phd"], ["Post Graduate", "post_graduate"], ["Under Graduate",
+      "graduate"], ["Diploma", "diploma"],
+      ["Certificate Or High School", "high_school"]], class: 'mediumInput' %><br><br>
+
+    <%= label_tag(:course, "Course:", class: 'labelLarge') %>
+    <%= g.text_field :course, class: 'mediumInput' %><br><br>
+
+    <%= label_tag(:overall_percentage, "Percentage:", class: 'labelLarge') %>
+    <%= g.text_field :overall_percentage, class: 'mediumInput' %><br><br>
+
+    <%= label_tag(:completed_year, "Completed Year:", class: 'labelLarge') %>
+    <%= g.date_field :completed_year, class: 'mediumInput' %><br><br>
+  <% end %>
+
+  <%= label_tag(:submit, "", class: 'labelLarge') %>
+  <%= f.submit 'Add', class: 'mediumSubmit' %>
+<% end %><br>
+
+<table>
+  <tr>
+    <th>Qualification</th><th>Course</th><th>Percentage
+  </th><th>Completed Year</th><th>Subject Count</th><th>Action</th>
+  </tr>
+  <% current_user.qualifications.select(&:persisted?).each do |g| %>
+    <tr>
+      <th><%= g.level %></th>
+      <td><%= g.course %></td>
+      <td><%= g.overall_percentage %></td>
+      <td><%= g.completed_year %></td>
+      <td>
+        <%= render(partial: "users/profiles/student_academic_subject_modal", tabName: "Dal", locals: {qualification: g}) %>
+      </td>
+      <td><a href="<%= root_url %>/student/<%= current_user.id
+      %>/reload?destroy=true&type=qualification&type_id=<%=
+        g.id %>">delete</a></td>
+    </tr>
+  <% end%>
+</table>

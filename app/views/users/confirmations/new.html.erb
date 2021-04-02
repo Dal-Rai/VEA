@@ -1,12 +1,12 @@
 <!--<h2>Resend confirmation instructions</h2>-->
 <%# binding.pry %>
 
-<%#= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-  <%#= render "devise/shared/error_messages", resource: resource %>
+<%#= form_for(subject, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+  <%#= render "devise/shared/error_messages", subject: subject %>
 
 <!--  <div class="field">-->
 <!--    <%#= f.label :email %><br />-->
-    <%#= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
+    <%#= f.email_field :email, autofocus: true, autocomplete: "email", value: (subject.pending_reconfirmation? ? subject.unconfirmed_email : subject.email) %>
 <!--  </div>-->
 
 <!--  <div class="actions">-->

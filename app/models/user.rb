@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   include Tokenizable
   include Profileable
+  include CourseLooker
 
   validates_presence_of :email, :password, on: :create
   devise :invitable, :database_authenticatable, :registerable, :lockable,
@@ -15,7 +16,9 @@ class User < ApplicationRecord
   has_many :english_competencies, as: :competenciable, dependent: :destroy
   has_many :qualifications, inverse_of: :user, dependent: :destroy
   has_many :experiences, inverse_of: :user, dependent: :destroy
-
+  has_one :wallet, as: :payee, dependent: :destroy
+  has_many :paypal_carts, inverse_of: :user, dependent: :destroy
+  has_one :highest_qualification, class_name: 'Qualification'
   accepts_nested_attributes_for :profile, allow_destroy: true
   accepts_nested_attributes_for :address, allow_destroy: true
   accepts_nested_attributes_for :english_competencies, allow_destroy: true

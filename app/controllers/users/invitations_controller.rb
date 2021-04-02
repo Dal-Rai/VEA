@@ -2,7 +2,7 @@
 #   private
 #
 #   # this is called when creating invitation
-#   # should return an instance of resource class
+#   # should return an instance of subject class
 #   def invite_resource
 #     binding.pry
 #     # skip sending emails on invite
@@ -10,13 +10,13 @@
 #   end
 #
 #   # this is called when accepting invitation
-#   # should return an instance of resource class
+#   # should return an instance of subject class
 #   def accept_resource
 #     binding.pry
-#     resource = resource_class.accept_invitation!(update_resource_params)
+#     subject = resource_class.accept_invitation!(update_resource_params)
 #     # Report accepting invitation to analytics
-#     Analytics.report('invite.accept', resource.id)
-#     resource
+#     Analytics.report('invite.accept', subject.id)
+#     subject
 #   end
 #
 #   def new

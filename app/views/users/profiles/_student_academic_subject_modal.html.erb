@@ -1,0 +1,58 @@
+<div>
+<!--  <meta charset="utf-8">-->
+<!--  <meta name="viewport" content="width=device-width, initial-scale=1">-->
+<!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</div>
+
+<div class="container">
+  <!-- Trigger the modal with a button -->
+  <label data-toggle="modal" data-target="#myModal" id="modalOpener"><%= qualification.subjects.count %></label>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Subject Details</h4>
+        </div>
+        <div class="modal-body">
+          <div>
+            <%= form_for qualification.subjects.new, url: {controller: :subjects, action: :create, method: :post} do
+            |f| %>
+              <%= f.hidden_field :qualification_id %>
+              <%= f.text_field :name, class: 'mediumInput', placeholder: "Subject name"%>
+              <%= f.text_field :percentage, class: 'mediumInput', placeholder: "Percentage"%><br><br>
+              <%= f.text_field :description, class: 'extraLargeInput', placeholder: "Description"%><br><br>
+              <%= f.submit 'Submit', class: 'mediumSubmit'%><br><br>
+            <%end%>
+          </div>
+
+          <table>
+           <tr>
+            <th>Name</th><th>Score</th><th>Description</th><th>Action</th>
+            </tr>
+            <% qualification.subjects.select(&:persisted?).each do |sub| %>
+            <tr>
+              <th><%= sub.name %></th><td><%= sub.percentage %></td><td><%= sub.description %></td>
+              <td><%= link_to "Delete", subjects_path(id: sub.id), method: :delete, data: {
+                confirm: 'Are you sure?'
+              }%></td>
+            </tr>
+          <% end %>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
