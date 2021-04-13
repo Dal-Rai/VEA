@@ -2,6 +2,8 @@ class CourseController < ApplicationController
 
   def create
     @course = Course.new(course_params)
+    @course.course_category_id = params[:course_category_id]
+    @course.rank = params[:rank]
 
     if @course.save
       redirect_to(action: :index, params: {faculty_id: params[:course][:faculty_id]})
@@ -12,20 +14,24 @@ class CourseController < ApplicationController
 
   def show
     @course = Course.find(params[:id])
+    @course_categories = CourseCategory.all
   end
 
   def update
     @course = Course.find(params[:id])
-    if @course.update(course_params)
-      redirect_to(action: :index, params: {faculty_id: @course.faculty_id})
+    form = CourseUpdateForm.new(@course, params)
+    if form.update
+      flash[:success] = 'Course details updated successfully'
     else
-      render json: {error: {message: 'Error Updating Faculty'}, success: false}, status: :unprocessable_entity
+      flash[:danger] = 'Course details failed to update'
     end
+    redirect_to(action: :show, params: {id: @course.id})
   end
 
   def new
     @faculty = find_faculty
     @course = Course.new(faculty_id: @faculty.id)
+    @course_categories = CourseCategory.all
   end
 
   def search
@@ -46,6 +52,10 @@ class CourseController < ApplicationController
     end
   end
 
+  def detail
+    @course = Course.find(params[:id])
+  end
+
   private
 
   def find_faculty
@@ -53,7 +63,7 @@ class CourseController < ApplicationController
   end
 
   def course_params
-    params.require(:course).permit(:name, :code, :duration, :rank, :faculty_id,
+    params.require(:course).permit(:name, :code, :duration, :rank, :faculty_id, :total_fees, :course_category_id,
       english_competencies_attributes: [:id, :overall_band, :expiry, :competency_type, :speaking, :listening, :writing,
         :reading],
       academic_eligibilities_attributes: [:id, :code, :eligibility_type, :minimum_score])

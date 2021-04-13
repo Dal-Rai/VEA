@@ -5,22 +5,15 @@ class PaypalsController < ApplicationController
       return_url: 'http://localhost:3000/paypal_confirm',
       cancel_url: root_url,
       description: 'VEA wallet recharge',
-      amount: payment_params['amount'] || 0,
+      amount: payment_params[:wallet][:temp_amount] || 0,
       currency: 'AUD'
     )
 
     @response = ppr.checkout
     if @response.valid?
-      @uni = University.find_by(token: payment_params[:token])
-      if @uni.wallet.nil?
-        @uni.build_wallet(start_date: DateTime.now).save
-      end
-
-      @uni.wallet.paypal_carts.create(
-        token: @response.params[:TOKEN],
-        amount: payment_params[:wallet][:temp_amount],
-        end_date: payment_params[:wallet][:end_date]
-      )
+      payee = current_user.present? ? current_user : University.find_by(token: payment_params[:token])
+      form = PaypalForm.new(payee, payment_params, @response)
+      form.save_wallet
       redirect_to @response.checkout_url, status: 302
     else
       @response.errors.inspect
@@ -31,7 +24,11 @@ class PaypalsController < ApplicationController
     cart = PaypalCart.fresh.find_by(token: params['token'])
     if params['token'].present?
       update_walet(cart)
-      redirect_to(controller: :university, action: :search, token: cart.wallet.payee.token)
+      if current_user.present?
+        redirect_to(controller: :users, action: :show, id: current_user, type: 'profile')
+      else
+        redirect_to(controller: :university, action: :search, token: cart.wallet.payee.token)
+      end
     else
       render json: 'Payment transaction was un-successful'
     end
@@ -40,7 +37,12 @@ class PaypalsController < ApplicationController
   private
 
   def payment_params
-    params.require(:university).permit(:token, wallet: [:temp_amount, :start_date, :end_date])
+    if params[:user].nil?
+      params.require(:university).permit(:token, wallet: [:temp_amount, :start_date, :end_date])
+    else
+      params.require(:user).permit(:token, wallet: [:temp_amount, :start_date, :end_date])
+    end
+
   end
 
   def update_walet(cart)

@@ -95,5 +95,4 @@ gem 'elasticsearch-model', github: 'elastic/elasticsearch-rails', branch: 'maste
 gem 'elasticsearch-rails', github: 'elastic/elasticsearch-rails', branch: 'master'
 gem 'searchkick'
 gem 'paypal-recurring'
-
 gem 'tire'

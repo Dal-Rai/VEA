@@ -3,56 +3,43 @@
 </div>
 
 <div class="col-lg-9">
-  <h1>Course Update</h1><br>
+  <%= render(partial: "course/course_criteria", locals: {tabName: 'course_tab'}) %>
 
-  <%= form_for @course, url: {action: :update, method: :put} do |f| %>
-    <%= label_tag(:name, "Code:", class: 'labelLarge') %>
-    <%= f.text_field :code, class: 'largeInput' %><br><br>
+<!--    <div class="line">-->
+<!--      English Competency-->
+<!--    </div><br><br><br><br><br>-->
 
-    <%= label_tag(:name, "Name:", class: 'labelLarge') %>
-    <%= f.text_field :name, class: 'largeInput' %><br><br>
+    <%#= f.fields_for :english_competencies do |g| %>
+      <%#= label_tag(:competency_type, "Type:", class: 'labelLarge') %>
+<!--      <%#= g.text_field :competency_type, class: 'smallInput', readonly: "readonly" %><br><br>-->
 
-    <%= label_tag(:duration, "Duration:", class: 'labelLarge') %>
-    <%= f.text_field :duration, class: 'largeInput' %><br><br>
+      <%#= label_tag(:overall_band, "Overall Band:", class: 'labelLarge') %>
+<!--      <%#= g.text_field :overall_band, class: 'smallInput' %><br><br>-->
 
-    <%= label_tag(:rank, "Rank:", class: 'labelLarge') %>
-    <%= f.text_field :rank, class: 'largeInput' %><br><br>
+      <%#= label_tag(:speaking, "Speaking:", class: 'labelLarge') %>
+      <%#= g.text_field :speaking, class: 'smallInput' %>
 
-    <div class="line">
-      English Competency
-    </div><br><br><br><br><br>
+      <%#= label_tag(:writing, "Writing:", class: 'labelLarge') %>
+<!--      <%#= g.text_field :writing, class: 'smallInput' %><br><br>-->
 
-    <%= f.fields_for :english_competencies do |g| %>
-      <%= label_tag(:competency_type, "Type:", class: 'labelLarge') %>
-      <%= g.text_field :competency_type, class: 'smallInput', readonly: "readonly" %><br><br>
+      <%#= label_tag(:reading, "Reading:", class: 'labelLarge') %>
+      <%#= g.text_field :reading, class: 'smallInput' %>
 
-      <%= label_tag(:overall_band, "Overall Band:", class: 'labelLarge') %>
-      <%= g.text_field :overall_band, class: 'smallInput' %><br><br>
+      <%#= label_tag(:listening, "Listening:", class: 'labelLarge') %>
+<!--      <%#= g.text_field :listening, class: 'smallInput' %><br><br><br><br>-->
+<!--    <%# end %><br><br>-->
 
-      <%= label_tag(:speaking, "Speaking:", class: 'labelLarge') %>
-      <%= g.text_field :speaking, class: 'smallInput' %>
+    <%#= f.fields_for :academic_eligibilities do |g| %>
+<!--      <%#= g.hidden_field :code, class: 'smallInput' %><br><br>-->
 
-      <%= label_tag(:writing, "Writing:", class: 'labelLarge') %>
-      <%= g.text_field :writing, class: 'smallInput' %><br><br>
+      <%#= label_tag(:eligibility_type, "Qualification:", class: 'labelLarge') %>
+      <%#= g.text_field :eligibility_type, class: 'largeInput', readonly: "readonly" %>
 
-      <%= label_tag(:reading, "Reading:", class: 'labelLarge') %>
-      <%= g.text_field :reading, class: 'smallInput' %>
+      <%#= label_tag(:minimum_score, "Minimum Score:", class: 'labelLarge') %>
+<!--      <%#= g.text_field :minimum_score, class: 'smallInput' %><br><br>-->
+    <%# end %>
 
-      <%= label_tag(:listening, "Listening:", class: 'labelLarge') %>
-      <%= g.text_field :listening, class: 'smallInput' %><br><br><br><br>
-    <% end %><br><br>
-
-    <%= f.fields_for :academic_eligibilities do |g| %>
-      <%= g.hidden_field :code, class: 'smallInput' %><br><br>
-
-      <%= label_tag(:eligibility_type, "Qualification:", class: 'labelLarge') %>
-      <%= g.text_field :eligibility_type, class: 'largeInput', readonly: "readonly" %>
-
-      <%= label_tag(:minimum_score, "Minimum Score:", class: 'labelLarge') %>
-      <%= g.text_field :minimum_score, class: 'smallInput' %><br><br>
-    <% end %>
-
-    <%= label_tag(:submit, "", class: 'labelLarge') %>
-    <%= f.submit 'Update', class: 'mediumSubmit' %>
-    <% end %>
+    <%#= label_tag(:submit, "", class: 'labelLarge') %>
+    <%#= f.submit 'Update', class: 'mediumSubmit' %>
+    <%# end %>
 </div>

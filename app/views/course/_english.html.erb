@@ -1,0 +1,44 @@
+<br><br>
+<%= form_for @course, url: {action: :update, method: :put} do |f| %>
+  <%= f.fields_for :english_competencies_attributes do |g| %>
+    <%= hidden_field(:type, value='english') %>
+    <%= label_tag(:competency_type, "Type:", class: 'labelLarge') %>
+    <%= select_tag(:competency_type, options_for_select(["IELTS", "PTE" ], "IELTS"), class: 'smallInput') %>
+
+    <%= label_tag(:overall_band, "Overall Band:", class: 'labelLarge') %>
+    <%= g.text_field :overall_band, class: 'smallInput' %>
+    <%= label_tag(:speaking, "Speaking:", class: 'labelLarge') %>
+    <%= g.text_field :speaking, class: 'smallInput' %><br>
+
+    <%= label_tag(:writing, "Writing:", class: 'labelLarge') %>
+    <%= g.text_field :writing, class: 'smallInput' %>
+
+    <%= label_tag(:reading, "Reading:", class: 'labelLarge') %>
+    <%= g.text_field :reading, class: 'smallInput' %>
+
+    <%= label_tag(:listening, "Listening:", class: 'labelLarge') %>
+    <%= g.text_field :listening, class: 'smallInput' %><br>
+    <%= label_tag(:submit, "", class: 'labelLarge') %>
+    <%= f.submit 'Add', class: 'mediumSubmit' %><br><br>
+  <% end %>
+<% end %><br><br>
+
+
+<table>
+  <tr>
+    <th>Type</th><th>Expiry</th><th>Overall
+    Bank</th><th>Speaking</th><th>Writing</th><th>Reading</th><th>Listening</th><th>Action</th>
+  </tr>
+  <% @course.english_competencies.select(&:persisted?).each do |g| %>
+    <tr>
+      <th><%= g.competency_type %></th>
+      <td><%= g.expiry %></td>
+      <td><%= g.overall_band %></td>
+      <td><%= g.speaking %></td>
+      <td><%= g.writing %></td>
+      <td><%= g.reading %></td>
+      <td><%= g.listening %></td>
+      <td><a href="<%= root_url %>/student/<%= current_user.id %>/reload?destroy=true&type=english&type_id=<%= g.id %>">delete</a></td>
+    </tr>
+  <% end%>
+</table>

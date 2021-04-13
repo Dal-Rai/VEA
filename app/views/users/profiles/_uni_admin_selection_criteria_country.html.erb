@@ -1,0 +1,43 @@
+<div>
+  <% flash.each do |name, msg| %>
+    <div class='alert alert-<%= name %>'>
+      <%= msg %>
+    </div>
+  <% end %>
+</div>
+
+<%= form_for current_user.university, url: {controller: :university, action: :add_criteria, method: :patch, id:
+  current_user
+    .university_id} do |f| %>
+
+  <%= f.fields_for current_user.university.country_criterias.new do |g| %>
+    <%= hidden_field(:type, value='country') %>
+    <%= label_tag(:country, "Country:", class: 'labelLarge') %>
+    <%= g.text_field :country, class: 'mediumInput' %><br><br>
+
+    <%= label_tag(:weightage, "Weightage:", class: 'labelLarge') %>
+    <%= g.text_field :weightage, class: 'mediumInput' %><br><br>
+
+    <%= label_tag(:description, "Description:", class: 'labelLarge') %>
+    <%= g.text_area :description, class: 'extraLargeInput' %><br><br>
+  <% end %>
+
+  <%= label_tag(:submit, "", class: 'labelLarge') %>
+  <%= f.submit 'Add', class: 'mediumSubmit' %>
+<% end %><br>
+
+<table>
+  <tr>
+    <th>Country</th><th>Weightage</th><th>Description
+  </th><th>Action</th>
+  </tr>
+  <% current_user.university.country_criterias.select(&:persisted?).each do |g| %>
+    <tr>
+      <th><%= g.country %></th>
+      <td><%= g.weightage %></td>
+      <td><%= g.description %></td>
+      <td><a href="<%= root_url %>/university/<%= current_user.university_id
+      %>/reload?destroy=true&type=country&type_id=<%= g.id %>">delete</a></td>
+    </tr>
+  <% end%>
+</table>

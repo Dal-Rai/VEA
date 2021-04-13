@@ -8,17 +8,11 @@
   </div><br><br><br><br><br>
 
   <div>
-    <%= form_tag(root_url+"/university/search", method: :get) %>
-
-      <%#= label_tag(:token, "Token:", class='form-label') %>
-<!--      <span class="largeInput">-->
-        <%#= text_field_tag(:token, class: 'form-control') %>
-<!--      </span>-->
-
-    <%= label_tag(:token, "Token:", class: "labelLarge") %>
-    <%= text_field_tag :token, params[:token], class: 'largeInput' %>
-
+    <%= form_tag(root_url+"/university/search", method: :get) do %>
+      <%= label_tag(:token, "Token:", class: "labelLarge") %>
+     <%= text_field_tag :token, params[:token], class: 'largeInput' %>
       <%= submit_tag('search', class: "mediumSubmit") %>
+     <% end %>
   </div><br><br>
 
   <div class="col-lg-9">
@@ -33,8 +27,11 @@
       <%= label_tag(:weblink, "Website Link:", class: 'labelLarge') %>
       <%= f.text_field :weblink, class: 'largeInput' %><br><br>
 
+      <%= label_tag(:campus, "Campus:", class: 'labelLarge') %>
+      <%= f.text_field :campus, class: 'largeInput' %><br><br>
+
       <%= label_tag(:remark, "Remark:", class: 'labelLarge') %>
-      <%= f.text_area :remark, class: 'largeInput' %><br><br>
+      <%= f.text_area :remark, class: 'extraLargeInput' %><br><br>
 
       <div class="line">
         Focal Contact
@@ -83,7 +80,7 @@
 
 
       <%= label_tag(:submit, "", class: 'labelLarge') %>
-      <%= f.submit 'Create Account', class: 'largeSubmit' %>
+      <%= f.submit 'Create Account', class: 'largeSubmit' %><br><br>
   <% end %>
   </div>
 </div>

@@ -1,9 +1,14 @@
-<%= form_for current_user, url: {controller: :student, action: :add_experience, method: :patch, id: current_user.id} do
+<%= form_for current_user, url: {controller: :student, action: :add_academic, method: :patch, id: current_user.id} do
 |f| %>
 
   <%= f.fields_for current_user.experiences.new do |g| %>
+    <%= hidden_field(:type, value='experience') %>
     <%= label_tag(:job_type, "Job Name:", class: 'labelLarge') %>
     <%= g.text_field :job_type, class: 'mediumInput' %><br><br>
+    Course related experience     :
+    <%= g.radio_button :related, 'true', :checked => true %><br>
+    Course unrelated experience:
+    <%= g.radio_button :related, 'false', :checked => false %><br><br>
 
     <%= label_tag(:start, "Start Date:", class: 'labelLarge') %>
     <%= g.date_field :start, class: 'mediumInput' %><br><br>
@@ -15,7 +20,7 @@
     <%= g.text_field :company, class: 'mediumInput' %><br><br>
 
     <%= label_tag(:responsibility, "Responsibility:", class: 'labelLarge') %>
-    <%= g.text_field :responsibility, class: 'extraLargeInput' %><br><br>
+    <%= g.text_area :responsibility, class: 'extraLargeInput' %><br><br>
   <% end %>
 
   <%= label_tag(:submit, "", class: 'labelLarge') %>

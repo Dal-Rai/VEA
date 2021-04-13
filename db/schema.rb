@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210401144314) do
+ActiveRecord::Schema.define(version: 20210412140150) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,19 +38,77 @@ ActiveRecord::Schema.define(version: 20210401144314) do
     t.datetime "updated_at",       null: false
   end
 
+  create_table "application_progresses", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "course_id"
+    t.integer  "state",            default: 0
+    t.text     "applied_comment"
+    t.text     "received_comment"
+    t.text     "verified_comment"
+    t.text     "accepted_comment"
+    t.text     "rejected_comment"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.index ["course_id"], name: "index_application_progresses_on_course_id", using: :btree
+    t.index ["user_id"], name: "index_application_progresses_on_user_id", using: :btree
+  end
+
   create_table "attachments", force: :cascade do |t|
     t.string   "attachable_type"
     t.integer  "attachable_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.bigint   "file_file_size"
+    t.datetime "file_updated_at"
+    t.string   "name"
     t.index ["attachable_type", "attachable_id"], name: "index_attachments_on_attachable_type_and_attachable_id", using: :btree
+  end
+
+  create_table "category_preferances", force: :cascade do |t|
+    t.integer  "course_category_id"
+    t.integer  "user_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.index ["course_category_id"], name: "index_category_preferances_on_course_category_id", using: :btree
+    t.index ["user_id"], name: "index_category_preferances_on_user_id", using: :btree
+  end
+
+  create_table "chats", force: :cascade do |t|
+    t.integer  "chatable_id"
+    t.string   "chatable_type"
+    t.integer  "user_id"
+    t.text     "message"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["chatable_id"], name: "index_chats_on_chatable_id", using: :btree
+    t.index ["user_id"], name: "index_chats_on_user_id", using: :btree
+  end
+
+  create_table "country_criteria", force: :cascade do |t|
+    t.integer  "university_id"
+    t.string   "country"
+    t.decimal  "weightage"
+    t.text     "description"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["university_id"], name: "index_country_criteria_on_university_id", using: :btree
+  end
+
+  create_table "course_categories", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "course_units", force: :cascade do |t|
     t.integer  "course_id"
     t.integer  "unit_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "category",   default: 0
   end
 
   create_table "courses", force: :cascade do |t|
@@ -59,8 +117,21 @@ ActiveRecord::Schema.define(version: 20210401144314) do
     t.integer  "duration"
     t.integer  "rank"
     t.integer  "faculty_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.decimal  "total_fees",         default: "0.0"
+    t.integer  "course_category_id"
+    t.index ["course_category_id"], name: "index_courses_on_course_category_id", using: :btree
+  end
+
+  create_table "criteria_rules", force: :cascade do |t|
+    t.integer  "university_id"
+    t.integer  "criteria"
+    t.decimal  "weightage"
+    t.text     "description"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["university_id"], name: "index_criteria_rules_on_university_id", using: :btree
   end
 
   create_table "english_competencies", force: :cascade do |t|
@@ -77,6 +148,16 @@ ActiveRecord::Schema.define(version: 20210401144314) do
     t.string   "competenciable_type"
   end
 
+  create_table "experience_criteria", force: :cascade do |t|
+    t.integer  "university_id"
+    t.decimal  "related_experience"
+    t.decimal  "unrelated_experience"
+    t.text     "description"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.index ["university_id"], name: "index_experience_criteria_on_university_id", using: :btree
+  end
+
   create_table "experiences", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "job_type"
@@ -84,16 +165,19 @@ ActiveRecord::Schema.define(version: 20210401144314) do
     t.datetime "end"
     t.string   "company"
     t.text     "responsibility"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.boolean  "related",        default: true
   end
 
   create_table "faculties", force: :cascade do |t|
     t.string   "code"
     t.string   "name"
     t.integer  "university_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.integer  "course_category_id"
+    t.index ["course_category_id"], name: "index_faculties_on_course_category_id", using: :btree
   end
 
   create_table "focal_contacts", force: :cascade do |t|
@@ -106,6 +190,25 @@ ActiveRecord::Schema.define(version: 20210401144314) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.integer  "university_id"
+  end
+
+  create_table "memberships", force: :cascade do |t|
+    t.integer  "memberable_id"
+    t.string   "memberable_type"
+    t.integer  "package_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["memberable_id"], name: "index_memberships_on_memberable_id", using: :btree
+    t.index ["package_id"], name: "index_memberships_on_package_id", using: :btree
+  end
+
+  create_table "packages", force: :cascade do |t|
+    t.integer  "package_type"
+    t.decimal  "amount"
+    t.integer  "duration"
+    t.integer  "payee"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "paypal_carts", force: :cascade do |t|
@@ -146,9 +249,19 @@ ActiveRecord::Schema.define(version: 20210401144314) do
     t.string   "passport_no"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
-    t.integer  "avatar_file_size"
+    t.bigint   "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.index ["user_id"], name: "index_profiles_on_user_id", using: :btree
+  end
+
+  create_table "qualification_criteria", force: :cascade do |t|
+    t.integer  "university_id"
+    t.integer  "qualification_type"
+    t.decimal  "weightage"
+    t.text     "description"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.index ["university_id"], name: "index_qualification_criteria_on_university_id", using: :btree
   end
 
   create_table "qualifications", force: :cascade do |t|
@@ -161,23 +274,15 @@ ActiveRecord::Schema.define(version: 20210401144314) do
     t.datetime "updated_at",         null: false
   end
 
-  create_table "selection_criteria", force: :cascade do |t|
-    t.integer  "university_id"
-    t.decimal  "english_competency"
-    t.decimal  "academic"
-    t.decimal  "experience"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-  end
-
   create_table "subjects", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
     t.decimal  "percentage",       default: "0.0"
-    t.integer  "qualification_id"
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
-    t.index ["qualification_id"], name: "index_subjects_on_qualification_id", using: :btree
+    t.integer  "subjectable_id"
+    t.string   "subjectable_type"
+    t.index ["subjectable_id"], name: "index_subjects_on_subjectable_id", using: :btree
   end
 
   create_table "units", force: :cascade do |t|
@@ -185,8 +290,9 @@ ActiveRecord::Schema.define(version: 20210401144314) do
     t.string   "name"
     t.integer  "credit_point"
     t.integer  "level"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.decimal  "semester_fees", default: "0.0"
   end
 
   create_table "universities", force: :cascade do |t|
@@ -194,8 +300,10 @@ ActiveRecord::Schema.define(version: 20210401144314) do
     t.string   "weblink"
     t.text     "remark"
     t.text     "token"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+    t.string   "campus"
+    t.decimal  "semester_living_expenses", default: "0.0"
   end
 
   create_table "users", force: :cascade do |t|
@@ -227,6 +335,7 @@ ActiveRecord::Schema.define(version: 20210401144314) do
     t.integer  "failed_attempts",        default: 0,     null: false
     t.string   "unlock_token"
     t.datetime "locked_at"
+    t.decimal  "total_weightage",        default: "0.0"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true, using: :btree
     t.index ["invitations_count"], name: "index_users_on_invitations_count", using: :btree

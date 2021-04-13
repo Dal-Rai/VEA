@@ -1,0 +1,53 @@
+<div class="col-lg-4">
+  <%= label_tag :space, "" %>
+</div>
+
+<div class="col-lg-8">
+  Course Name: <%= @application.course.name %></br>
+  Total Fees: <%= @application.course.total_fees %></br>
+  Application Status: <%= @application.state %></br>
+
+  <% if current_user.uni_admin? %>
+    <% if @application.applied? %>
+      <%= form_for @application, url: {controller: :application_progress, action: :transition, method: :put, id:
+        @application.id} do |f| %>
+        <%= f.hidden_field :event, value: "offering" %>
+        <%= f.fields_for :attachment do |g| %>
+          <%= g.file_field :file %>
+        <% end %>
+        <%= f.submit 'Apply', class: 'mediumSubmit' %>
+      <%end %>
+    <% end %>
+
+    <% if @application.sop_submission? %>
+      <%= form_for @application, url: {controller: :application_progress, action: :transition, method: :put, id:
+        @application.id} do |f| %>
+        <%= f.hidden_field :event, value: "sop_verifying" %>
+        <%= f.fields_for :attachment do |g| %>
+          <%= g.file_field :file %>
+        <% end %>
+        <%= f.submit 'Apply', class: 'mediumSubmit' %>
+      <%end %>
+    <% end %>
+
+  <% else %>
+    <% if @application.offer_received? %>
+      <%= form_for @application, url: {controller: :application_progress, action: :transition, method: :put, id:
+        @application.id} do |f| %>
+        <%= f.hidden_field :event, value: 'sop_submitting' %>
+        <%= f.fields_for :attachment do |g| %>
+          <%= g.file_field :file %>
+        <% end %>
+        <%= f.submit 'Apply', class: 'mediumSubmit' %>
+      <%end %>
+    <% end %>
+  <%end %>
+
+
+
+
+
+
+
+
+</div>

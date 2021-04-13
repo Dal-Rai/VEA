@@ -25,11 +25,33 @@ class StudentController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(stud_params)
-      redirect_to(controller: :users, action: :show, id: @user.id)
+      redirect_to(controller: :users, action: :show, id: @user.id, type: 'profile')
     else
       render json: {error: {message: 'Error creating Student'}, success: false}, status: :unprocessable_entity
     end
   end
+
+  def add_academic
+    type =  params[:type].keys.first
+    form = StudentAcademicForm.new(current_user, send(type+'_params'), type, params[:criteria])
+
+    if form.save
+      flash[:success] = 'Saved Successfully'
+    else
+      flash[:danger] = form.errors.messages
+    end
+  end
+
+  def recommendation
+    @courses = Course.all
+  end
+
+  def application
+    @applications = current_user.application_progresses
+  end
+
+
+
 
   def add_english
     unless params[:destroy]
@@ -89,6 +111,25 @@ class StudentController < ApplicationController
       score|],
       experiences_attributes: [:id, :job_type, :start, :end, :company, :responsibility]
     )
+  end
+
+  def english_params
+    params[:user][:english_competency]
+      .permit(:id, :overall_band, :expiry, :competency_type, :speaking, :listening, :writing, :reading)
+  end
+
+  def experience_params
+    params[:user][:experience]
+      .permit(:id, :job_type, :start, :end, :company, :responsibility)
+  end
+
+  def qualification_params
+    params[:user][:qualification]
+      .permit(:id, :level, :course, :overall_percentage, :completed_year)
+  end
+
+  def preferance_params
+    params[:course_category_id]
   end
 
 end

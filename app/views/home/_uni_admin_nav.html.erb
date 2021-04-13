@@ -35,10 +35,11 @@
 <h2>
   <ul>
     <li><a class="active" href="<%= root_url %>/users/<%= current_user.id%>?type=profile">Profile</a></li><br>
-    <li><a href="<%= root_url %>/university/<%= current_user.university_id%>?type=university">University</a></li><br>
-    <li><a href="<%= root_url %>/university/<%= current_user.university_id%>?type=criteria">Criteria</a></li><br>
+    <li><a href="<%= root_url %>/users/<%= current_user.university_id%>?type=university">University</a></li><br>
+    <li><a href="<%= root_url %>/users/<%= current_user.university_id%>?type=rule">Criteria</a></li><br>
     <li><a href="<%= root_url %>/university/<%= current_user.university_id%>/faculty?type=faculty">Faculty</a></li><br>
-    <li><a href="">students</a></li><br>
+    <li><a href="<%= root_url %>/university/<%= current_user.university_id %>/prospective_student">students</a></li><br>
+    <li><a class="active" href="<%= root_url %>/university/<%= current_user.university_id%>/application?type=application">Application</a></li><br>
     <li><%= button_to "logout", destroy_user_session_path, method: :delete  %></li>
   </ul>
 </h2>

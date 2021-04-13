@@ -45,6 +45,7 @@
   <button class="tablinks" id="english_tab" onclick="openAcademic(event, 'english')">English Competency</button>
   <button class="tablinks" id="qualification_tab" onclick="openAcademic(event, 'academic')">Academic Scores</button>
   <button class="tablinks" id="experience_tab" onclick="openAcademic(event, 'experience')">Experiences</button>
+  <button class="tablinks" id="preference_tab" onclick="openAcademic(event, 'preference')">Preference</button>
 </div>
 
 <div id="english" class="tabcontent">
@@ -57,6 +58,10 @@
 
 <div id="experience" class="tabcontent">
   <%= render(partial: "users/profiles/student_academic_experience") %>
+</div>
+
+<div id="preference" class="tabcontent">
+  <%= render(partial: "users/profiles/student_academic_preference") %>
 </div>
 
 

@@ -21,11 +21,23 @@ Rails.application.routes.draw do
     end
 
     member do
+      get :prospective_student
+      patch :filter_student
+      get :application
+    end
+
+    member do
       patch :activate
+      patch :add_criteria
+      get :reload
     end
   end
 
   resources :course do
+    member do
+      get :detail
+    end
+
     resources :unit do
       collection do
         get :course_units
@@ -34,12 +46,22 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :application_progress do
+    member do
+      patch :transition
+    end
+  end
+
+
   resources :student do
     member do
-      patch :add_english
-      patch :add_qualification
-      patch :add_experience
+      # patch :add_english
+      # patch :add_qualification
+      # patch :add_experience
+      patch :add_academic
       get :reload
+      get :recommendation
+      get :application
     end
   end
 
@@ -67,6 +89,9 @@ Rails.application.routes.draw do
     collection do
       get :students
       get :universities
+    end
+    member do
+      post :invite
     end
   end
 

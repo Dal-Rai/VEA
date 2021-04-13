@@ -1,0 +1,29 @@
+<div class="col-lg-4">
+  <%= label_tag :space, "" %>
+</div>
+
+<div class="col-lg-8">
+  <%= form_for(current_user.university, url: filter_student_university_path(current_user.university)) do |f| %>
+    <%= f.select_tag :criteria, options_for_select([["PHD", "phd"], ["Post Graduate", "post_graduate"], ["Under
+    Graduate", "graduate"], ["Diploma", "diploma"], ["Certificate Or High School", "high_school"]], params[:criteria]), class:
+      'mediumInput' %>
+    <%= f.submit 'Search', class: 'mediumSubmit' %>
+  <% end %><br><br><br>
+
+  <table>
+    <tr>
+      <th>Student Name</th><th>Email</th><th>Country
+    </th><th>Academic Score</th><th>English Competency</th><th>Total Experience</th>
+    </tr>
+    <% @students.each do |g| %>
+      <tr>
+        <th><%= g.name %></th>
+        <td><%= g.email %></td>
+        <td><%= g.country %></td>
+        <td><%= g.highest_qualification_name %></td>
+        <td><%= g.highest_english_competency_name %></td>
+        <td><%= g.total_experience %></td>
+      </tr>
+    <% end%>
+  </table>
+</div>

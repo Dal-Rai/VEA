@@ -7,4 +7,5 @@ class EnglishCompetency < ApplicationRecord
   )
 
   enum competency_type: {PTE: 0, IELTS: 1}
+  default_scope -> { order(overall_band: :desc) }
 end

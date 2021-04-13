@@ -13,11 +13,19 @@ class University < ApplicationRecord
   has_many :faculties, inverse_of: :university, dependent: :destroy
   has_many :english_competencies, as: :competenciable, dependent: :destroy
   has_many :academic_eligibilities, as: :eligiable, dependent: :destroy
+  has_many :country_criterias, inverse_of: :university, dependent: :destroy
+  has_many :criteria_rules, inverse_of: :university, dependent: :destroy
+  has_one :experience_criteria, inverse_of: :university, dependent: :destroy
+  has_many :qualification_criterias, inverse_of: :university, dependent: :destroy
+  has_one :membership, as: :memberable, dependent: :destroy
 
-  accepts_nested_attributes_for :focal_contact, allow_destroy: true
-  accepts_nested_attributes_for :address, allow_destroy: true
-  accepts_nested_attributes_for :english_competencies, allow_destroy: true
-  accepts_nested_attributes_for :academic_eligibilities, allow_destroy: true
+  accepts_nested_attributes_for(
+  :focal_contact,
+    :address,
+    :english_competencies,
+    :academic_eligibilities,
+    allow_destroy: true
+  )
 
   before_create :assign_token
   after_create :notify_portal_admin
@@ -78,6 +86,10 @@ class University < ApplicationRecord
   def activated?
     return false if wallet.nil?
     wallet.end_date > DateTime.now
+  end
+
+  def experience_criteria
+    super.nil? ? self.build_experience_criteria : super
   end
 
 end

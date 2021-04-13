@@ -1,4 +1,86 @@
-<%= @uni.name %>
-</br>
-<%= @uni.weblink %>
-</br>
+<span class="col-lg-3">
+  <%= label_tag nil %>
+</span>
+
+<div class="col-lg-9">
+  <div class="line">
+    Activate account if you have registered
+  </div><br><br><br><br><br>
+
+  <div>
+    <%= form_tag(root_url+"/university/search", method: :get) do %>
+      <%= label_tag(:token, "Token:", class: "labelLarge") %>
+      <%= text_field_tag :token, params[:token], class: 'largeInput' %>
+      <%= submit_tag('search', class: "mediumSubmit") %>
+    <% end %>
+  </div><br><br>
+
+  <div class="col-lg-9">
+    <div class="line">
+      Register University
+    </div><br><br><br><br><br>
+
+    <%= form_for @uni, url: {action: :update, method: :put, id: @uni.id} do |f| %>
+      <%= label_tag(:uni_name, "University Name:", class: 'labelLarge') %>
+      <%= f.text_field :name, class: 'largeInput' %><br><br>
+
+      <%= label_tag(:weblink, "Website Link:", class: 'labelLarge') %>
+      <%= f.text_field :weblink, class: 'largeInput' %><br><br>
+
+      <%= label_tag(:campus, "Campus:", class: 'labelLarge') %>
+      <%= f.text_field :campus, class: 'largeInput' %><br><br>
+
+      <%= label_tag(:remark, "Remark:", class: 'labelLarge') %>
+      <%= f.text_area :remark, class: 'extraLargeInput' %><br><br>
+
+      <div class="line">
+        Focal Contact
+      </div><br><br><br><br><br>
+
+      <%= f.fields_for :focal_contact do |g| %>
+        <%= label_tag(:firstname, "First Name:", class: 'labelLarge') %>
+        <%= g.text_field :firstname, class: 'largeInput' %><br><br>
+
+        <%= label_tag(:middlename, "Middle Name:", class: 'labelLarge') %>
+        <%= g.text_field :middlename, class: 'largeInput' %><br><br>
+
+        <%= label_tag(:lastname, "Last Name:", class: 'labelLarge') %>
+        <%= g.text_field :lastname, class: 'largeInput' %><br><br>
+
+        <%= label_tag(:email, "Email:", class: 'labelLarge') %>
+        <%= g.text_field :email, class: 'largeInput' %><br><br>
+
+        <%= label_tag(:phone_no, "Phone No:", class: 'labelLarge') %>
+        <%= g.text_field :phone_number, class: 'largeInput' %><br><br>
+      <% end %>
+
+      <div class="line">
+        University Address
+      </div><br><br><br><br><br>
+
+      <%= f.fields_for :address do |g| %>
+        <%= label_tag(:street_no, "Street No:", class: 'labelLarge') %>
+        <%= g.text_field :street_no, class: 'smallInput' %><br><br>
+
+        <%= label_tag(:street_name, "Street Name:", class: 'labelLarge') %>
+        <%= g.text_field :street_name, class: 'mediumInput' %><br><br>
+
+        <%= label_tag(:suburb, "Suburb:", class: 'labelLarge') %>
+        <%= g.text_field :suburb, class: 'mediumInput' %><br><br>
+
+        <%= label_tag(:post_code, "Post Code:", class: 'labelLarge') %>
+        <%= g.text_field :post_code, class: 'smallInput' %><br><br>
+
+        <%= label_tag(:city, "City:", class: 'labelLarge') %>
+        <%= g.text_field :city, class: 'mediumInput' %><br>
+
+        <%= label_tag(:country, "Country:", class: 'labelLarge') %>
+        <%= g.text_field :country, class: 'mediumInput' %><br><br>
+      <% end %>
+
+
+      <%= label_tag(:submit, "", class: 'labelLarge') %>
+      <%= f.submit 'Update Account', class: 'largeSubmit' %><br><br>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+<%= form_for @course, url: {action: :update, method: :put} do |f| %>
+  <%= f.fields_for :subjects_attributes do |g| %>
+    <br><br>
+    <%= hidden_field(:type, value='subject') %>
+    <%= label_tag(:name, "Type:", class: 'labelLarge') %>
+    <%= g.text_field :name, class: 'mediumInput' %><br><br>
+
+    <%= label_tag(:percentage, "Score:", class: 'labelLarge') %>
+    <%= g.text_field :percentage, class: 'mediumInput' %><br><br>
+
+    <%= label_tag(:description, "Description:", class: 'labelLarge') %>
+    <%= g.text_area :description, class: 'extraLargeInput' %><br><br>
+
+    <%= label_tag(:submit, "", class: 'labelLarge') %>
+    <%= f.submit 'Add', class: 'mediumSubmit' %><br><br>
+  <% end %>
+<% end %><br><br>
+
+
+<table>
+  <tr>
+    <th>Name</th><th>Score</th><th>Description</th>
+  </tr>
+  <% @course.subjects.select(&:persisted?).each do |g| %>
+    <tr>
+      <th><%= g.name %></th>
+      <td><%= g.percentage %></td>
+      <td><a href="<%= root_url %>/student/<%= current_user.id %>/reload?destroy=true&type=english&type_id=<%= g.id %>">delete</a></td>
+    </tr>
+  <% end%>
+</table>

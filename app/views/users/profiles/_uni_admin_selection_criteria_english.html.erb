@@ -1,0 +1,59 @@
+<div>
+  <% flash.each do |name, msg| %>
+    <div class='alert alert-<%= name %>'>
+      <%= msg %>
+    </div>
+  <% end %>
+</div>
+
+<%= form_for current_user.university, url: {controller: :university, action: :add_criteria, method: :patch, id:
+  current_user
+  .university.id} do |f| %>
+  <div class="line">
+    English Competency
+  </div><br><br><br><br><br>
+
+  <%= f.fields_for EnglishCompetency.new do |g| %>
+    <%= hidden_field(:type, value='english') %>
+    <%= label_tag(:competency_type, "Type:", class: 'labelLarge') %>
+    <%= g.select_tag(:criteria, options_for_select(["IELTS", "PTE" ], "IELTS"), class: 'smallInput')
+    %><br><br>
+
+    <%= label_tag(:overall_band, "Overall Band:", class: 'labelLarge') %>
+    <%= g.text_field :overall_band, class: 'smallInput' %>
+
+    <%= label_tag(:speaking, "Speaking:", class: 'labelLarge') %>
+    <%= g.text_field :speaking, class: 'smallInput' %><br><br>
+
+    <%= label_tag(:writing, "Writing:", class: 'labelLarge') %>
+    <%= g.text_field :writing, class: 'smallInput' %>
+
+    <%= label_tag(:reading, "Reading:", class: 'labelLarge') %>
+    <%= g.text_field :reading, class: 'smallInput' %><br><br>
+
+    <%= label_tag(:listening, "Listening:", class: 'labelLarge') %>
+    <%= g.text_field :listening, class: 'smallInput' %><br>
+  <% end %>
+  <%= label_tag(:submit, "", class: 'labelLarge') %>
+  <%= f.submit 'Add', class: 'mediumSubmit' %>
+<% end %><br>
+
+<table>
+  <tr>
+    <th>Type</th><th>Expiry</th><th>Overall
+    Bank</th><th>Speaking</th><th>Writing</th><th>Reading</th><th>Listening</th><th>Action</th>
+  </tr>
+  <% current_user.university.english_competencies.select(&:persisted?).each do |g| %>
+    <tr>
+      <th><%= g.competency_type %></th>
+      <td><%= g.expiry %></td>
+      <td><%= g.overall_band %></td>
+      <td><%= g.speaking %></td>
+      <td><%= g.writing %></td>
+      <td><%= g.reading %></td>
+      <td><%= g.listening %></td>
+      <td><a href="<%= root_url %>/university/<%= current_user.university_id
+      %>/reload?destroy=true&type=english&type_id=<%= g.id %>">delete</a></td>
+    </tr>
+  <% end%>
+</table>

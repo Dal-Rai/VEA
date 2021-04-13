@@ -5,14 +5,17 @@ class Course < ActiveRecord::Base
 
   validates_presence_of :name, :code, :duration, :rank
   belongs_to :faculty, inverse_of: :courses
+  belongs_to :course_category, inverse_of: :courses
   has_many :course_units, inverse_of: :course
   has_many :units, through: :course_units
+  has_many :application_progresses, inverse_of: :course
   has_many :english_competencies, as: :competenciable, dependent: :destroy
   has_many :academic_eligibilities, as: :eligiable, dependent: :destroy
+  has_many :subjects, as: :subjectable, class_name: 'Subject'
   accepts_nested_attributes_for :english_competencies, allow_destroy: true
   accepts_nested_attributes_for :academic_eligibilities, allow_destroy: true
 
-  enum rank: { pg: 0, ug: 1 }
+  enum rank: {high_school: 0, diploma: 1, graduate: 2, post_graduate: 3, phd: 4}
 
   settings do
     mappings dynamic: false do

@@ -36,10 +36,9 @@
   <ul>
     <li><a class="active" href="<%= root_url %>/users/<%= current_user.id%>?type=search">Search</a></li><br>
     <li><a class="active" href="<%= root_url %>/users/<%= current_user.id%>?type=profile">Profile</a></li><br>
-    <li><a class="active" href="<%= root_url %>/users/<%= current_user.id%>?type=portfolio">Academic
-      Portfolio</a></li>
-    <li><a class="active" href="<%= root_url %>/users/<%= current_user.id%>?type=recommendation"></a></li><br>
-    <li><a class="active" href="#contact">Recommendation</a></li><br>
+    <li><a class="active" href="<%= root_url %>/users/<%= current_user.id%>?type=portfolio">Academic Portfolio</a></li><br>
+    <li><a class="active" href="<%= root_url %>/student/<%= current_user.id%>/recommendation?type=recommendation">Recommendation</a></li><br>
+    <li><a class="active" href="<%= root_url %>/student/<%= current_user.id%>/application?type=application">Application</a></li><br>
     <li><a class="active" href="#about">Suggestion</a></li><br>
     <li><%= button_to "logout", destroy_user_session_path, method: :delete  %></li>
   </ul>

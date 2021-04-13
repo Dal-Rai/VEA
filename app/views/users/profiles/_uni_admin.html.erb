@@ -1,9 +1,28 @@
-<div class="col-lg-3">
-  <%= label_tag nil %>
+<!--<div class="col-lg-3">-->
+  <%#= label_tag nil %>
+<!--</div>-->
+
+<!--<div class="col-lg-9">-->
+  <%#= render(partial: "users/profiles/uni_admin_profile") %>
+<!--</div>-->
+
+
+<div class="col-lg-4">
+  <%= label_tag :space, "" %>
 </div>
 
-<div class="col-lg-9">
-  <%= render(partial: "users/profiles/uni_admin_profile") %>
+<div class="col-lg-8">
+  <% if params[:type].eql? 'university' %>
+    <%= render(partial: "users/profiles/uni_admin_university_profile") %>
+  <%elsif params[:type].eql? 'rule'%>
+    <%= render(partial: "users/profiles/uni_admin_selection_criteria_nav", locals: {tabName: 'rule_tab'}) %>
+  <%elsif params[:type].eql? 'faculty'%>
+    <%= render(partial: "users/profiles/student_recommendation") %>
+  <%elsif params[:type].eql? 'students'%>
+    <%= render(partial: "users/profiles/student_recommendation") %>
+  <%else%>
+    <%= render(partial: "users/profiles/uni_admin_profile_nav", locals: {tabName: 'profile_tab'}) %>
+  <%end %>
 </div>
 
 

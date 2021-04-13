@@ -1,0 +1,19 @@
+<div class="col-lg-4">
+  <%= label_tag :space, "" %>
+</div>
+
+<div class="col-lg-8">
+  <table>
+    <tr>
+      <th>Name</th><th>Fees</th><th>Details</th>
+      <% @courses.each do |course| %>
+        <tr>
+
+          <th> <%= course.name %></th>
+          <td> <%= course.total_fees %></td>
+          <td><a href="<%= root_url %>course/<%= course.id %>/detail">View</a></td>
+        </tr>
+      <% end %>
+    </tr>
+  </table>
+</div>

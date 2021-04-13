@@ -1,3 +1,16 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+  $(document).ready(function(){
+    $("#user_wallet_temp_amount").change(function(){
+      var oED = new Date("<%= current_user.wallet.end_date || DateTime.now %>");
+      var tempAmount = document.getElementById("user_wallet_temp_amount").value;
+      var noOfDays = tempAmount/"<%= CONSTANTS['student_per_day'] %>";
+      var newExpiryDate=new Date(oED.getFullYear(),oED.getMonth(),oED.getDate()+noOfDays);
+      document.getElementById("user_wallet_end_date").value = newExpiryDate.toISOString().slice(0, 10);
+    });
+  });
+</script>
+
 <div class="Personal">
   <span class="col-lg-2">
     <%= label_tag(:email, "", class: 'labelLarge') %>
@@ -5,10 +18,34 @@
 
   <span class="col-lg-7">
     <div class="line">
-        Personal Details
-      </div><br><br><br><br><br>
+        Membership Details
+    </div><br><br><br>
+    <div>
+      <% if current_user.premium_member? %>
+        <span style="color:Green;">Premium Member until <%= current_user.wallet.end_date %></span><br><br>
+      <%else%>
+        <span style="color:Red;">Upgrade to premium member for more features</span><br><br>
+      <%end%>
 
-    <%= form_for @user, url: {controller: :student, action: :update, method: :put} do |f| %>
+      <%= form_for current_user, url: {controller: :paypals, action: :start_payment, method: :post} do |f| %>
+        <%= f.fields_for current_user.wallet do |g| %>
+          <%= label_tag(:amount, "Amount:", class: 'labelLarge') %>
+          <%= g.text_field :temp_amount, class: 'largeInput' %><br><br>
+
+          <%= label_tag(:end_date, "Membership Until:", class: 'labelLarge') %>
+          <%= g.date_field :end_date, class: 'largeInput', readonly: "readonly" %><br><br>
+
+          <%= label_tag(:submit, "", class: 'labelLarge') %>
+          <%= f.submit 'Activate', class: 'largeSubmit' %><br><br><br>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="line">
+        Personal Details
+    </div><br><br><br><br><br>
+
+    <%= form_for current_user, url: {controller: :student, action: :update, method: :put} do |f| %>
       <%= label_tag(:email, "Email:", class: 'labelLarge') %>
       <%= f.text_field :email, class: 'largeInput' %><br><br>
       <%= f.fields_for :profile do |g| %>

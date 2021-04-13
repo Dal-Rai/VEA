@@ -1,0 +1,46 @@
+<div>
+  <% flash.each do |name, msg| %>
+    <div class='alert alert-<%= name %>'>
+      <%= msg %>
+    </div>
+  <% end %>
+</div>
+
+<%= form_for current_user.university, url: {controller: :university, action: :add_criteria, method: :patch, id:
+  current_user
+  .university_id} do |f| %>
+
+  <%= f.fields_for current_user.university.qualification_criterias.new do |g| %>
+    <%= hidden_field(:type, value='qualification') %>
+    <%= label_tag(:qualification_type, "Qualification:", class: 'labelLarge') %>
+    <%= g.select_tag :criteria, options_for_select([["PHD", "phd"], ["Post Graduate", "post_graduate"], ["Under
+    Graduate",
+      "graduate"], ["Diploma", "diploma"],
+      ["Certificate Or High School", "high_school"]]), class: 'mediumInput' %><br><br>
+
+    <%= label_tag(:weightage, "Weightage:", class: 'labelLarge') %>
+    <%= g.text_field :weightage, class: 'mediumInput' %><br><br>
+
+    <%= label_tag(:description, "Description:", class: 'labelLarge') %>
+    <%= g.text_field :description, class: 'mediumInput' %><br><br>
+  <% end %>
+
+  <%= label_tag(:submit, "", class: 'labelLarge') %>
+  <%= f.submit 'Add', class: 'mediumSubmit' %>
+<% end %><br>
+
+<table>
+  <tr>
+    <th>Qualification</th><th>Weightage</th><th>Description
+  </th><th>Action</th>
+  </tr>
+  <% current_user.university.qualification_criterias.select(&:persisted?).each do |g| %>
+    <tr>
+      <th><%= g.qualification_type %></th>
+      <td><%= g.weightage %></td>
+      <td><%= g.description %></td>
+      <td><a href="<%= root_url %>/university/<%= current_user.university_id
+      %>/reload?destroy=true&type=qualification&type_id=<%= g.id %>">delete</a></td>
+    </tr>
+  <% end%>
+</table>

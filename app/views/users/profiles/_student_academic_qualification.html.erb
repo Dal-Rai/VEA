@@ -3,14 +3,16 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </div>
 
-<%= form_for current_user, url: {controller: :student, action: :add_qualification, method: :patch, id: current_user.id} do
+<%= form_for current_user, url: {controller: :student, action: :add_academic, method: :patch, id: current_user.id} do
 |f| %>
 
   <%= f.fields_for current_user.qualifications.new do |g| %>
+    <%= hidden_field(:type, value='qualification') %>
     <%= label_tag(:highest_qualification, "Qualification:", class: 'labelLarge') %>
-    <%= g.select :level, [["PHD", "phd"], ["Post Graduate", "post_graduate"], ["Under Graduate",
+    <%= g.select_tag(:criteria, options_for_select([["PHD", "phd"], ["Post Graduate", "post_graduate"], ["Under
+    Graduate",
       "graduate"], ["Diploma", "diploma"],
-      ["Certificate Or High School", "high_school"]], class: 'mediumInput' %><br><br>
+      ["Certificate Or High School", "high_school"]]), class: 'mediumInput') %><br><br>
 
     <%= label_tag(:course, "Course:", class: 'labelLarge') %>
     <%= g.text_field :course, class: 'mediumInput' %><br><br>

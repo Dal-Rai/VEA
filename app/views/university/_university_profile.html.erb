@@ -9,6 +9,12 @@
     <%= label_tag(:weblink, "Website Link:", class: 'labelLarge') %>
     <%= f.text_field :weblink, class: 'largeInput' %><br><br>
 
+    <%= label_tag(:campus, "Campus:", class: 'labelLarge') %>
+    <%= f.text_field :campus, class: 'largeInput' %><br><br>
+
+    <%= label_tag(:semester_living_expenses, "Living expenses:", class: 'labelLarge') %>
+    <%= f.text_area :semester_living_expenses, placeholder: "Uni logde per semester", class: 'largeInput' %><br><br>
+
     <%= label_tag(:remark, "Remark:", class: 'labelLarge') %>
     <%= f.text_area :remark, class: 'largeInput' %><br><br>
 

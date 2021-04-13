@@ -1,11 +1,12 @@
-<%= form_for current_user, url: {controller: :student, action: :add_english, method: :patch, id: current_user.id} do |f| %>
+<%= form_for current_user, url: {controller: :student, action: :add_academic, method: :patch, id: current_user.id} do |f| %>
   <div class="line">
     English Competency
   </div><br><br><br><br><br>
 
   <%= f.fields_for current_user.english_competencies.new do |g| %>
+    <%= hidden_field(:type, value='english') %>
     <%= label_tag(:competency_type, "Type:", class: 'labelLarge') %>
-    <%= g.select :competency_type, ["IELTS", "PTE"] %>
+    <%= g.select_tag(:criteria, options_for_select(["IELTS", "PTE" ], "IELTS"), class: 'smallInput') %>
 
     <%= label_tag(:expiry, "Expiry:", class: 'labelLarge') %>
     <%= g.date_field :expiry, class: 'mediumInput' %><br><br>

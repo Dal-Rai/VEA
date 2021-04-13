@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   include CommonHelpers
   # include Pagination
   # include Renderer
-  # before_action :authenticate_user!
+  before_action :clear_flash
   add_flash_types :danger, :info, :success, :warning
 
   rescue_from ArgumentError, with: :argument_error
@@ -22,7 +22,9 @@ class ApplicationController < ActionController::Base
   #   binding.pry
   #   new_user_session_path
   # end
-
+ def clear_flash
+   flash.clear
+ end
 
 
 

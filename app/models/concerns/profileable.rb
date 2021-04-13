@@ -16,5 +16,10 @@ module Profileable
       name = [salutation, profile.firstname, profile.lastname].compact
       name.empty? ? email : name.join(" ")
     end
+
+    def premium_member?
+      return false if wallet.nil? || wallet.end_date.nil?
+      wallet.end_date > DateTime.now
+    end
   end
 end

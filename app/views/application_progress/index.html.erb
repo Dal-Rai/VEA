@@ -1,0 +1,21 @@
+<div class="col-lg-3">
+  <%= label_tag nil %>
+</div>
+
+<div class="col-lg-8">
+  <table>
+    <tr>
+      <th>Course Name</th><th>Student Name</th><th>Student Email</th><th>Total Fees</th><th>Status</th><th>Action</th>
+    </tr>
+    <% @applications.each do |app| %>
+      <tr>
+        <th><%= app.course.name %></th>
+        <td><%= app.user.name %></td>
+        <td><%= app.user.email %></td>
+        <td><%= app.course.total_fees %></td>
+        <td><%= app.state %></td>
+        <td><a href="<%= root_url %>application_progress/<%= app.id %>">view</a></td>
+      </tr>
+    <% end %>
+  </table>
+</div>

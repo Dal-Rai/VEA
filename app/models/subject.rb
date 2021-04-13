@@ -1,3 +1,6 @@
 class Subject < ApplicationRecord
-  belongs_to :qualification, inverse_of: :subjects
+  belongs_to(
+    :subjectable,
+    polymorphic: true
+  )
 end

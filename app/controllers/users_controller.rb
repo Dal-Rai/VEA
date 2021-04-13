@@ -2,20 +2,21 @@ class UsersController < ApplicationController
   before_action :authenticate_user!, only: %i|show students universities|
 
   def show
-    @user = User.find(params[:id])
-    if  @user.portal_admin?
+    if  current_user.portal_admin?
       @universities = University.all
       @students = User.student.all
-    elsif @user.student?
-      @user.english_competencies.build if @user.english_competencies.empty?
-      @user.qualifications.build if @user.qualifications.empty?
+    elsif current_user.student?
+      current_user.english_competencies.build if current_user.english_competencies.empty?
+      current_user.qualifications.build if current_user.qualifications.empty?
+      current_user.build_wallet if current_user.wallet.nil?
+      current_user.build_address if current_user.address.nil?
     else
-      @university = @user.university
+      @university = current_user.university
     end
   end
 
   def students
-    @users = User.student
+    @users = User.student.map{|u| u.calc_weightage(current_user.university)}
   end
 
   def universities
@@ -39,11 +40,17 @@ class UsersController < ApplicationController
     end
   end
 
+  def invite
+    User.new(user_params).save
+    flash[:success] = 'User invited successfully'
+
+  end
+
   private
 
   def user_params
     params
       .require(:user)
-      .permit(:email, profile_attributes:[:firstname, :middlename, :lastname, :mobile_no])
+      .permit(:email, :password, profile_attributes:[:firstname, :middlename, :lastname, :mobile_no])
   end
 end

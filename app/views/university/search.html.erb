@@ -4,7 +4,7 @@
     $("#university_wallet_temp_amount").change(function(){
       var oED = new Date("<%= @uni.wallet.end_date || DateTime.now %>");
       var tempAmount = document.getElementById("university_wallet_temp_amount").value;
-      var noOfDays = tempAmount/1.6;
+      var noOfDays = tempAmount/"<%= CONSTANTS['university_per_day'] %>";
       var newExpiryDate=new Date(oED.getFullYear(),oED.getMonth(),oED.getDate()+noOfDays);
       document.getElementById("university_wallet_end_date").value = newExpiryDate.toISOString().slice(0, 10);
     });
