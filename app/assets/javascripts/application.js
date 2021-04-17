@@ -24,3 +24,4 @@
 //= require clipboard.min
 //= require local-time
 //= require chosen-jquery
+//= require jquery3

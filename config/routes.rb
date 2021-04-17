@@ -55,9 +55,6 @@ Rails.application.routes.draw do
 
   resources :student do
     member do
-      # patch :add_english
-      # patch :add_qualification
-      # patch :add_experience
       patch :add_academic
       get :reload
       get :recommendation
@@ -96,6 +93,8 @@ Rails.application.routes.draw do
   end
 
   resource :subjects
+  resources :chats, only: [:index]
+  mount ActionCable.server => '/cable'
 
   resources :paypals do
     collection do
@@ -104,7 +103,6 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'js/widget.js' => 'ticketings#widget', defaults: {format: 'js'}
   get 'paypal_confirm', to: 'paypals#verify_payment'
 
 end

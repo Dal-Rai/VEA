@@ -40,6 +40,8 @@
     <li><a href="<%= root_url %>/university/<%= current_user.university_id%>/faculty?type=faculty">Faculty</a></li><br>
     <li><a href="<%= root_url %>/university/<%= current_user.university_id %>/prospective_student">students</a></li><br>
     <li><a class="active" href="<%= root_url %>/university/<%= current_user.university_id%>/application?type=application">Application</a></li><br>
+
+    <li><a href="<%= root_url %>/chats">Chats</a></li><br>
     <li><%= button_to "logout", destroy_user_session_path, method: :delete  %></li>
   </ul>
 </h2>

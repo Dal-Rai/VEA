@@ -55,4 +55,8 @@ Rails.application.configure do
   config.action_mailer.default_url_options = {host: 'localhost', port: 3000}
 
   config.action_mailer.delivery_method = :letter_opener
+
+  # config/environments/development.rb
+  config.action_cable.url = 'ws://localhost:3000/cable'
+  config.action_cable.allowed_request_origins = [ 'http://localhost:3000', 'http://127.0.0.1:3000' ]
 end

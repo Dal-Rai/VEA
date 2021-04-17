@@ -1,0 +1,16 @@
+<span class="col-lg-3">
+  <%= label_tag nil %>
+</span>
+
+<div class="col-lg-9">
+  <div id="messages">
+    <%= render @messages, partial: :chat, as: :chat %>
+  </div>
+
+  <form>
+    <label> Say Something:</label><br>
+    <input type="hidden", id="user_id", value= "<%= current_user.id %>">
+    <input type="hidden", id="course_id", value= "<%= @course.id %>">
+    <input type="text" data-behavior="chat_speaker">
+  </form>
+</div>

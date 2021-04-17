@@ -96,3 +96,7 @@ gem 'elasticsearch-rails', github: 'elastic/elasticsearch-rails', branch: 'maste
 gem 'searchkick'
 gem 'paypal-recurring'
 gem 'tire'
+
+#chat
+gem 'clearance', '~> 1.16'
+gem 'delayed_job_active_record'
