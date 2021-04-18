@@ -23,6 +23,7 @@ class CourseUpdateForm < SimpleDelegator
   def assign_default_course
     self.course_category_id =  params[:course_category_id]
     self.rank =  params[:rank]
+    self.assign_attributes(filter_params)
   end
 
   def update

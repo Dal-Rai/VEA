@@ -8,9 +8,13 @@
 
   <%= f.fields_for current_user.category_preferances.new  do |g| %>
     <%= hidden_field(:type, value='preferance') %>
+
     <%= label_tag(:course_category, "Category:", class: 'labelLarge') %>
     <%= select_tag(:course_category_id, options_from_collection_for_select(CourseCategory.all, "id", "name"), class:
       'largeInput') %><br><br>
+
+    <%= label_tag(:fees, "Affordable fees:", class: 'labelLarge') %>
+    <%= number_field_tag(:fees, nil, class: 'mediumInput') %><br><br>
   <% end %>
 
   <%= label_tag(:submit, "", class: 'labelLarge') %>
@@ -19,14 +23,15 @@
 
 <table>
   <tr>
-    <th>Category</th><th>Description</th><th>Action</th>
+    <th>Category</th><th>Affordable fees</th><th>Description</th><th>Action</th>
   </tr>
   <% current_user.category_preferances.select(&:persisted?).each do |g| %>
     <tr>
       <th><%= g.course_category.name %></th>
+      <td><%= g.fees %></td>
       <td><%= g.course_category.description %></td>
       <td><a href="<%= root_url %>/student/<%= current_user.id
-      %>/reload?destroy=true&type=qualification&type_id=<%=
+      %>/reload?destroy=true&type=category&type_id=<%=
         g.id %>">delete</a></td>
     </tr>
   <% end%>

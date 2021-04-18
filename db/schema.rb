@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210412140150) do
+ActiveRecord::Schema.define(version: 20210417140407) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,8 +69,9 @@ ActiveRecord::Schema.define(version: 20210412140150) do
   create_table "category_preferances", force: :cascade do |t|
     t.integer  "course_category_id"
     t.integer  "user_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.decimal  "fees",               default: "0.0"
     t.index ["course_category_id"], name: "index_category_preferances_on_course_category_id", using: :btree
     t.index ["user_id"], name: "index_category_preferances_on_user_id", using: :btree
   end
@@ -336,6 +337,7 @@ ActiveRecord::Schema.define(version: 20210412140150) do
     t.string   "unlock_token"
     t.datetime "locked_at"
     t.decimal  "total_weightage",        default: "0.0"
+    t.integer  "recent_qualification",   default: 5
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true, using: :btree
     t.index ["invitations_count"], name: "index_users_on_invitations_count", using: :btree

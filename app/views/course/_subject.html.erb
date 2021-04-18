@@ -2,7 +2,7 @@
   <%= f.fields_for :subjects_attributes do |g| %>
     <br><br>
     <%= hidden_field(:type, value='subject') %>
-    <%= label_tag(:name, "Type:", class: 'labelLarge') %>
+    <%= label_tag(:name, "Subject Name:", class: 'labelLarge') %>
     <%= g.text_field :name, class: 'mediumInput' %><br><br>
 
     <%= label_tag(:percentage, "Score:", class: 'labelLarge') %>

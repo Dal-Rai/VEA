@@ -4,6 +4,7 @@ class StudentController < ApplicationController
     @user = User.new(stud_params)
     @user.user_type = :student
     @user.password = 'Selise88'
+    @user.recent_qualification = params[:recent_qualification]
 
     if @user.save
       redirect_to(controller: :home, action: :index)
@@ -43,15 +44,12 @@ class StudentController < ApplicationController
   end
 
   def recommendation
-    @courses = Course.all
+    @courses = RecommendationPopulator.new(current_user).recommended_courses
   end
 
   def application
     @applications = current_user.application_progresses
   end
-
-
-
 
   def add_english
     unless params[:destroy]
@@ -73,6 +71,8 @@ class StudentController < ApplicationController
       current_user.experiences.find(params[:type_id]).destroy
     when 'qualification'
       current_user.qualifications.find(params[:type_id]).destroy
+    when 'category'
+      current_user.category_preferances.find(params[:type_id]).destroy
     else
       current_user.english_competencies.find(params[:type_id]).destroy
     end
@@ -100,7 +100,7 @@ class StudentController < ApplicationController
   private
 
   def stud_params
-    params.require(:user).permit(:id, :email, :password,
+    params.require(:user).permit(:id, :email, :password, :recent_qualification,
       profile_attributes: [:id, :salutation, :firstname, :middlename, :lastname, :mobile_no, :gender, :passport_no,
         :avatar],
       address_attributes: [:id, :street_no, :street_name, :suburb, :post_code, :city, :country],
@@ -129,7 +129,7 @@ class StudentController < ApplicationController
   end
 
   def preferance_params
-    params[:course_category_id]
+    params.permit(:course_category_id, :fees)
   end
 
 end

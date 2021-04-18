@@ -1,5 +1,6 @@
 require 'elasticsearch/model'
 class Course < ActiveRecord::Base
+  include CourseFilter
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
 

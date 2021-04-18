@@ -24,7 +24,8 @@
           <div>
             <%= form_for qualification.subjects.new, url: {controller: :subjects, action: :create, method: :post} do
             |f| %>
-              <%= f.hidden_field :subjectable_id %>
+              <%= f.hidden_field :subjectable_id, value: qualification.id %>
+              <%= f.hidden_field(:subjectable_type, value: 'Qualification') %>
               <%= f.text_field :name, class: 'mediumInput', placeholder: "Subject name"%>
               <%= f.text_field :percentage, class: 'mediumInput', placeholder: "Percentage"%><br><br>
               <%= f.text_area :description, class: 'extraLargeInput', placeholder: "Description"%><br><br>

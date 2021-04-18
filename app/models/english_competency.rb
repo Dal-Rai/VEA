@@ -5,7 +5,7 @@ class EnglishCompetency < ApplicationRecord
     polymorphic: true,
     optional: true
   )
-
+  scope :active, -> { where('expiry >= ?', DateTime.now) }
   enum competency_type: {PTE: 0, IELTS: 1}
   default_scope -> { order(overall_band: :desc) }
 end

@@ -2,22 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f1abe147-719a-4475-be67-a0b01b396f81" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/app/controllers/chats_controller.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/jobs/message_broadcast_job.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/chats/_chat.html.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/chats/index.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/virtual-education-agent.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/virtual-education-agent.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/models/concerns/course_filter.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/services/recommendation_populator.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gemfile" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gemfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/assets/javascripts/application.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/javascripts/application.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/assets/javascripts/cable.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/channels/application_cable/connection.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/channels/application_cable/connection.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/chat.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/chat.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/home/_uni_admin_nav.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/home/_uni_admin_nav.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/environments/development.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/environments/development.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/student_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/student_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/subjects_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/subjects_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/course.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/course.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/english_competency.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/english_competency.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/user.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/user.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/services/course_update_form.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/course_update_form.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/services/student_academic_form.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/student_academic_form.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/course/_subject.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/course/_subject.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/student/new.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/student/new.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/subjects/create.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/subjects/create.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/subjects/destroy.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/subjects/destroy.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/users/profiles/_student_academic_preference.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/users/profiles/_student_academic_preference.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/users/profiles/_student_academic_subject_modal.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/users/profiles/_student_academic_subject_modal.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/schema.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.rb" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -37,44 +38,8 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="chat_channel.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/channels/chat_channel.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
-              <caret line="7" column="5" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="chat.coffee" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/assets/javascripts/channels/chat.coffee">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="6" selection-start-line="6" selection-end-line="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="chat.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/chat.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="15" column="3" selection-start-line="15" selection-start-column="3" selection-end-line="15" selection-end-column="3" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="message_broadcast_job.rb" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/jobs/message_broadcast_job.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="12" column="3" lean-forward="true" selection-start-line="12" selection-start-column="3" selection-end-line="12" selection-end-column="3" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="_chat.html.erb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/chats/_chat.html.erb">
+      <file leaf-file-name="create.html.erb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/subjects/create.html.erb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="120">
               <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
@@ -82,29 +47,83 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html.erb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/chats/index.html.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="15" column="6" selection-start-line="15" selection-start-column="6" selection-end-line="15" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="chats_controller.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/chats_controller.rb">
+      <file leaf-file-name="destroy.html.erb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/subjects/destroy.html.erb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="120">
-              <caret line="6" selection-start-line="6" selection-end-line="6" />
+              <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="application.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/assets/javascripts/application.js">
+      <file leaf-file-name="course_filter.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/models/concerns/course_filter.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="13" column="22" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
+            <state relative-caret-position="740">
+              <caret line="37" column="22" selection-start-line="37" selection-start-column="6" selection-end-line="37" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="user.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/models/user.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="540">
+              <caret line="27" column="32" selection-start-line="27" selection-start-column="12" selection-end-line="27" selection-end-column="32" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="student_controller.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/student_controller.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="395">
+              <caret line="46" column="26" selection-start-line="46" selection-start-column="26" selection-end-line="46" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="student_academic_form.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/services/student_academic_form.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="400">
+              <caret line="20" selection-start-line="20" selection-end-line="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="recommendation_populator.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/services/recommendation_populator.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="460">
+              <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="course_controller.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/course_controller.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="420">
+              <caret line="21" column="22" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="course_update_form.rb" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/services/course_update_form.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="384">
+              <caret line="26" column="5" lean-forward="true" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="server.pid" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tmp/pids/server.pid">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="4" selection-start-column="4" selection-end-column="4" />
             </state>
           </provider>
         </entry>
@@ -113,8 +132,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>path</find>
-      <find>university</find>
       <find>highest_english_com</find>
       <find>experiences.new</find>
       <find>experience_criteria</find>
@@ -124,7 +141,6 @@
       <find>premium_member</find>
       <find>placehold</find>
       <find>course_u</find>
-      <find>hidden_field</find>
       <find>hidden_fi</find>
       <find>course_params</find>
       <find>@course_cate</find>
@@ -143,6 +159,9 @@
       <find>require_self</find>
       <find>reject_unauthorized_connection</find>
       <find>delay</find>
+      <find>binding.pry</find>
+      <find>recommen</find>
+      <find>hidden_field</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$</dir>
@@ -158,25 +177,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/views/users/profiles/_student_academic_subject_modal.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/users/profiles/_student_academic_nav.html.erb" />
-        <option value="$PROJECT_DIR$/app/models/category_preference.rb" />
-        <option value="$PROJECT_DIR$/app/models/category_preferance.rb" />
-        <option value="$PROJECT_DIR$/app/services/student_academic_form.rb" />
-        <option value="$PROJECT_DIR$/app/models/course_category.rb" />
-        <option value="$PROJECT_DIR$/app/views/users/profiles/_student_academic_preference.html.erb" />
-        <option value="$PROJECT_DIR$/app/models/concerns/recommendation.rb" />
-        <option value="$PROJECT_DIR$/app/services/course_update_form.rb" />
-        <option value="$PROJECT_DIR$/app/views/course/_course_detail.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/course/new.html.erb" />
-        <option value="$PROJECT_DIR$/db/migrate/20210411113055_create_application.rb" />
-        <option value="$PROJECT_DIR$/app/models/application.rb" />
-        <option value="$PROJECT_DIR$/app/views/student/recommendation.html.erb" />
-        <option value="$PROJECT_DIR$/app/controllers/course_controller.rb" />
-        <option value="$PROJECT_DIR$/app/controllers/student_controller.rb" />
-        <option value="$PROJECT_DIR$/app/views/home/_student_nav.html.erb" />
-        <option value="$PROJECT_DIR$/app/models/user.rb" />
-        <option value="$PROJECT_DIR$/app/models/course.rb" />
         <option value="$PROJECT_DIR$/db/migrate/20210411113055_create_application_progress.rb" />
         <option value="$PROJECT_DIR$/app/views/course/detail.html.erb" />
         <option value="$PROJECT_DIR$/app/models/application_progress.rb" />
@@ -209,6 +209,25 @@
         <option value="$PROJECT_DIR$/Gemfile" />
         <option value="$PROJECT_DIR$/app/jobs/message_broadcast_job.rb" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/channels/chat.coffee" />
+        <option value="$PROJECT_DIR$/db/migrate/20210417123031_add_qualification_column_to_user.rb" />
+        <option value="$PROJECT_DIR$/app/views/student/new.html.erb" />
+        <option value="$PROJECT_DIR$/app/models/concerns/course_looker.rb" />
+        <option value="$PROJECT_DIR$/app/models/course.rb" />
+        <option value="$PROJECT_DIR$/app/models/english_competency.rb" />
+        <option value="$PROJECT_DIR$/app/models/user.rb" />
+        <option value="$PROJECT_DIR$/app/views/subjects/destroy.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/subjects/create.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/users/profiles/_student_academic_subject_modal.html.erb" />
+        <option value="$PROJECT_DIR$/app/controllers/subjects_controller.rb" />
+        <option value="$PROJECT_DIR$/app/views/users/profiles/_uni_admin_selection_criteria_qualification.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/course/_subject.html.erb" />
+        <option value="$PROJECT_DIR$/db/migrate/20210417140407_add_column_to_category_preference.rb" />
+        <option value="$PROJECT_DIR$/app/views/users/profiles/_student_academic_preference.html.erb" />
+        <option value="$PROJECT_DIR$/app/services/student_academic_form.rb" />
+        <option value="$PROJECT_DIR$/app/models/concerns/course_filter.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/student_controller.rb" />
+        <option value="$PROJECT_DIR$/app/services/recommendation_populator.rb" />
+        <option value="$PROJECT_DIR$/app/services/course_update_form.rb" />
       </list>
     </option>
   </component>
@@ -224,17 +243,15 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="y" value="28" />
+    <option name="y" value="23" />
     <option name="width" value="1440" />
-    <option name="height" value="800" />
+    <option name="height" value="805" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="RailsProjectView" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -251,23 +268,29 @@
               <item name="virtual-education-agent" type="b2602c69:ProjectViewProjectNode" />
               <item name="virtual-education-agent" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="controllers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="virtual-education-agent" type="b2602c69:ProjectViewProjectNode" />
               <item name="virtual-education-agent" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="chats" type="462c0819:PsiDirectoryNode" />
+              <item name="tmp" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="virtual-education-agent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="virtual-education-agent" type="462c0819:PsiDirectoryNode" />
+              <item name="tmp" type="462c0819:PsiDirectoryNode" />
+              <item name="pids" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="RailsProjectView" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="SearchEverywhereHistoryKey" value="Gemfile&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/Gemfile&#10;chat.rb&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/app/models/chat.rb&#10;gemfile&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/Gemfile&#10;aa&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/app/views/university/_aa.html&#10;chat&#9;null&#9;null&#10;gem&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/Gemfile&#10;devel&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/config/environments/development.rb&#10;schema&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/db/schema.rb&#10;routes&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/config/routes.rb&#10;application_pro&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/app/models/concerns/application_progress_state.rb&#10;application&#9;null&#9;null&#10;univer&#9;null&#9;null&#10;route&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/config/routes.rb&#10;user&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/app/models/user.rb&#10;application_con&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/app/controllers/application_progress_controller.rb&#10;atta&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/app/models/attachment.rb&#10;sch&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/db/schema.rb&#10;routes.rb&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/config/routes.rb&#10;course.rb&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/app/models/course.rb&#10;user.rb&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/app/models/user.rb&#10;qua&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/app/models/qualification.rb&#10;course_ca&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/app/models/course_category.rb&#10;user.r&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/app/models/user.rb&#10;course_cat&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/app/models/course_category.rb&#10;course_con&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/app/controllers/course_controller.rb&#10;course&#9;null&#9;null&#10;quali&#9;null&#9;null&#10;uni&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/app/models/university.rb&#10;session&#9;null&#9;null&#10;student&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/app/controllers/student_controller.rb&#10;users_con&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/app/controllers/users_controller.rb&#10;criteria&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/app/models/criteria_rule.rb&#10;experienc&#9;null&#9;null&#10;experience&#9;null&#9;null&#10;univ&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/app/models/university.rb&#10;criteria_ru&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/app/models/criteria_rule.rb&#10;use&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/app/models/user.rb&#10;sche&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/db/schema.rb&#10;user.&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/app/models/user.rb&#10;paypa&#9;null&#9;null&#10;consta&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/config/constants.yml&#10;engli&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/app/models/english_competency.rb&#10;english_com&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/app/models/english_competency.rb&#10;criteria_rule&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/app/models/criteria_rule.rb&#10;university&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/app/models/university.rb&#10;univers&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/app/models/university.rb&#10;subject&#9;null&#9;null&#10;qualifi&#9;null&#9;null&#10;studen&#9;null&#9;null&#10;wallet&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/app/models/wallet.rb" />
+    <property name="SearchEverywhereHistoryKey" value="student&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/app/controllers/student_controller.rb&#10;user.&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/app/models/user.rb&#10;schem&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/db/schema.rb&#10;Qualifica&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/app/models/qualification.rb&#10;subject&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/app/models/subject.rb&#10;qualification&#9;null&#9;null&#10;englis&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/app/models/english_competency.rb&#10;english&#9;null&#9;null&#10;user.rb&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/app/models/user.rb&#10;course&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/app/models/course.rb&#10;user&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/app/models/user.rb&#10;schema&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/db/schema.rb&#10;route.rb&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/config/routes.rb&#10;Gemfile&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/Gemfile&#10;chat.rb&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/app/models/chat.rb&#10;gemfile&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/Gemfile&#10;aa&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/app/views/university/_aa.html&#10;chat&#9;null&#9;null&#10;gem&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/Gemfile&#10;devel&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/config/environments/development.rb&#10;routes&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/config/routes.rb&#10;application_pro&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/app/models/concerns/application_progress_state.rb&#10;application&#9;null&#9;null&#10;univer&#9;null&#9;null&#10;route&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/config/routes.rb&#10;application_con&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/app/controllers/application_progress_controller.rb&#10;atta&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/app/models/attachment.rb&#10;sch&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/db/schema.rb&#10;routes.rb&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/config/routes.rb&#10;course.rb&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/app/models/course.rb&#10;qua&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/app/models/qualification.rb&#10;course_ca&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/app/models/course_category.rb&#10;user.r&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/app/models/user.rb&#10;course_cat&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/app/models/course_category.rb&#10;course_con&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/app/controllers/course_controller.rb&#10;quali&#9;null&#9;null&#10;uni&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/app/models/university.rb&#10;session&#9;null&#9;null&#10;users_con&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/app/controllers/users_controller.rb&#10;criteria&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/app/models/criteria_rule.rb&#10;experienc&#9;null&#9;null&#10;experience&#9;null&#9;null&#10;univ&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/app/models/university.rb&#10;criteria_ru&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/app/models/criteria_rule.rb&#10;use&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/app/models/user.rb&#10;sche&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/db/schema.rb&#10;paypa&#9;null&#9;null&#10;consta&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/config/constants.yml&#10;engli&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/app/models/english_competency.rb&#10;english_com&#9;FILE&#9;file:///Users/dalrai/work/virtual-education-agent/app/models/english_competency.rb" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -417,55 +440,56 @@
       <workItem from="1615936156106" duration="104867000" />
       <workItem from="1617141687188" duration="80509000" />
       <workItem from="1618051639448" duration="42734000" />
-      <workItem from="1618356695049" duration="446000" />
+      <workItem from="1618356695049" duration="9206000" />
+      <workItem from="1618671850026" duration="1242000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="422118000" />
+    <option name="totallyTimeSpent" value="432120000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="805" extended-state="6" />
     <editor active="true" />
     <layout>
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49857143" weight="0.3676681" />
       <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
+      <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.039829303" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.056899004" />
-      <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49857143" visible="true" weight="0.2067239" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="right" id="Database" order="3" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.66714084" />
       <window_info id="Structure" order="1" sideWeight="0.50142854" side_tool="true" weight="0.24892704" />
+      <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Favorites" order="2" side_tool="true" weight="0.3297568" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.0" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Messages" order="7" weight="0.0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.66714084" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.057909604" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49857143" visible="true" weight="0.28612304" />
       <window_info id="Structure" order="1" sideWeight="0.50142854" side_tool="true" weight="0.24892704" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Version Control" order="11" weight="0.32969698" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.057909604" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.6694915" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="11" weight="0.32969698" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Messages" order="12" weight="0.0" />
@@ -489,245 +513,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/controllers/sessions_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="11" column="7" lean-forward="true" selection-start-line="11" selection-start-column="7" selection-end-line="11" selection-end-column="75" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/course.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="23" column="7" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/student_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/migrate/20210411113055_create_application_progress.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/attachment.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/user.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="33" column="2" selection-start-line="33" selection-start-column="2" selection-end-line="33" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/application_progress.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="8" column="3" selection-start-line="8" selection-start-column="3" selection-end-line="8" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/home/_student_nav.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="215">
-          <caret line="28" column="27" selection-start-line="28" selection-start-column="27" selection-end-line="28" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/university/new.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="23" column="74" selection-start-line="23" selection-start-column="74" selection-end-line="23" selection-end-column="74" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/university_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="458">
-          <caret line="91" column="12" selection-start-line="91" selection-start-column="4" selection-end-line="91" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/migrate/20210409125218_add_course_category_to_faculty.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="40">
-          <caret line="2" column="4" selection-start-line="2" selection-start-column="4" selection-end-line="4" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/application_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="6" selection-start-column="6" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/services/course_update_form.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="27" column="12" selection-end-line="38" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/migrate/20210412140150_add_column_attachment.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="3" column="24" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/users_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="13" column="43" selection-start-line="13" selection-start-column="43" selection-end-line="13" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/course_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="715">
-          <caret line="40" column="11" selection-start-line="40" selection-start-column="6" selection-end-line="40" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/course/index.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-587" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/university/application.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/course/detail.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="17" column="12" selection-start-line="9" selection-start-column="4" selection-end-line="17" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/course/show.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="520">
-          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.5.1/gems/actionpack-5.0.7.2/lib/action_controller/metal/strong_parameters.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="1050" column="8" selection-start-line="1050" selection-start-column="8" selection-end-line="1050" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/concerns/application_progress_state_helper.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="19" column="30" lean-forward="true" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/services/application_progress_form.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="14" column="3" lean-forward="true" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/application_progress_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="7" column="8" lean-forward="true" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/application_progress/index.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="16" column="85" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="85" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/student/application.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="18" column="6" selection-start-line="18" selection-start-column="6" selection-end-line="18" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/concerns/application_progress_state.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="21" column="27" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/application_progress/show.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="20" selection-start-line="20" selection-end-line="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/invitations_controller.rb">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/home_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="4" lean-forward="true" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/schema.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="81" column="23" selection-start-line="81" selection-start-column="16" selection-end-line="81" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/student/new.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="4" selection-start-line="4" selection-end-line="4" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/home/_uni_admin_nav.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="27" selection-start-line="27" selection-end-line="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/environments/development.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="576">
-          <caret line="62" lean-forward="true" selection-start-line="62" selection-end-line="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/routes.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="464">
-          <caret line="103" column="5" lean-forward="true" selection-start-line="103" selection-start-column="5" selection-end-line="103" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
@@ -802,17 +587,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/channels/chat_channel.rb">
+    <entry file="file://$PROJECT_DIR$/app/jobs/message_broadcast_job.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="7" column="5" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/channels/chat.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        <state relative-caret-position="240">
+          <caret line="12" column="3" lean-forward="true" selection-start-line="12" selection-start-column="3" selection-end-line="12" selection-end-column="3" />
         </state>
       </provider>
     </entry>
@@ -823,10 +601,254 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/jobs/message_broadcast_job.rb">
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/channels/chat.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="12" column="3" lean-forward="true" selection-start-line="12" selection-start-column="3" selection-end-line="12" selection-end-column="3" />
+        <state relative-caret-position="120">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/channels/chat_channel.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="7" column="5" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/routes.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="59" column="25" selection-start-line="59" selection-start-column="11" selection-end-line="59" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/services/paypal_form.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="20">
+          <caret line="1" column="2" selection-start-line="1" selection-start-column="2" selection-end-line="5" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/course/new.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="482">
+          <caret line="25" column="4" selection-start-line="25" selection-start-column="4" selection-end-line="28" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/migrate/20210412140150_add_column_attachment.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="2" column="4" selection-start-line="2" selection-start-column="4" selection-end-line="5" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/student/new.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="15" column="68" selection-start-line="15" selection-start-column="68" selection-end-line="15" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/concerns/course_looker.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="1" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/english_competency.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="8" column="22" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/course/index.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="20">
+          <caret line="1" selection-start-line="1" selection-end-line="1" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/users/profiles/_student_academic_qualification.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="403">
+          <caret line="42" column="115" selection-start-line="42" selection-start-column="102" selection-end-line="42" selection-end-column="115" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/subject.rb">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/qualification.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="3" column="20" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/users/profiles/_student_academic_subject_modal.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="218">
+          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/users/profiles/_uni_admin_selection_criteria_qualification.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="303">
+          <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/course/_subject.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="4" column="38" selection-start-line="4" selection-start-column="38" selection-end-line="4" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/subjects/destroy.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/migrate/20210417123031_add_qualification_column_to_user.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="2" column="4" lean-forward="true" selection-start-line="2" selection-start-column="4" selection-end-line="4" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/course.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="580">
+          <caret line="29" column="5" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/category_preferance.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="3" column="3" selection-start-line="3" selection-start-column="3" selection-end-line="3" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/subjects_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="8" column="5" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/subjects/create.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/sessions/new.html.erb">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.5.1/gems/actionview-5.0.7.2/lib/action_view/helpers/tags/number_field.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="3" column="12" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.5.1/gems/actionview-5.0.7.2/lib/action_view/helpers/form_helper.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="1164" column="21" lean-forward="true" selection-start-line="1164" selection-start-column="21" selection-end-line="1164" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/schema.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="580">
+          <caret line="123" column="34" selection-start-line="123" selection-start-column="16" selection-end-line="123" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/migrate/20210417140407_add_column_to_category_preference.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/users/profiles/_student_academic_preference.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="347">
+          <caret line="19" column="52" lean-forward="true" selection-start-line="19" selection-start-column="52" selection-end-line="19" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/user.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="27" column="32" selection-start-line="27" selection-start-column="12" selection-end-line="27" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/services/student_academic_form.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tmp/pids/server.pid">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="4" selection-start-column="4" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/concerns/course_filter.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="740">
+          <caret line="37" column="22" selection-start-line="37" selection-start-column="6" selection-end-line="37" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/student_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="395">
+          <caret line="46" column="26" selection-start-line="46" selection-start-column="26" selection-end-line="46" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/services/recommendation_populator.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.5.1/gems/actionpack-5.0.7.2/lib/action_controller/metal/strong_parameters.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="1050" column="8" selection-start-line="1050" selection-start-column="8" selection-end-line="1050" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/course_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="21" column="22" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/services/course_update_form.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="26" column="5" lean-forward="true" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
         </state>
       </provider>
     </entry>

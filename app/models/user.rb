@@ -19,6 +19,7 @@ class User < ApplicationRecord
   has_many :english_competencies, as: :competenciable, dependent: :destroy
   has_one :highest_english_competency, as: :competenciable, class_name: 'EnglishCompetency'
   has_many :qualifications, inverse_of: :user, dependent: :destroy
+  has_many :subjects, through: :qualifications
   has_many :experiences, inverse_of: :user, dependent: :destroy
   has_one :wallet, as: :payee, dependent: :destroy
   has_many :paypal_carts, inverse_of: :user, dependent: :destroy
@@ -34,6 +35,7 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :experiences, allow_destroy: true
 
   enum user_type: {portal_admin: 0, uni_admin: 1, student: 2}
+  enum recent_qualification: { high_school: 0, diploma: 1, graduate: 2, post_graduate: 3, phd: 4, other: 5}
 
   after_create :send_invitation
 

@@ -30,7 +30,8 @@ class StudentAcademicForm < SimpleDelegator
 
   def assign_default_preferance
     self.user =  current_user
-    self.course_category_id = selection_params
+    self.course_category_id = selection_params[:course_category_id]
+    self.fees = selection_params[:fees]
   end
 
   def save

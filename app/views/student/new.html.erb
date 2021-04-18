@@ -18,6 +18,11 @@
 
       <%= label_tag(:mobile_no, "Mobile No:", class: 'labelLarge') %>
       <%= g.text_field :mobile_no, class: 'largeInput' %><br><br>
+
+      <%= label_tag(:recent_qualification, "Qualification:", class: 'labelLarge') %>
+      <%= g.select_tag(:recent_qualification, options_for_select([["Certificate Or High School", "high_school"],
+        ["Diploma", "diploma"], ["Under Graduate", "graduate"], ["Post Graduate", "post_graduate"], ["PHD", "phd"]]),
+        class: 'largeInput') %><br><br>
     <% end %>
 
 

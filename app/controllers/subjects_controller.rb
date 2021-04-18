@@ -11,6 +11,6 @@ class SubjectsController < ApplicationController
   private
 
   def filter_params
-    params.require(:subject).permit(:qualification_id, :name, :percentage, :description)
+    params.require(:subject).permit(:qualification_id, :name, :percentage, :description, :subjectable_id, :subjectable_type)
   end
 end
