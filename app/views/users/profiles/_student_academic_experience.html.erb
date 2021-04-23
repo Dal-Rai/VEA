@@ -1,25 +1,30 @@
+<div class="line">
+  <p style="color: darkorange; font-size: 20px;">Add Experience</p>
+</div><br><br>
+
 <%= form_for current_user, url: {controller: :student, action: :add_academic, method: :patch, id: current_user.id} do
 |f| %>
 
   <%= f.fields_for current_user.experiences.new do |g| %>
     <%= hidden_field(:type, value='experience') %>
-    <%= label_tag(:job_type, "Job Name:", class: 'labelLarge') %>
-    <%= g.text_field :job_type, class: 'mediumInput' %><br><br>
     Course related experience     :
-    <%= g.radio_button :related, 'true', :checked => true %><br>
+    <%= g.radio_button(:related, 'true', :checked => true, class: 'mediumInput') %><br>
     Course unrelated experience:
     <%= g.radio_button :related, 'false', :checked => false %><br><br>
 
-    <%= label_tag(:start, "Start Date:", class: 'labelLarge') %>
-    <%= g.date_field :start, class: 'mediumInput' %><br><br>
+    <%= label_tag(:job_type, "Job Name:", class: 'labelExtraLarge') %>
+    <%= g.text_field :job_type, class: 'borderlessInputMedium'%><br><br>
 
-    <%= label_tag(:end, "End Date:", class: 'labelLarge') %>
-    <%= g.date_field :end, class: 'mediumInput' %><br><br>
+    <%= label_tag(:start, "Start Date:", class: 'labelExtraLarge') %>
+    <%= g.date_field :start, class: 'borderlessInputMedium' %><br><br>
 
-    <%= label_tag(:company, "Company Name:", class: 'labelLarge') %>
-    <%= g.text_field :company, class: 'mediumInput' %><br><br>
+    <%= label_tag(:end, "End Date:", class: 'labelExtraLarge') %>
+    <%= g.date_field :end, class: 'borderlessInputMedium' %><br><br>
 
-    <%= label_tag(:responsibility, "Responsibility:", class: 'labelLarge') %>
+    <%= label_tag(:company, "Company Name:", class: 'labelExtraLarge') %>
+    <%= g.text_field :company, class: 'borderlessInputMedium' %><br><br>
+
+    <%= label_tag(:responsibility, "Responsibility:", class: 'labelExtraLarge') %>
     <%= g.text_area :responsibility, class: 'extraLargeInput' %><br><br>
   <% end %>
 
@@ -27,8 +32,8 @@
   <%= f.submit 'Update', class: 'mediumSubmit' %>
 <% end %><br>
 
-<table>
-  <tr>
+<table class="table", style="width: 100%;">
+  <tr style="height: 50px; background-color: #ddd;">
     <th>Job Type</th><th>Start Date</th><th>End Date
     </th><th>Company</th><th>Responsibility</th><th>Action</th>
   </tr>

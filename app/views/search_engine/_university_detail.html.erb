@@ -1,0 +1,69 @@
+<div style="padding-top: 250px;">
+  <div class="line">
+    <span style="color: darkorange; font-size: 20px;"> University Detail </span>
+  </div><br><br>
+
+  <span class="labelExtraLarge"><b>University Name:</b></span>
+  <span class="borderlessInputLarge"><%= university.name%></span><br><br>
+  <span class="labelExtraLarge" style="padding-top: 10px;"><b>Website Link:</b></span>
+  <span class="borderlessInputLarge"><%= university.weblink%></span><br><br>
+  <span class="labelExtraLarge" style="padding-top: 10px;"><b>Campus:</b></span>
+  <span class="borderlessInputLarge"><%= university.campus%></span><br><br>
+  <span class="labelExtraLarge" style="padding-top: 10px;"><b>Description:</b></span>
+  <span class="borderlessInputLarge"><%= university.remark%></span><br><br><br><br>
+
+  <div class="line">
+    <span style="color: darkorange; font-size: 20px;"> Focal Contact </span>
+  </div><br><br>
+
+  <span class="labelExtraLarge"><b>Focal Contact Name:</b></span>
+  <span class="borderlessInputLarge"><%= university.focal_contact.name%></span><br><br>
+  <span class="labelExtraLarge"><b>Focal Contact Email:</b></span>
+  <span class="borderlessInputLarge"><%= university.focal_contact.email%></span><br><br><br><br>
+
+
+  <div class="line">
+    <span style="color: darkorange; font-size: 20px;"> University Address </span>
+  </div><br><br>
+
+  <span class="labelExtraLarge"><b>University Address:</b></span>
+  <span class="borderlessInputLarge"><%= university.address.full_address%></span><br><br><br><br>
+
+  <div class="line">
+    <span style="color: darkorange; font-size: 20px;"> Course Details </span>
+  </div><br><br>
+
+  <table class="table", style="width: 100%;">
+    <tr style="height: 50px; background-color: #ddd;">
+      <th>Name</th>
+      <th>Code</th>
+      <th>Duration</th>
+      <th>Rank</th>
+      <th>Action</th>
+    </tr>
+    <% university.courses.each do |course| %>
+      <tr>
+        <td><%= course.name %></td>
+
+        <td>
+          <%= course.code %>
+        </td>
+
+        <td>
+          <%= course.duration %> semester
+        </td>
+
+        <td>
+          <%= course.rank %>
+        </td>
+
+        <td>
+          <a href="<%= root_url %>/search_engine/item_detail?name=Course&id=<%= course.id %>">View</a>
+        </td>
+      </tr>
+    <%end%>
+
+  </table>
+
+</div>
+

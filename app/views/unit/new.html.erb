@@ -1,31 +1,26 @@
-<div class="col-lg-2">
+<div class="col-lg-3">
   <%= label_tag nil %>
 </div>
 
-<style>
-  table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
-  }
-</style>
-
-<div class="alignCenter">
-  <h1>Unit Creation</h1><br>
+<div class="col-lg-9">
+  <span style="color: darkorange; font-size: 20px;"> Unit Creation </span>
 
   <div>
     <%= form_for @unit, url: {action: :create, method: :post, params:{course_id: @course.id}} do |f| %>
       <%= f.hidden_field :course_id, value: @course.id %><br><br>
-      <%= label_tag(:name, "Code:", class: 'labelLarge') %>
-      <%= f.text_field :code, class: 'largeInput' %><br><br>
-
-      <%= label_tag(:name, "Name:", class: 'labelLarge') %>
-      <%= f.text_field :name, class: 'largeInput' %><br><br>
+      <%= label_tag(:code, "unit Code:", class: 'labelLarge') %>
+      <%= f.text_field :code, class: 'borderlessInputMedium' %><br>
 
       <%= label_tag(:credit_point, "Credit Point:", class: 'labelLarge') %>
-      <%= f.text_field :credit_point, class: 'largeInput' %><br>
+      <%= f.number_field :credit_point, class: 'borderlessInputMedium' %><br>
+
+      <%= label_tag(:name, "Unit Name:", class: 'labelLarge') %>
+      <%= f.text_field :name, class: 'borderlessInputLarge' %><br><br>
 
       <%= label_tag(:level, "Level:", class: 'labelLarge') %>
-      <%= f.text_field :level, class: 'largeInput', placeholder: "G or GP" %><br><br>
+      <%= f.select_tag(:level, options_for_select([["Certificate Or High School", "high_school"], ["Diploma", "diploma"],
+        ["Under Graduate", "graduate"], ["Post Graduate", "post_graduate"], ["PHD", "phd"]]), class: 'borderlessInputLarge')
+      %><br><br>
 
       <%= label_tag(:submit, "", class: 'labelLarge') %>
       <%= f.submit 'Create', class: 'mediumSubmit' %>
@@ -33,8 +28,8 @@
   </div><br><br>
 
   <div>
-    <table border="1">
-      <tr>
+    <table class="table", style="width: 100%;">
+      <tr style="height: 50px; background-color: #ddd;">
         <th width="300", height="40">Name</th>
         <th width="200", height="40">Code</th>
         <th width="200">Credit Point</th>
@@ -71,6 +66,7 @@
 
     </table>
   </div>
+</div>
 </div>
 
 

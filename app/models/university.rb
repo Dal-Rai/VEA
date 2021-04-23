@@ -11,6 +11,7 @@ class University < ApplicationRecord
   has_one :wallet, as: :payee, dependent: :destroy
   has_many :users, inverse_of: :university, dependent: :destroy
   has_many :faculties, inverse_of: :university, dependent: :destroy
+  has_many :courses, through: :faculties
   has_many :english_competencies, as: :competenciable, dependent: :destroy
   has_many :academic_eligibilities, as: :eligiable, dependent: :destroy
   has_many :country_criterias, inverse_of: :university, dependent: :destroy
@@ -90,6 +91,10 @@ class University < ApplicationRecord
 
   def experience_criteria
     super.nil? ? self.build_experience_criteria : super
+  end
+
+  def address
+    super || self.build_address
   end
 
 end

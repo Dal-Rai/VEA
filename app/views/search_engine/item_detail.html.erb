@@ -1,24 +1,12 @@
 <div>
   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-  <% if current_user.nil? %>
-    <div class="col-lg-2">
-      <%= label_tag :space, "" %>
-    </div>
-    <div class="col-lg-8">
+    <div style="padding-left: 25%; padding-right: 10%;">
       <span class="search-center">
-        <%= ['Course', 'Unit'].include?(@result.class.name)? @result.code : @result.name %>
-        <%= @result.search_detail %>
+        <% if @result.class.name.eql?("Course") %>
+          <%= render(partial: "search_engine/course_detail", locals: {course: @result}) %>
+        <% elsif @result.class.name.eql?("University") %>
+          <%= render(partial: "search_engine/university_detail", locals: {university: @result}) %>
+        <%end %>
       </span>
     </div>
-  <% else %>
-<!--    <div class="col-lg-4">-->
-      <%#= render(partial: "home/student_nav") %>
-<!--    </div>-->
-<!--    <div class="col-lg-8">-->
-      <span class="search-center">
-        <%= ['Course', 'Unit'].include?(@result.class.name)? @result.code : @result.name %>
-        <%= @result.search_detail %>
-      </span>
-<!--    </div>-->
-  <% end %>
 </div>

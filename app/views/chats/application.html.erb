@@ -1,0 +1,20 @@
+<span class="col-lg-3">
+  <%= label_tag nil %>
+</span>
+
+<div class="col-lg-9">
+  <table class="table", style="width: 100%;">
+    <tr style="height: 50px; background-color: #ddd;">
+      <th>Course Name</th><th>Student Name</th><th>Email</th><th>Application Status</th><th>Unread chat</th>
+    </tr>
+    <% @applications.each do |g| %>
+      <tr>
+        <th><%= g.course.name %></th>
+        <td><%= g.user.name %></td>
+        <td><%= g.user.email %></td>
+        <td><%= g.state %></td>
+        <td><a href="<%= root_url %>/chats?application_id=<%= g.id %>"><%= g.chats.count %></a></td>
+      </tr>
+    <% end%>
+  </table>
+</div>

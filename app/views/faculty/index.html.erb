@@ -1,19 +1,18 @@
+<script>
+  document.getElementById('uni_fourth').classList.add("active");
+</script>
+
 <div class="col-lg-2">
   <%= label_tag nil %>
 </div>
 
-<style>
-  table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
-  }
-</style>
-
 <div class="col-lg-10">
-<a href="<%= root_url %>university/<%= @university.id %>/faculty/new">Add Faculty</a><br>
-
-  <table>
-    <tr>
+  <span style="color: darkorange; font-size: 20px;"> Faculty Details </span>
+  <span style="color: blue; font-size: 20px; padding-left: 77%">
+    <a href="<%= root_url %>university/<%= @university.id %>/faculty/new">Create Faculty</a>
+  </span>
+  <table class="table", style="width: 100%;">
+    <tr style="height: 50px; background-color: #ddd;">
       <th width="300", height="40">Name</th>
       <th width="200", height="40">Code</th>
       <th width="200">Course Count</th>

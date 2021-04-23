@@ -59,6 +59,7 @@ Rails.application.routes.draw do
       get :reload
       get :recommendation
       get :application
+      patch :filter_application
     end
   end
 
@@ -86,6 +87,7 @@ Rails.application.routes.draw do
     collection do
       get :students
       get :universities
+      get :student_details
     end
     member do
       post :invite
@@ -93,7 +95,12 @@ Rails.application.routes.draw do
   end
 
   resource :subjects
-  resources :chats, only: [:index]
+  resources :chats do
+    collection do
+      get :application
+    end
+  end
+
   mount ActionCable.server => '/cable'
 
   resources :paypals do

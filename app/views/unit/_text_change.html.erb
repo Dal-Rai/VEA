@@ -1,80 +1,52 @@
 <% @url = root_url+"search_engine/search_unit" %>
   <%= form_tag(@url, method: :get) do %>
     <%= hidden_field_tag(:course_id, @course.id) %>
-    <%= label_tag(:search, "Code OR Name:", class: "labelLarge") %>
-    <%= text_field_tag :login_aei, params[:login_aei], class: 'largeInput' %>
-    <%= submit_tag('Submit', class: "mediumSubmit") %>
+    <%= label_tag(:search, "Unit Code/Name:", class: "labelExtraLarge") %>
+    <%= text_field_tag :login_aei, params[:login_aei], class: 'borderlessInputLarge' %>
+    <%= submit_tag('Search', class: "mediumSubmit") %>
   <% end %>
 
-<% @units&.each do |unit| %>
-  <table>
-    <tr>
-      <th>
-        Unit Code
-      </th>
-      <th>
-        Unit Name
-      </th>
-      <th>
-        Credit Point
-      </th>
-      <th>
-        Action
-      </th>
-    </tr>
+  <% if @units.present? %>
+    <table class="table", style="width: 100%;">
+      <tr style="height: 50px; background-color: lightgreen;">
+        <th>
+          Unit Code
+        </th>
+        <th>
+          Unit Name
+        </th>
+        <th>
+          Credit Point
+        </th>
+        <th>
+          Action
+        </th>
+      </tr>
 
-    <tr>
-      <th>
-        <%= unit.name %>
-      </th>
-      <th>
-        <%= unit.code %>
-      </th>
-      <th>
-        <%= unit.credit_point %>
-      </th>
-      <th>
-        <%= form_for CourseUnit.new, url: {controller: :courses_unit, action: :create, method: :post} do |f| %>
-          <%= f.hidden_field(:course_id, value: @course.id) %>
-          <%= f.hidden_field(:unit_id, value: unit.id) %>
-          <%= f.hidden_field(:login_aei, value: params[:login_aei]) %>
-          <%= f.submit 'Add', class: 'smallSubmit' %>
-        <% end %>
+      <% @units&.each do |unit| %>
+        <tr>
+          <th>
+            <%= unit.name %>
+          </th>
+          <th>
+            <%= unit.code %>
+          </th>
+          <th>
+            <%= unit.credit_point %>
+          </th>
+          <th>
+            <%= form_for CourseUnit.new, url: {controller: :courses_unit, action: :create, method: :post} do |f| %>
+              <%= f.hidden_field(:course_id, value: @course.id) %>
+              <%= f.hidden_field(:unit_id, value: unit.id) %>
+              <%= f.hidden_field(:login_aei, value: params[:login_aei]) %>
+              <%= f.submit 'Add', class: 'smallSubmit' %>
+            <% end %>
+          </th>
+        </tr>
+      <% end %>
 
-      </th>
-    </tr>
-  </table>
-<% end %>
-
-
-<!--<input type="text", onkeypress="myFunction()">-->
-<!--<input type="text" id="my_field">-->
-<!--<input type="text" id="output">-->
-
-<!--<script>-->
-
-<!--    $("#my_field").keydown (function (e) {-->
-<!--      // $.get('search', params={search: $(this).val()});-->
-<!--      var url = 'search/', params={search: $(this).val()};-->
-<!--      // $.get(url, function(data) {-->
-<!--      //   alert(data)-->
-<!--      //   $('div#results').html(data);-->
-<!--      //   $('#results').show();-->
-<!--      // });-->
-
-<!--      fetch(url)-->
-<!--        .then((res) => res.text())-->
-<!--        .then((res) => alert(res["name"]))-->
-<!--        .then((data) => {console.log(data);-->
-<!--        document.getElementById("output").innerHTML = data;-->
-
-<!--        })-->
-<!--        // .then(repos => {-->
-<!--        //   const reposList = repos.map(repo => repo.name);-->
-<!--        //   console.log(reposList);-->
-<!--        //   alert(response)-->
-<!--        // })-->
-<!--        // .catch(err => console.log(err))-->
-
-<!--    });-->
-<!--</script>-->
+    </table>
+  <% elsif params[:login_aei].present? %>
+    <h3> No Result Found</h3>
+  <%end%>
+</div>

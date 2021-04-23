@@ -3,9 +3,7 @@
     <head>
       <title>Virtual Education Agent</title>
       <%= csrf_meta_tags %>
-
-      <%#= stylesheet_link_tag    'application', media: 'all' %>
-      <%#= javascript_include_tag 'application' %>
+      <meta content="width=device-width, initial-scale=1">
 
       <%= action_cable_meta_tag %>
       <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -13,7 +11,17 @@
     </head>
 
     <body>
-      <%= header_nav %>
-      <%= yield %>
+      <header>
+        <div class="claim">
+          <div class="center">
+            <div class="text">Find your dream course through Virtual Education Agent</div>
+          </div>
+        </div>
+
+        <%= header_nav %>
+      </header>
+      <main role="main">
+        <%= yield %>
+      </main>
     </body>
 </html>

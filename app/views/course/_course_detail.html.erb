@@ -2,26 +2,26 @@
 
 <%= form_for @course, url: {action: :update, method: :put} do |f| %>
   <%= hidden_field(:type, value='course') %>
-  <%= label_tag(:name, "Code:", class: 'labelLarge') %>
-  <%= f.text_field :code, class: 'largeInput' %><br><br>
+  <%= label_tag(:name, "Course Code:", class: 'labelExtraLarge') %>
+  <%= f.text_field :code, class: 'borderlessInputMedium' %><br><br>
 
-  <%= label_tag(:name, "Name:", class: 'labelLarge') %>
-  <%= f.text_field :name, class: 'largeInput' %><br><br>
+  <%= label_tag(:name, "Course Name:", class: 'labelExtraLarge') %>
+  <%= f.text_field :name, class: 'borderlessInputLarge' %><br><br>
 
-  <%= label_tag(:duration, "Duration:", class: 'labelLarge') %>
-  <%= f.text_field :duration, class: 'largeInput' %><br><br>
+  <%= label_tag(:duration, "Total Semester:", class: 'labelExtraLarge') %>
+  <%= f.number_field :duration, class: 'borderlessInputMedium' %><br><br>
 
-  <%= label_tag(:total_fees, "Fees:", class: 'labelLarge') %>
-  <%= f.text_field :total_fees, class: 'largeInput' %><br><br>
+  <%= label_tag(:total_fees, "Total Fees:", class: 'labelExtraLarge') %>
+  <%= f.text_field :total_fees, class: 'borderlessInputMedium' %><br><br>
 
-  <%= label_tag(:course_category, "Category:", class: 'labelLarge') %>
+  <%= label_tag(:course_category, "Category:", class: 'labelExtraLarge') %>
   <%= select_tag(:course_category_id, options_from_collection_for_select(@course_categories, "id", "name", @course
     .course_category_id), class:
-    'largeInput') %><br><br>
+    'borderlessInputLarge') %><br><br>
 
-  <%= label_tag(:rank, "Rank:", class: 'labelLarge') %>
-  <%= f.select_tag(:rank, options_for_select([["Certificate Or High School", "high_school"], ["Diploma", "diploma"],
-    ["Under Graduate", "graduate"], ["Post Graduate", "post_graduate"], ["PHD", "phd"]], @course.rank), class: 'largeInput')
+  <%= label_tag(:rank, "Rank:", class: 'labelExtraLarge') %>
+  <%= f.text_field(:rank, options_for_select([["Certificate Or High School", "high_school"], ["Diploma", "diploma"],
+    ["Under Graduate", "graduate"], ["Post Graduate", "post_graduate"], ["PHD", "phd"]], @course.rank), class: 'borderlessInputLarge')
   %><br><br>
 
   <%= label_tag(:submit, "", class: 'labelLarge') %>

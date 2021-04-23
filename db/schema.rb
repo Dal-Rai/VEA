@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210417140407) do
+ActiveRecord::Schema.define(version: 20210422153243) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,22 +26,22 @@ ActiveRecord::Schema.define(version: 20210417140407) do
   end
 
   create_table "addresses", force: :cascade do |t|
-    t.integer  "street_no",        null: false
+    t.integer  "street_no",        default: 0
     t.string   "street_name"
-    t.string   "suburb",           null: false
-    t.string   "post_code",        null: false
+    t.string   "suburb",           default: "f"
+    t.string   "post_code",        default: "f"
     t.string   "city"
     t.string   "country"
     t.integer  "addressable_id"
     t.string   "addressable_type"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
 
   create_table "application_progresses", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "course_id"
-    t.integer  "state",            default: 0
+    t.integer  "state",            default: 1
     t.text     "applied_comment"
     t.text     "received_comment"
     t.text     "verified_comment"
@@ -338,7 +338,9 @@ ActiveRecord::Schema.define(version: 20210417140407) do
     t.datetime "locked_at"
     t.decimal  "total_weightage",        default: "0.0"
     t.integer  "recent_qualification",   default: 5
+    t.integer  "faculty_id"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["faculty_id"], name: "index_users_on_faculty_id", using: :btree
     t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true, using: :btree
     t.index ["invitations_count"], name: "index_users_on_invitations_count", using: :btree
     t.index ["invited_by_id"], name: "index_users_on_invited_by_id", using: :btree
@@ -355,6 +357,7 @@ ActiveRecord::Schema.define(version: 20210417140407) do
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.decimal  "temp_amount"
+    t.string   "package"
   end
 
   add_foreign_key "profiles", "users"

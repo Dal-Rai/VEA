@@ -1,93 +1,155 @@
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
-  $(document).ready(function(){
-    $("#user_wallet_temp_amount").change(function(){
-      var oED = new Date("<%= current_user.wallet.end_date || DateTime.now %>");
-      var tempAmount = document.getElementById("user_wallet_temp_amount").value;
-      var noOfDays = tempAmount/"<%= CONSTANTS['student_per_day'] %>";
-      var newExpiryDate=new Date(oED.getFullYear(),oED.getMonth(),oED.getDate()+noOfDays);
-      document.getElementById("user_wallet_end_date").value = newExpiryDate.toISOString().slice(0, 10);
-    });
-  });
-</script>
-
-<div class="Personal">
-  <span class="col-lg-2">
-    <%= label_tag(:email, "", class: 'labelLarge') %>
-  </span>
-
-  <span class="col-lg-7">
-    <div class="line">
-        Membership Details
-    </div><br><br><br>
-    <div>
-      <% if current_user.premium_member? %>
-        <span style="color:Green;">Premium Member until <%= current_user.wallet.end_date %></span><br><br>
-      <%else%>
-        <span style="color:Red;">Upgrade to premium member for more features</span><br><br>
-      <%end%>
-
-      <%= form_for current_user, url: {controller: :paypals, action: :start_payment, method: :post} do |f| %>
-        <%= f.fields_for current_user.wallet do |g| %>
-          <%= label_tag(:amount, "Amount:", class: 'labelLarge') %>
-          <%= g.text_field :temp_amount, class: 'largeInput' %><br><br>
-
-          <%= label_tag(:end_date, "Membership Until:", class: 'labelLarge') %>
-          <%= g.date_field :end_date, class: 'largeInput', readonly: "readonly" %><br><br>
-
-          <%= label_tag(:submit, "", class: 'labelLarge') %>
-          <%= f.submit 'Activate', class: 'largeSubmit' %><br><br><br>
-        <% end %>
-      <% end %>
-    </div>
-
-    <div class="line">
-        Personal Details
-    </div><br><br><br><br><br>
-
-    <%= form_for current_user, url: {controller: :student, action: :update, method: :put} do |f| %>
-      <%= label_tag(:email, "Email:", class: 'labelLarge') %>
-      <%= f.text_field :email, class: 'largeInput' %><br><br>
-      <%= f.fields_for :profile do |g| %>
-        <%= label_tag(:firstname, "First Name:", class: 'labelLarge') %>
-        <%= g.text_field :firstname, class: 'largeInput' %><br><br>
-
-        <%= label_tag(:middlename, "Middle Name:", class: 'labelLarge') %>
-        <%= g.text_field :middlename, class: 'largeInput' %><br><br>
-
-        <%= label_tag(:lastname, "Last Name:", class: 'labelLarge') %>
-        <%= g.text_field :lastname, class: 'largeInput' %><br><br>
-
-        <%= label_tag(:mobile_no, "Mobile No:", class: 'labelLarge') %>
-        <%= g.text_field :mobile_no, class: 'largeInput' %><br><br>
-      <% end %>
-
-      <div class="line">
-        Present Address
-      </div><br><br><br><br><br>
-
-      <%= f.fields_for :address do |g| %>
-        <%= label_tag(:street_no, "Street No:", class: 'labelLarge') %>
-        <%= g.text_field :street_no, class: 'smallInput' %><br><br>
-
-        <%= label_tag(:street_name, "street Name:", class: 'labelLarge') %>
-        <%= g.text_field :street_name, class: 'mediumInput' %><br><br>
-
-        <%= label_tag(:suburb, "Suburb:", class: 'labelLarge') %>
-        <%= g.text_field :suburb, class: 'mediumInput' %><br><br>
-
-        <%= label_tag(:post_code, "Post Code:", class: 'labelLarge') %>
-        <%= g.text_field :post_code, class: 'smallInput' %><br><br>
-
-        <%= label_tag(:city, "City:", class: 'labelLarge') %>
-        <%= g.text_field :city, class: 'mediumInput' %><br><br>
-
-        <%= label_tag(:country, "Country:", class: 'labelLarge') %>
-        <%= g.text_field :country, class: 'mediumInput' %><br><br>
-      <% end %>
-
-      <%= label_tag(:submit, "", class: 'labelLarge') %>
-      <%= f.submit 'Update', class: 'largeSubmit' %>
-  <% end %>
-  </span>
+<h1 style="color: red"> Personal Details</h1>
+<div class="tab">
+  <button class="tablinks" id="profile_tab" onclick="openAcademic(event, 'profile')">Personal Details</button>
+  <button class="tablinks" id="membership_tab" onclick="openAcademic(event, 'membership')">Membership</button>
 </div>
+
+<div id="profile" class="tabcontent">
+  <div class="line">
+    <p style="color: darkorange; font-size: 20px;">Personal Details</p>
+  </div><br>
+
+  <%= form_for current_user, url: {controller: :student, action: :update, method: :put} do |f| %>
+    <%= label_tag(:email, "Email:", class: 'labelLarge') %>
+    <%= f.text_field :email, class: 'borderlessInputLarge' %><br><br>
+    <%= f.fields_for :profile do |g| %>
+      <%= label_tag(:firstname, "First Name:", class: 'labelLarge') %>
+      <%= g.text_field :firstname, class: 'borderlessInputMedium' %>
+      <%= label_tag(:middlename, "Middle Name:", class: 'labelLarge') %>
+      <%= g.text_field :middlename, class: 'borderlessInputMedium' %><br><br>
+
+      <%= label_tag(:lastname, "Last Name:", class: 'labelLarge') %>
+      <%= g.text_field :lastname, class: 'borderlessInputMedium' %>
+      <%= label_tag(:mobile_no, "Mobile No:", class: 'labelLarge') %>
+      <%= g.text_field :mobile_no, class: 'borderlessInputMedium' %><br><br>
+    <% end %><br><br>
+
+    <div class="line">
+      <p style="color: darkorange; font-size: 20px;">Present Address</p>
+    </div><br><br>
+
+    <%= f.fields_for :address do |g| %>
+      <%= label_tag(:street_no, "Street No:", class: 'labelLarge') %>
+      <%= g.text_field :street_no, class: 'borderlessInputMedium' %>
+      <%= label_tag(:street_name, "street Name:", class: 'labelLarge') %>
+      <%= g.text_field :street_name, class: 'borderlessInputMedium' %><br><br>
+
+      <%= label_tag(:suburb, "Suburb:", class: 'labelLarge') %>
+      <%= g.text_field :suburb, class: 'borderlessInputMedium' %>
+
+      <%= label_tag(:post_code, "Post Code:", class: 'labelLarge') %>
+      <%= g.text_field :post_code, class: 'borderlessInputMedium' %><br><br>
+
+      <%= label_tag(:city, "City:", class: 'labelLarge') %>
+      <%= g.text_field :city, class: 'borderlessInputMedium' %>
+
+      <%= label_tag(:country, "Country:", class: 'labelLarge') %>
+      <%= g.text_field :country, class: 'borderlessInputMedium' %><br><br>
+    <% end %>
+
+    <%= label_tag(:submit, "", class: 'labelLarge') %>
+    <%= f.submit 'Update', class: 'largeSubmit' %>
+  <% end %><br><br><br>
+
+</div>
+
+<div id="membership" class="tabcontent">
+  <div class="line">
+    <p style="color: darkorange; font-size: 20px;"> Membership Details</p>
+  </div><br><br><br>
+
+  <div>
+    <% if current_user.premium_member? %>
+      <span style="color:Green;">Premium Member until <%= current_user.wallet.end_date %></span><br><br>
+    <%else%>
+      <span style="color:Red;">Upgrade to premium member for more features</span><br><br>
+    <%end%>
+
+    <%= form_for current_user, url: {controller: :paypals, action: :start_payment, method: :post} do |f| %>
+      <%= f.fields_for current_user.wallet do |g| %>
+
+        <% if current_user.wallet.present? %>
+          Membership Type: <%= current_user.wallet.package %> || Membership Duration: <%= current_user.wallet.end_date %>
+        <% end %>
+
+
+        <div class="subscription-container">
+          <input type="radio" name="radio" id="option1" value="basic_stud_quarterly">
+          <label for="option1" class="subscription__button">
+            <h3 class="subscription__title">basic</h3>
+            <p class="subscription__main-feature">Accept Application</p>
+            <p class="subscription__main-feature">Reject Application</p>
+            <span class="subscription__price">$<%= CONSTANTS['basic_stud_quarterly'] %>/Quarterly</span>
+          </label>
+
+          <input type="radio" name="radio" id="option2" value="basic_stud_half_yearly">
+          <label for="option2" class="subscription__button">
+            <h3 class="subscription__title">basic</h3>
+            <p class="subscription__main-feature">Accept Application</p>
+            <p class="subscription__main-feature">Reject Application</p>
+            <span class="subscription__price">$<%= CONSTANTS['basic_stud_half_yearly'] %>/Half Yearly</span>
+          </label>
+
+          <input type="radio" name="radio" id="option3" value="basic_stud_yearly">
+          <label for="option3" class="subscription__button">
+            <h3 class="subscription__title">basic</h3>
+            <p class="subscription__main-feature">Accept Application</p>
+            <p class="subscription__main-feature">Reject Application</p>
+            <span class="subscription__price">$<%= CONSTANTS['basic_stud_yearly'] %>/Yearly</span>
+          </label><br><br>
+
+
+          <input type="radio" name="radio" id="option4"  value="premium_stud_quarterly">
+          <label for="option4" class="subscription__button">
+            <h3 class="subscription__title">premium</h3>
+            <p class="subscription__main-feature">Accept Application</p>
+            <p class="subscription__main-feature">Reject Application</p>
+            <p class="subscription__main-feature">Filter Application</p>
+            <span class="subscription__price">$<%= CONSTANTS['premium_stud_quarterly'] %>/Quarterly</span>
+          </label>
+
+          <input type="radio" name="radio" id="option5" value="premium_stud_half_yearly">
+          <label for="option5" class="subscription__button">
+            <h3 class="subscription__title">premium</h3>
+            <p class="subscription__main-feature">Accept Application</p>
+            <p class="subscription__main-feature">Reject Application</p>
+            <p class="subscription__main-feature">Filter Application</p>
+            <span class="subscription__price">$<%= CONSTANTS['premium_stud_half_yearly'] %>/Half Yearly</span>
+          </label>
+
+          <input type="radio" name="radio" id="option6" checked="checked" value="premium_uni_yearly">
+          <label for="option6" class="subscription__button">
+            <h3 class="subscription__title">premium</h3>
+            <p class="subscription__main-feature">Accept Application</p>
+            <p class="subscription__main-feature">Reject Application</p>
+            <p class="subscription__main-feature">Filter Application</p>
+            <span class="subscription__price">$<%= CONSTANTS['premium_stud_yearly'] %>/Yearly</span>
+          </label>
+        </div>
+
+        <%= label_tag(:submit, "", class: 'labelLarge') %>
+        <%= f.submit 'Activate', class: 'largeSubmit' %><br><br><br>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<script>
+  document.getElementById('stud_second').classList.add("active");
+
+  function openAcademic(evt, academicName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(academicName).style.display = "block";
+    evt.currentTarget.className += " active";
+  }
+
+  document.getElementById("profile_tab").click();
+</script>

@@ -12,10 +12,6 @@ class SearchEngineController < ApplicationController
     }
   end
 
-  # def search_params
-  #   params.permit(:term, :duration)
-  # end
-
   def item_detail
     @result = params[:name].classify.constantize.find(params[:id])
   end

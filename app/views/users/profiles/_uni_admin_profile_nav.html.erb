@@ -5,7 +5,10 @@
   .tab {
     overflow: hidden;
     border: 1px solid #ccc;
-    background-color: #f1f1f1;
+    background-color: white;
+    border-top-color: white;
+    border-left-color: white;
+    border-right-color: white
   }
 
   /* Style the buttons inside the tab */
@@ -27,6 +30,7 @@
 
   /* Create an active/current tablink class */
   .tab button.active {
+    border: 1px solid #ccc;
     background-color: #ccc;
   }
 
@@ -39,11 +43,13 @@
   }
 </style>
 
-<h1>Academic Scores:</h1>
+<span style="color: darkorange; font-size: 20px;">Personal Information</span>
 
-<div class="tab">
-  <button class="tablinks" id="profile_tab" onclick="openAcademic(event, 'profile')">Personal Profile</button>
-  <button class="tablinks" id="invite_tab" onclick="openAcademic(event, 'invite')">Invite User</button>
+<div class="tab" style="padding-top: 20px;" >
+  <button class="tablinks" id="profile_tab" onclick="openAcademic(event, 'profile')"><p style="color: dodgerblue">Personal
+    Profile</p></button>
+  <button class="tablinks" id="invite_tab" onclick="openAcademic(event, 'invite')"><p style="color: dodgerblue">Invite
+    User</p></button>
 </div>
 
 <div id="profile" class="tabcontent">
@@ -55,6 +61,8 @@
 </div>
 
 <script>
+  document.getElementById('uni_first').classList.add("active");
+
   function openAcademic(evt, academicName) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");

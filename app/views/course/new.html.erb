@@ -7,25 +7,25 @@
 
   <%= form_for @course, url: {action: :create, method: :post} do |f| %>
     <%= f.hidden_field :faculty_id, value: @faculty.id %><br><br>
-    <%= label_tag(:name, "Code:", class: 'labelLarge') %>
-    <%= f.text_field :code, class: 'largeInput' %><br><br>
+    <%= label_tag(:name, "Course Code:", class: 'labelLarge') %>
+    <%= f.text_field :code, class: 'borderlessInputMedium' %><br><br>
 
-    <%= label_tag(:name, "Name:", class: 'labelLarge') %>
-    <%= f.text_field :name, class: 'largeInput' %><br><br>
+    <%= label_tag(:name, "Course Name:", class: 'labelLarge') %>
+    <%= f.text_field :name, class: 'borderlessInputMedium' %><br><br>
 
-    <%= label_tag(:duration, "Duration:", class: 'labelLarge') %>
-    <%= f.text_field :duration, class: 'largeInput' %><br><br>
+    <%= label_tag(:duration, "Total Semester:", class: 'labelLarge') %>
+    <%= f.text_field :duration, class: 'borderlessInputMedium' %><br><br>
 
-    <%= label_tag(:total_fees, "Fees:", class: 'labelLarge') %>
-    <%= f.text_field :total_fees, class: 'largeInput' %><br><br>
+    <%= label_tag(:total_fees, "Total Fees:", class: 'labelLarge') %>
+    <%= f.text_field :total_fees, class: 'borderlessInputMedium' %><br><br>
 
     <%= label_tag(:course_category, "Category:", class: 'labelLarge') %>
     <%= select_tag(:course_category_id, options_from_collection_for_select(@course_categories, "id", "name"), class:
-        'largeInput') %><br><br>
+        'borderlessInputMedium') %><br><br>
 
     <%= label_tag(:rank, "Rank:", class: 'labelLarge') %>
     <%= f.select_tag(:rank, options_for_select([["Certificate Or High School", "high_school"], ["Diploma", "diploma"],
-      ["Under Graduate", "graduate"], ["Post Graduate", "post_graduate"], ["PHD", "phd"]]), class: 'largeInput')
+      ["Under Graduate", "graduate"], ["Post Graduate", "post_graduate"], ["PHD", "phd"]]), class: 'borderlessInputMedium')
     %><br><br>
 
     <%= label_tag(:submit, "", class: 'labelLarge') %>

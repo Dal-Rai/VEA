@@ -89,7 +89,7 @@ class UniversityController < ApplicationController
   end
 
   def application
-    @courses = Course.joins(:faculty, :application_progresses).where('faculties.university_id = ?', params[:id])
+    @courses = Course.joins(:faculty, :application_progresses).where('faculties.university_id = ?', params[:id]).uniq
   end
 
   private

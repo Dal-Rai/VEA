@@ -1,10 +1,14 @@
+<script>
+  document.getElementById('stud_fourth').classList.add("active");
+</script>
+
 <div class="col-lg-4">
   <%= label_tag :space, "" %>
 </div>
 
 <div class="col-lg-8">
-  <table>
-    <tr>
+  <table class="table", style="width: 100%;">
+    <tr style="height: 50px; background-color: #ddd;">
       <th>Name</th><th>Fees</th><th>Details</th>
       <% @courses.each do |course| %>
         <tr>

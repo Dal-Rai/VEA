@@ -1,0 +1,38 @@
+<div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</div>
+
+<div class="container" style="width: 100px;">
+  <!-- Trigger the modal with a button -->
+  <label data-toggle="modal" data-target="#myModal" id="modalOpener"><%= qualification.subjects.count %></label>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Subject Details</h4>
+        </div>
+
+          <table class="table", style="width: 100%;">
+            <tr style="height: 50px; background-color: #ddd;">
+              <th>Name</th><th>Score</th><th>Description</th>
+            </tr>
+            <% qualification.subjects.select(&:persisted?).each do |sub| %>
+              <tr>
+                <th><%= sub.name %></th><td><%= sub.percentage %></td><td><%= sub.description %></td>
+              </tr>
+            <% end %>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+

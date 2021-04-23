@@ -1,16 +1,21 @@
-<div class="col-lg-4">
+<script>
+  document.getElementById('uni_fifth').classList.add("active");
+</script>
+
+<div class="col-lg-2">
   <%= label_tag :space, "" %>
 </div>
 
-<div class="col-lg-8">
+<div class="col-lg-10">
   <%= form_for(current_user.university, url: filter_student_university_path(current_user.university)) do |f| %>
+    <%= label_tag(:filter, "Filter Course", class: 'labelLarge') %>
     <%= f.select_tag :criteria, options_for_select([["PHD", "phd"], ["Post Graduate", "post_graduate"], ["Under
-    Graduate", "graduate"], ["Diploma", "diploma"], ["Certificate Or High School", "high_school"]]), class: 'mediumInput' %>
+    Graduate", "graduate"], ["Diploma", "diploma"], ["Certificate Or High School", "high_school"]]), class: 'borderlessInputLarge' %>
     <%= f.submit 'Search', class: 'mediumSubmit' %>
   <% end %><br><br><br>
 
-  <table>
-    <tr>
+  <table class="table", style="width: 100%;">
+    <tr style="height: 50px; background-color: #ddd;">
       <th>Student Name</th><th>Email</th><th>Country
     </th><th>Academic Score</th><th>English Competency</th>
     </tr>

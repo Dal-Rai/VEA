@@ -34,15 +34,20 @@
 
 <h2>
   <ul>
-    <li><a class="active" href="<%= root_url %>/users/<%= current_user.id%>?type=profile">Profile</a></li><br>
-    <li><a href="<%= root_url %>/users/<%= current_user.university_id%>?type=university">University</a></li><br>
-    <li><a href="<%= root_url %>/users/<%= current_user.university_id%>?type=rule">Criteria</a></li><br>
-    <li><a href="<%= root_url %>/university/<%= current_user.university_id%>/faculty?type=faculty">Faculty</a></li><br>
-    <li><a href="<%= root_url %>/university/<%= current_user.university_id %>/prospective_student">students</a></li><br>
-    <li><a class="active" href="<%= root_url %>/university/<%= current_user.university_id%>/application?type=application">Application</a></li><br>
-
-    <li><a href="<%= root_url %>/chats">Chats</a></li><br>
+    <li><a id="uni_first" href="<%= root_url %>/users/<%= current_user.id%>?type=profile">Profile</a></li><br>
+    <li><a id="uni_second" href="<%= root_url %>/users/<%= current_user.university_id%>?type=university">University</a></li><br>
+    <li><a id="uni_third" href="<%= root_url %>/users/<%= current_user.university_id%>?type=rule">Criteria</a></li><br>
+    <li><a id="uni_fourth" href="<%= root_url %>/university/<%= current_user.university_id%>/faculty?type=faculty">Courses</a></li><br>
+    <li><a id="uni_fifth" href="<%= root_url %>/university/<%= current_user.university_id %>/prospective_student">students</a></li><br>
+    <li><a id="uni_sixth" href="<%= root_url %>/university/<%= current_user.university_id%>/application?type=application">Application</a></li><br>
+    <li><a href="<%= root_url %>/chats/application">Chats</a></li><br>
     <li><%= button_to "logout", destroy_user_session_path, method: :delete  %></li>
   </ul>
 </h2>
-</div>
+
+<script>
+  // document.getElementById('uni_first').classList.add("active");
+  function openAcademic(evt, tabName) {
+    evt.currentTarget.className += " active";
+  }
+</script>

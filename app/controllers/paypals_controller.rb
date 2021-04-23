@@ -5,14 +5,14 @@ class PaypalsController < ApplicationController
       return_url: 'http://localhost:3000/paypal_confirm',
       cancel_url: root_url,
       description: 'VEA wallet recharge',
-      amount: payment_params[:wallet][:temp_amount] || 0,
+      amount:  CONSTANTS[package] || 0,
       currency: 'AUD'
     )
 
     @response = ppr.checkout
     if @response.valid?
       payee = current_user.present? ? current_user : University.find_by(token: payment_params[:token])
-      form = PaypalForm.new(payee, payment_params, @response)
+      form = PaypalForm.new(payee, package, @response)
       form.save_wallet
       redirect_to @response.checkout_url, status: 302
     else
@@ -37,12 +37,9 @@ class PaypalsController < ApplicationController
   private
 
   def payment_params
-    if params[:user].nil?
-      params.require(:university).permit(:token, wallet: [:temp_amount, :start_date, :end_date])
-    else
-      params.require(:user).permit(:token, wallet: [:temp_amount, :start_date, :end_date])
+    if current_user.nil?
+      params.require(:university).permit(:token)
     end
-
   end
 
   def update_walet(cart)
@@ -53,5 +50,9 @@ class PaypalsController < ApplicationController
     end_date = cart.wallet.end_date || DateTime.now
     additional_days = cart.amount/1.6
     end_date + additional_days.days
+  end
+
+  def package
+    params[:radio]
   end
 end

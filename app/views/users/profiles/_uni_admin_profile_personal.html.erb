@@ -13,19 +13,19 @@
 
   <%= form_for current_user, url: { action: :update, method: :put, id: current_user.id} do |f| %>
     <%= label_tag(:email, "Email:", class: 'labelLarge') %>
-    <%= f.text_field :email, class: 'largeInput' %><br><br>
+    <%= f.text_field :email, class: 'borderlessInputLarge' %><br><br>
     <%= f.fields_for :profile do |g| %>
       <%= label_tag(:firstname, "First Name:", class: 'labelLarge') %>
-      <%= g.text_field :firstname, class: 'largeInput' %><br><br>
+      <%= g.text_field :firstname, class: 'borderlessInputLarge' %><br><br>
 
       <%= label_tag(:middlename, "Middle Name:", class: 'labelLarge') %>
-      <%= g.text_field :middlename, class: 'largeInput' %><br><br>
+      <%= g.text_field :middlename, class: 'borderlessInputLarge' %><br><br>
 
       <%= label_tag(:lastname, "Last Name:", class: 'labelLarge') %>
-      <%= g.text_field :lastname, class: 'largeInput' %><br><br>
+      <%= g.text_field :lastname, class: 'borderlessInputLarge' %><br><br>
 
       <%= label_tag(:mobile_no, "Mobile No:", class: 'labelLarge') %>
-      <%= g.text_field :mobile_no, class: 'largeInput' %><br><br>
+      <%= g.text_field :mobile_no, class: 'borderlessInputLarge' %><br><br>
     <% end %>
 
 

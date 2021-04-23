@@ -4,12 +4,12 @@ module ApplicationProgressState
   include ApplicationProgressStateHelper
 
   PROGRESS_STATE = {
-    applied: 0,
-    offer_received: 1,
-    sop_submission: 2,
-    coe_received: 3,
-    enrolled: 4,
-    rejected: -1
+    applied: 1,
+    offer_received: 2,
+    sop_submission: 3,
+    coe_received: 4,
+    enrolled: 5,
+    rejected: 0
   }
 
   included do

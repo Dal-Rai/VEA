@@ -8,9 +8,8 @@
   </div>
 
   <form>
-    <label> Say Something:</label><br>
     <input type="hidden", id="user_id", value= "<%= current_user.id %>">
-    <input type="hidden", id="course_id", value= "<%= @course.id %>">
-    <input type="text" data-behavior="chat_speaker">
+    <input type="hidden", id="application_id", value= "<%= @application.id %>">
+    <textarea data-behavior="chat_speaker" placeholder="Type message and press enter to send" class="chatBox"></textarea>
   </form>
 </div>

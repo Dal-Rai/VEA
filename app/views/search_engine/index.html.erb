@@ -1,6 +1,9 @@
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<script>
+  document.getElementById('stud_first').classList.add("active");
+</script>
+
   <% if current_user.nil? %>
-    <%#= render(partial: "home/home_nav") %>
     <div class="col-lg-2">
       <%= label_tag :space, "" %>
     </div>
@@ -26,7 +29,6 @@
   <% else %>
     <div class="col-lg-4">
       <%= label_tag :space, "" %>
-      <%#= render(partial: "home/student_nav") %>
     </div>
     <div class="col-lg-8">
       <span class="search-center">

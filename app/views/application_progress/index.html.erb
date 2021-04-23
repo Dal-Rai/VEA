@@ -3,8 +3,8 @@
 </div>
 
 <div class="col-lg-8">
-  <table>
-    <tr>
+  <table class="table", style="width: 100%;">
+    <tr style="height: 50px; background-color: #ddd;">
       <th>Course Name</th><th>Student Name</th><th>Student Email</th><th>Total Fees</th><th>Status</th><th>Action</th>
     </tr>
     <% @applications.each do |app| %>
@@ -13,7 +13,7 @@
         <td><%= app.user.name %></td>
         <td><%= app.user.email %></td>
         <td><%= app.course.total_fees %></td>
-        <td><%= app.state %></td>
+        <td><%= CONSTANTS[String(app.state_before_type_cast)+"_status"] %></td>
         <td><a href="<%= root_url %>application_progress/<%= app.id %>">view</a></td>
       </tr>
     <% end %>

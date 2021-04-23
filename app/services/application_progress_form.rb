@@ -9,7 +9,8 @@ class ApplicationProgressForm < SimpleDelegator
   end
 
   def save
-    self.attachments.new(name: 'Marksheet', file: application_params[:application_progress][:attachables_attributes][:file])
+    self.attachments.new(file: application_params[:attachables_attributes][:file], name:
+      application_params[:attachables_attributes][:name])
     super
   end
 end

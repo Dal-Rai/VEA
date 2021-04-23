@@ -1,9 +1,12 @@
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-<div class="search-center">
+<script>
+  document.getElementById('stud_first').classList.add("active");
+</script>
+
+<div style="margin-top: 300px; padding-left: 30px;">
   <form method="get" action="<%= root_url %>/search_engine" id="search-form">
     <div class="input-group main-form-inputs search-text">
       <input type="text" name="term" id="term" class="form-control search-text" value="<%= params[:term] %>"
-             placeholder="search by name">
+             placeholder="Search preferred universities/courses">
       <span class="input-group-btn">
         <button class="btn btn-default search-btn" type="submit">Search</button>
       </span>

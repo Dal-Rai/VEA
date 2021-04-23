@@ -13,6 +13,7 @@ App.chat = App.cable.subscriptions.create "ChatChannel",
 
 $(document).on 'keypress', '[data-behavior~=chat_speaker]', (event)->
   if event.keyCode is 13 # return = send
-    App.chat.speak [event.target.value, $('#user_id').val(), $('#course_id').val()]
+    App.chat.speak [event.target.value, $('#user_id').val(), $('#application_id').val()]
     event.target.value = ''
     event.preventDefault()
+

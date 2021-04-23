@@ -3,10 +3,10 @@
     <br><br>
     <%= hidden_field(:type, value='subject') %>
     <%= label_tag(:name, "Subject Name:", class: 'labelLarge') %>
-    <%= g.text_field :name, class: 'mediumInput' %><br><br>
+    <%= g.text_field :name, class: 'borderlessInputLarge' %><br><br>
 
     <%= label_tag(:percentage, "Score:", class: 'labelLarge') %>
-    <%= g.text_field :percentage, class: 'mediumInput' %><br><br>
+    <%= g.number_field :percentage, class: 'borderlessInputMedium' %><br><br>
 
     <%= label_tag(:description, "Description:", class: 'labelLarge') %>
     <%= g.text_area :description, class: 'extraLargeInput' %><br><br>
@@ -16,15 +16,15 @@
   <% end %>
 <% end %><br><br>
 
-
-<table>
-  <tr>
-    <th>Name</th><th>Score</th><th>Description</th>
+<table class="table", style="width: 100%;">
+  <tr style="height: 50px; background-color: #ddd;">
+    <th>Name</th><th>Score</th><th>Description</th><th>Action</th>
   </tr>
   <% @course.subjects.select(&:persisted?).each do |g| %>
     <tr>
       <th><%= g.name %></th>
       <td><%= g.percentage %></td>
+      <td><%= g.description %></td>
       <td><a href="<%= root_url %>/student/<%= current_user.id %>/reload?destroy=true&type=english&type_id=<%= g.id %>">delete</a></td>
     </tr>
   <% end%>

@@ -4,11 +4,51 @@ graduate: 2
 post_graduate: 3
 phd: 4
 
-high_school_text: 'High School'
-diploma_text: 'Diploma'
-graduate_text: 'Gradudate'
-post_graduate_text: 'Post Graduate'
-phd_text: 'PHD'
+0: 'High School'
+1: 'Diploma'
+2: 'Gradudate'
+3: 'Post Graduate'
+4: 'PHD'
+
+1_status: 'Waiting Offer Letter'
+2_status: 'Waiting SOP Submission'
+3_status: 'Waiting COE'
+4_status: 'Waiting Enrollment'
+5_status: 'Enrollment Confirmed'
+0_status: 'Application Rejected'
+
 
 university_per_day: 1.6
 student_per_day: 0.5
+
+basic_uni_quarterly: 200
+basic_uni_half_yearly: 350
+basic_uni_yearly: 600
+
+premium_uni_quarterly: 300
+premium_uni_half_yearly: 550
+premium_uni_yearly: 1000
+
+basic_stud_quarterly: 15
+basic_stud_half_yearly: 25
+basic_stud_yearly: 40
+
+premium_stud_quarterly: 25
+premium_stud_half_yearly: 45
+premium_stud_yearly: 80
+
+basic_uni_quarterly_duration: 3
+basic_uni_half_yearly_duration: 6
+basic_uni_yearly_duration: 12
+
+premium_uni_quarterly_duration: 3
+premium_uni_half_yearly_duration: 6
+premium_uni_yearly_duration: 12
+
+basic_stud_quarterly_duration: 3
+basic_stud_half_yearly_duration: 6
+basic_stud_yearly_duration: 12
+
+premium_stud_quarterly_duration: 3
+premium_stud_half_yearly_duration: 6
+premium_stud_yearly_duration: 12

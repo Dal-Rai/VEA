@@ -9,20 +9,20 @@
   <%= f.fields_for current_user.category_preferances.new  do |g| %>
     <%= hidden_field(:type, value='preferance') %>
 
-    <%= label_tag(:course_category, "Category:", class: 'labelLarge') %>
+    <%= label_tag(:course_category, "Category:", class: 'labelExtraLarge') %>
     <%= select_tag(:course_category_id, options_from_collection_for_select(CourseCategory.all, "id", "name"), class:
-      'largeInput') %><br><br>
+      'borderlessInputLarge') %><br><br>
 
-    <%= label_tag(:fees, "Affordable fees:", class: 'labelLarge') %>
-    <%= number_field_tag(:fees, nil, class: 'mediumInput') %><br><br>
+    <%= label_tag(:fees, "Affordable fees:", class: 'labelExtraLarge') %>
+    <%= number_field_tag(:fees, nil, class: 'borderlessInputLarge') %><br><br>
   <% end %>
 
   <%= label_tag(:submit, "", class: 'labelLarge') %>
   <%= f.submit 'Add', class: 'mediumSubmit' %>
 <% end %><br>
 
-<table>
-  <tr>
+<table class="table", style="width: 100%;">
+  <tr style="height: 50px; background-color: #ddd;">
     <th>Category</th><th>Affordable fees</th><th>Description</th><th>Action</th>
   </tr>
   <% current_user.category_preferances.select(&:persisted?).each do |g| %>

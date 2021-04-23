@@ -1,0 +1,127 @@
+<% if current_user.present? %>
+  <h1>Course Details:</h1>
+<%else%>
+  <h1 style="padding-top: 200px; padding-right: 400px;">Course Details:</h1>
+<%end%>
+
+<div class="tab">
+  <button class="tablinks" id="course_tab" onclick="openAcademic(event, 'course')">Course Detail</button>
+  <button class="tablinks" id="english_tab" onclick="openAcademic(event, 'english')">English Competency</button>
+  <button class="tablinks" id="subject_tab" onclick="openAcademic(event, 'subject')">Prerequisite Subjects</button>
+  <button class="tablinks" id="unit_tab" onclick="openAcademic(event, 'unit')">Units</button>
+</div>
+
+<div id="course" class="tabcontent">
+  <%= form_for course do |f| %>
+    <%= hidden_field(:type, value='course') %>
+    <%= label_tag(:name, "Course Code:", class: 'labelExtraLarge') %>
+    <%= f.text_field :code, class: 'borderlessInputMedium', readonly: 'readonly' %><br><br>
+
+    <%= label_tag(:name, "Course Name:", class: 'labelExtraLarge') %>
+    <%= f.text_field :name, class: 'borderlessInputLarge', readonly: 'readonly' %><br><br>
+
+    <%= label_tag(:duration, "Total Semester:", class: 'labelExtraLarge') %>
+    <%= f.number_field :duration, class: 'borderlessInputMedium', readonly: 'readonly' %><br><br>
+
+    <%= label_tag(:total_fees, "Total Fees:", class: 'labelExtraLarge') %>
+    <%= f.text_field :total_fees, class: 'borderlessInputMedium', readonly: 'readonly' %><br><br>
+
+    <%= label_tag(:rank, "Rank:", class: 'labelExtraLarge') %>
+    <span class="borderlessInputMedium"><%= CONSTANTS[course.rank_before_type_cast] %></span><br><br>
+  <% end %>
+
+  <% if current_user&.student? %>
+    <div>
+      <p style="color: darkorange; font-size: 20px; padding-top: 50px;">Application Submission</p><br>
+      <%= form_for ApplicationProgress.new, url: {controller: :application_progress, action: :create, method: :post} do |f| %>
+        <%= f.hidden_field :course_id, value: course.id %>
+        <%= f.hidden_field :user_id, value: current_user.id %>
+        <%= f.fields_for :attachables_attributes do |g| %>
+          <%= g.hidden_field(:name, value: 'Application File') %>
+          <%= g.label_tag(:file, "Application Form/Cover Letter") %><br>
+          <%= g.file_field(:file)%><br><br>
+        <% end %>
+
+        <%= f.submit 'Apply', class: 'mediumSubmit' %>
+      <%end %>
+    </div>
+  <% end %>
+</div>
+
+<div id="english" class="tabcontent">
+  <table class="table", style="width: 100%;">
+    <tr style="height: 50px; background-color: #ddd;">
+      <th>Type</th><th>Expiry</th><th>Overall
+      Bank</th><th>Speaking</th><th>Writing</th><th>Reading</th><th>Listening</th>
+    </tr>
+    <% course.english_competencies.select(&:persisted?).each do |g| %>
+      <tr>
+        <th><%= g.competency_type %></th>
+        <td><%= g.expiry %></td>
+        <td><%= g.overall_band %></td>
+        <td><%= g.speaking %></td>
+        <td><%= g.writing %></td>
+        <td><%= g.reading %></td>
+        <td><%= g.listening %></td>
+      </tr>
+    <% end%>
+  </table>
+</div>
+
+<div id="subject" class="tabcontent">
+  <table class="table", style="width: 100%;">
+    <tr style="height: 50px; background-color: #ddd;">
+      <th>Name</th><th>Score</th><th>Description</th>
+    </tr>
+    <% course.subjects.select(&:persisted?).each do |g| %>
+      <tr>
+        <th><%= g.name %></th>
+        <td><%= g.percentage %></td>
+        <td><%= g.description %></td>
+      </tr>
+    <% end%>
+  </table>
+</div>
+
+<div id="unit" class="tabcontent">
+  <table class="table", style="width: 100%;">
+    <tr style="height: 50px; background-color: #ddd;">
+      <th>Name</th>
+      <th>Code</th>
+      <th>Credit Point</th>
+      <th>Level</th>
+    </tr>
+    <% course.units.each do |unit| %>
+      <tr>
+        <td><%= unit.code %></td>
+
+        <td><%= unit.name %></td>
+
+        <td><%= unit.credit_point %></td>
+
+        <td><%= unit.level %></td>
+      </tr>
+    <%end%>
+
+  </table>
+</div>
+
+<div>
+  <script>
+    function openAcademic(evt, academicName) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+      document.getElementById(academicName).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
+
+    document.getElementById("course_tab").click();
+  </script>
+</div>

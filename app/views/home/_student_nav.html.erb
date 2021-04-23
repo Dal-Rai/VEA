@@ -1,4 +1,5 @@
 <style>
+
   body {
     margin: 0;
   }
@@ -7,7 +8,7 @@
     list-style-type: none;
     margin: 0;
     padding: 0;
-    width: 25%;
+    width: 20%;
     background-color: #f1f1f1;
     position: fixed;
     height: 100%;
@@ -34,12 +35,12 @@
 
 <h3>
   <ul>
-    <li><a class="active" href="<%= root_url %>/users/<%= current_user.id%>?type=search">Search</a></li><br>
-    <li><a class="active" href="<%= root_url %>/users/<%= current_user.id%>?type=profile">Profile</a></li><br>
-    <li><a class="active" href="<%= root_url %>/users/<%= current_user.id%>?type=portfolio">Academic Portfolio</a></li><br>
-    <li><a class="active" href="<%= root_url %>/student/<%= current_user.id%>/recommendation?type=recommendation">Recommendation</a></li><br>
-    <li><a class="active" href="<%= root_url %>/student/<%= current_user.id%>/application?type=application">Application</a></li><br>
-    <li><a class="active" href="#about">Suggestion</a></li><br>
+    <li><a id='stud_first' href="<%= root_url %>users/<%= current_user.id%>?type=search">Search</a></li><br>
+    <li><a id='stud_second' href="<%= root_url %>users/<%= current_user.id%>?type=profile">Profile</a></li><br>
+    <li><a id='stud_third' href="<%= root_url %>users/<%= current_user.id%>?type=portfolio">Academic Portfolio</a></li><br>
+    <li><a id='stud_fourth' href="<%= root_url %>student/<%= current_user.id%>/recommendation?type=recommendation">Recommendation</a></li><br>
+    <li><a id='stud_fifth' href="<%= root_url %>student/<%= current_user.id%>/application?type=application">Application</a></li><br>
+    <li><a href="<%= root_url %>chats/application">Chats</a></li><br>
     <li><%= button_to "logout", destroy_user_session_path, method: :delete  %></li>
   </ul>
 </h3>

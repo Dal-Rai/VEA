@@ -1,53 +1,134 @@
 <div class="col-lg-4">
   <%= label_tag :space, "" %>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </div>
 
 <div class="col-lg-8">
-  Course Name: <%= @application.course.name %></br>
-  Total Fees: <%= @application.course.total_fees %></br>
-  Application Status: <%= @application.state %></br>
+  <p style="color: darkorange; font-size: 20px;">Course Details</p><br>
+  <b style="font-size: 16px;">Course Code:</b> <%= @application.course.code %><br><br>
+  <b style="font-size: 16px;">Course Name:</b> <%= @application.course.name %><br><br>
+  <b style="font-size: 16px;">Duration:</b> <%= @application.course.duration %> Semesters<br><br>
+  <b style="font-size: 16px;">Total Fees:</b> <%= @application.course.total_fees %><br><br>
+  <b style="font-size: 16px;">Course Level:</b> <%= CONSTANTS[@application.course.rank_before_type_cast]%>
+
+  <div style="padding-top: 50px">
+    <p style="color: darkgreen; font-size: 20px;">Progress Status</p>
+    <div class="progress">
+       <div class="progress-bar <%= @application.decorate.progress_bar %>" role="progressbar" aria-valuenow="<%= @application.decorate.current_value %>" aria-valuemin="0"
+            aria-valuemax="100"
+      style="width: <%= @application.decorate.current_value %>%"><%= @application.decorate.current_value %>%
+      </div>
+    </div>
+  </div>
+
+  <div style="padding-top: 50px;">
+    <p style="color: darkorange; font-size: 20px;">Attached Files</p><br>
+    <% @application.attachments.each do |attachment| %>
+      <p style="font-size: 18px;">File Name:  <span style="padding-left: 30px;"><%= attachment.name %></span>
+      <span style="padding-left: 30px;"><%= link_to("Click to download", attachment.file(:original,
+        false), download: attachment.name) %></span></p>
+    <% end %>
+  </div>
 
   <% if current_user.uni_admin? %>
     <% if @application.applied? %>
+      <p style="color: red; font-size: 15px;">Provide Offer Letter</p><br>
       <%= form_for @application, url: {controller: :application_progress, action: :transition, method: :put, id:
         @application.id} do |f| %>
         <%= f.hidden_field :event, value: "offering" %>
         <%= f.fields_for :attachment do |g| %>
+          <%= g.hidden_field(:name, value: 'Offer Letter') %>
           <%= g.file_field :file %>
         <% end %>
-        <%= f.submit 'Apply', class: 'mediumSubmit' %>
+        <%= f.submit 'Upload', class: 'mediumSubmit' %>
       <%end %>
-    <% end %>
 
-    <% if @application.sop_submission? %>
+    <% elsif @application.offer_received? %>
+      <%= form_for @application, url: {controller: :application_progress, action: :update, method: :put, id:
+        @application.id} do |f| %>
+        <%= f.hidden_field :event, value: "Offer Letter" %>
+        <%= f.fields_for :attachment do |g| %>
+          <%= g.hidden_field(:name, value: 'Offer Letter') %>
+          <%= g.label_tag(:file, "Re-upload Offer Letter") %><br>
+          <%= g.file_field :file %>
+        <% end %>
+        <%= f.submit 'Upload', class: 'mediumSubmit' %>
+      <%end %>
+
+    <% elsif @application.sop_submission? %>
+      <p style="color: red; font-size: 15px;">Provide COE</p><br>
       <%= form_for @application, url: {controller: :application_progress, action: :transition, method: :put, id:
         @application.id} do |f| %>
         <%= f.hidden_field :event, value: "sop_verifying" %>
         <%= f.fields_for :attachment do |g| %>
+          <%= g.hidden_field(:name, value: 'COE Letter') %>
           <%= g.file_field :file %>
         <% end %>
-        <%= f.submit 'Apply', class: 'mediumSubmit' %>
+        <%= f.submit 'Upload', class: 'mediumSubmit' %>
+      <%end %>
+
+    <% elsif @application.coe_received? %>
+      <p style="color: red; font-size: 15px;">Reupload COE Letter</p><br>
+      <%= form_for @application, url: {controller: :application_progress, action: :update, method: :put, id:
+        @application.id} do |f| %>
+        <%= f.hidden_field :event, value: "sop_verifying" %>
+        <%= f.fields_for :attachment do |g| %>
+          <%= g.hidden_field(:name, value: 'COE Letter') %>
+          <%= g.label_tag(:file, "Re-upload COE Letter") %><br>
+          <%= g.file_field :file %>
+        <% end %>
+        <%= f.submit 'Upload', class: 'mediumSubmit' %>
+      <%end %>
+
+      <p style="color: red; font-size: 15px; padding-top: 25px;">Enroll Applicant</p><br>
+      <%= form_for @application, url: {controller: :application_progress, action: :transition, method: :put, id:
+        @application.id} do |f| %>
+        <%= f.hidden_field :event, value: "enrolling" %>
+        <%= f.submit 'Enroll', class: 'mediumSubmit' %>
       <%end %>
     <% end %>
 
   <% else %>
-    <% if @application.offer_received? %>
-      <%= form_for @application, url: {controller: :application_progress, action: :transition, method: :put, id:
+    <% if @application.applied? %>
+      <%= form_for @application, url: {controller: :application_progress, action: :update, method: :put, id:
         @application.id} do |f| %>
-        <%= f.hidden_field :event, value: 'sop_submitting' %>
         <%= f.fields_for :attachment do |g| %>
-          <%= g.file_field :file %>
+          <%= g.hidden_field(:name, value: 'Application File') %>
+          <%= g.label_tag(:file, "Re-upload Application File") %><br>
+          <%= g.file_field(:file)%><br><br>
         <% end %>
-        <%= f.submit 'Apply', class: 'mediumSubmit' %>
-      <%end %>
+        <%= f.submit 'Upload', class: 'mediumSubmit' %>
+      <% end %>
+
+    <% elsif @application.sop_submission? %>
+      <p style="color: red; font-size: 15px;">Re-upload Your SOP</p><br>
+      <%= form_for @application, url: {controller: :application_progress, action: :update, method: :put, id:
+        @application.id} do |f| %>
+        <%= f.fields_for :attachment do |g| %>
+          <%= g.hidden_field(:name, value: 'SOP File') %>
+          <%= g.label_tag(:file, "Re-upload SOP File") %><br>
+          <%= g.file_field(:file)%><br><br>
+        <% end %>
+        <%= f.submit 'Upload', class: 'mediumSubmit' %>
+      <% end %>
+
+      <% elsif @application.offer_received? %>
+        <p style="color: red; font-size: 15px;">Upload Your SOP</p><br>
+        <%= form_for @application, url: {controller: :application_progress, action: :transition, method: :put, id:
+          @application.id} do |f| %>
+          <%= f.hidden_field :event, value: 'sop_submitting' %>
+          <%= f.fields_for :attachment do |g| %>
+            <%= g.hidden_field(:name, value: 'SOP File') %>
+            <%= g.file_field :file %>
+          <% end %>
+          <%= f.submit 'Upload', class: 'mediumSubmit' %>
+        <%end %>
     <% end %>
-  <%end %>
+  <% end %>
 
-
-
-
-
-
-
-
+  <p style="color: red; font-size: 15px; padding-top: 25px;">Send Message|Start Chat</p><br>
+  <a href="<%= root_url %>/chats?application_id=<%= @application.id %>">Start Chating</a>
 </div>

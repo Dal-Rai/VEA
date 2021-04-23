@@ -88,6 +88,7 @@ gem 'local_time'
 gem 'rubyzip', '= 1.0.0'
 gem 'axlsx', '= 2.0.1'
 gem 'axlsx_rails'
+gem 'draper'
 
 # gem 'sunspot_rails'
 # gem 'sunspot_solr'
@@ -100,3 +101,10 @@ gem 'tire'
 #chat
 gem 'clearance', '~> 1.16'
 gem 'delayed_job_active_record'
+
+#ml recommendation
+gem 'eps'
+
+#validation
+gem 'client_side_validations'
+

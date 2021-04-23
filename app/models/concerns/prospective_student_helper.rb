@@ -7,7 +7,7 @@ module ProspectiveStudentHelper
 
   def highest_qualification_name
     return if highest_qualification.nil?
-    CONSTANTS[highest_qualification.level+'_text']+"("+ String(highest_qualification_score)+")"
+    CONSTANTS[highest_qualification.level_before_type_cast]+"("+ String(highest_qualification_score)+")"
   end
 
   def highest_english_competency_score

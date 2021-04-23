@@ -6,7 +6,7 @@ class Unit < ApplicationRecord
   validates_presence_of :name, :code, :credit_point, :level
   has_many :course_units, inverse_of: :unit, dependent: :destroy
 
-  enum level: { PG: 0, G: 1 }
+  enum level: {high_school: 0, diploma: 1, graduate: 2, post_graduate: 3, phd: 4}
 
   settings do
     mappings dynamic: false do

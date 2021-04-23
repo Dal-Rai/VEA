@@ -13,20 +13,23 @@
 
   <%= form_for User.new, url: { action: :invite, method: :post, id: current_user.id} do |f| %>
     <%= label_tag(:email, "Email:", class: 'labelLarge') %>
-    <%= f.text_field :email, class: 'largeInput' %><br><br>
+    <%= f.text_field :email, class: 'borderlessInputLarge' %><br><br>
     <%= f.hidden_field :password, value: 'Selise88' %>
     <%= f.fields_for :profile_attributes do |g| %>
       <%= label_tag(:firstname, "First Name:", class: 'labelLarge') %>
-      <%= g.text_field :firstname, class: 'largeInput' %><br><br>
+      <%= g.text_field :firstname, class: 'borderlessInputLarge' %><br><br>
 
       <%= label_tag(:middlename, "Middle Name:", class: 'labelLarge') %>
-      <%= g.text_field :middlename, class: 'largeInput' %><br><br>
+      <%= g.text_field :middlename, class: 'borderlessInputLarge' %><br><br>
 
       <%= label_tag(:lastname, "Last Name:", class: 'labelLarge') %>
-      <%= g.text_field :lastname, class: 'largeInput' %><br><br>
+      <%= g.text_field :lastname, class: 'borderlessInputLarge' %><br><br>
 
       <%= label_tag(:mobile_no, "Mobile No:", class: 'labelLarge') %>
-      <%= g.text_field :mobile_no, class: 'largeInput' %><br><br>
+      <%= g.text_field :mobile_no, class: 'borderlessInputLarge' %><br><br>
+
+      <%= label_tag(:faculty, "Faculty:", class: 'labelLarge') %>
+      <%= collection_select(:user, :faculty_id, @current_user.university.faculties, :id, :name, class: 'borderlessInputLarge') %><br><br>
     <% end %>
 
     <%= label_tag(:submit, "", class: 'labelLarge') %>

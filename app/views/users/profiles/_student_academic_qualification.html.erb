@@ -1,37 +1,36 @@
-<div>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-</div>
+<div class="line">
+  <p style="color: darkorange; font-size: 20px;">Add Academic Scores</p>
+</div><br><br>
 
 <%= form_for current_user, url: {controller: :student, action: :add_academic, method: :patch, id: current_user.id} do
 |f| %>
 
   <%= f.fields_for current_user.qualifications.new do |g| %>
     <%= hidden_field(:type, value='qualification') %>
-    <%= label_tag(:highest_qualification, "Qualification:", class: 'labelLarge') %>
+    <%= label_tag(:highest_qualification, "Qualification:", class: 'labelExtraLarge') %>
     <%= g.select_tag(:criteria, options_for_select([["PHD", "phd"], ["Post Graduate", "post_graduate"], ["Under
     Graduate",
       "graduate"], ["Diploma", "diploma"],
-      ["Certificate Or High School", "high_school"]]), class: 'mediumInput') %><br><br>
+      ["Certificate Or High School", "high_school"]]), class: 'borderlessInputLarge') %><br><br>
 
-    <%= label_tag(:course, "Course:", class: 'labelLarge') %>
-    <%= g.text_field :course, class: 'mediumInput' %><br><br>
+    <%= label_tag(:course, "Course:", class: 'labelExtraLarge') %>
+    <%= g.text_field :course, class: 'borderlessInputMedium' %><br><br>
 
-    <%= label_tag(:overall_percentage, "Percentage:", class: 'labelLarge') %>
-    <%= g.text_field :overall_percentage, class: 'mediumInput' %><br><br>
+    <%= label_tag(:overall_percentage, "Percentage:", class: 'labelExtraLarge') %>
+    <%= g.text_field :overall_percentage, class: 'borderlessInputMedium' %><br><br>
 
-    <%= label_tag(:completed_year, "Completed Year:", class: 'labelLarge') %>
-    <%= g.date_field :completed_year, class: 'mediumInput' %><br><br>
+    <%= label_tag(:completed_year, "Completed Year:", class: 'labelExtraLarge') %>
+    <%= g.date_field :completed_year, class: 'borderlessInputMedium' %><br><br>
   <% end %>
 
-  <%= label_tag(:submit, "", class: 'labelLarge') %>
+  <%= label_tag(:submit, "", class: 'labelExtraLarge') %>
   <%= f.submit 'Add', class: 'mediumSubmit' %>
 <% end %><br>
 
-<table>
-  <tr>
+<table class="table", style="width: 100%;">
+  <tr style="height: 50px; background-color: #ddd;">
     <th>Qualification</th><th>Course</th><th>Percentage
-  </th><th>Completed Year</th><th>Subject Count</th><th>Action</th>
+    </th><th>Completed Year</th><th>Subject Count</th><th>Action</th>
   </tr>
   <% current_user.qualifications.select(&:persisted?).each do |g| %>
     <tr>

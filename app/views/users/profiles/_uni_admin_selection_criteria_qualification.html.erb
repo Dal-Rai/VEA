@@ -6,6 +6,10 @@
   <% end %>
 </div>
 
+<div class="line">
+  <span style="color: darkorange; font-size: 20px;">Set weightage for experience</span>
+</div><br><br><br><br><br>
+
 <%= form_for current_user.university, url: {controller: :university, action: :add_criteria, method: :patch, id:
   current_user
   .university_id} do |f| %>
@@ -14,23 +18,22 @@
     <%= hidden_field(:type, value='qualification') %>
     <%= label_tag(:qualification_type, "Qualification:", class: 'labelLarge') %>
     <%= g.select_tag :criteria, options_for_select([["PHD", "phd"], ["Post Graduate", "post_graduate"], ["Under
-    Graduate",
-      "graduate"], ["Diploma", "diploma"],
-      ["Certificate Or High School", "high_school"]]), class: 'mediumInput' %><br><br>
+    Graduate", "graduate"], ["Diploma", "diploma"],
+      ["Certificate Or High School", "high_school"]]), class: 'borderlessInputLarge' %>
 
     <%= label_tag(:weightage, "Weightage:", class: 'labelLarge') %>
-    <%= g.text_field :weightage, class: 'mediumInput' %><br><br>
+    <%= g.number_field :weightage, class: 'borderlessInputMedium' %><br><br>
 
     <%= label_tag(:description, "Description:", class: 'labelLarge') %>
-    <%= g.text_field :description, class: 'mediumInput' %><br><br>
+    <%= g.text_area :description, class: 'extraLargeInput' %><br><br>
   <% end %>
 
   <%= label_tag(:submit, "", class: 'labelLarge') %>
   <%= f.submit 'Add', class: 'mediumSubmit' %>
 <% end %><br>
 
-<table>
-  <tr>
+<table class="table", style="width: 100%;">
+  <tr style="height: 50px; background-color: #ddd;">
     <th>Qualification</th><th>Weightage</th><th>Description
   </th><th>Action</th>
   </tr>

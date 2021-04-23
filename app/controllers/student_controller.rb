@@ -51,6 +51,14 @@ class StudentController < ApplicationController
     @applications = current_user.application_progresses
   end
 
+  def filter_application
+    if params["criteria"] == '-1'
+      @applications = current_user.application_progresses
+    else
+      @applications = current_user.application_progresses.where(state: params["criteria"])
+    end
+  end
+
   def add_english
     unless params[:destroy]
       current_user.english_competencies.new(

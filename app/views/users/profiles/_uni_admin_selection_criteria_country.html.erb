@@ -6,17 +6,21 @@
   <% end %>
 </div>
 
+<div class="line">
+  <span style="color: darkorange; font-size: 20px;">Set weightage for countries</span>
+</div><br><br><br><br><br>
+
 <%= form_for current_user.university, url: {controller: :university, action: :add_criteria, method: :patch, id:
   current_user
     .university_id} do |f| %>
 
   <%= f.fields_for current_user.university.country_criterias.new do |g| %>
     <%= hidden_field(:type, value='country') %>
-    <%= label_tag(:country, "Country:", class: 'labelLarge') %>
-    <%= g.text_field :country, class: 'mediumInput' %><br><br>
+    <%= label_tag(:country, "Country Name:", class: 'labelExtraLarge') %>
+    <%= g.text_field :country, class: 'borderlessInputLarge' %>
 
     <%= label_tag(:weightage, "Weightage:", class: 'labelLarge') %>
-    <%= g.text_field :weightage, class: 'mediumInput' %><br><br>
+    <%= g.text_field :weightage, class: 'borderlessInputMedium' %><br><br>
 
     <%= label_tag(:description, "Description:", class: 'labelLarge') %>
     <%= g.text_area :description, class: 'extraLargeInput' %><br><br>
@@ -26,8 +30,8 @@
   <%= f.submit 'Add', class: 'mediumSubmit' %>
 <% end %><br>
 
-<table>
-  <tr>
+<table class="table", style="width: 100%;">
+  <tr style="height: 50px; background-color: #ddd;">
     <th>Country</th><th>Weightage</th><th>Description
   </th><th>Action</th>
   </tr>

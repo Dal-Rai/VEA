@@ -10,36 +10,36 @@
   current_user
   .university.id} do |f| %>
   <div class="line">
-    English Competency
+    <span style="color: darkorange; font-size: 20px;">Set English Competency Minimum Requirement</span>
   </div><br><br><br><br><br>
 
   <%= f.fields_for EnglishCompetency.new do |g| %>
     <%= hidden_field(:type, value='english') %>
     <%= label_tag(:competency_type, "Type:", class: 'labelLarge') %>
-    <%= g.select_tag(:criteria, options_for_select(["IELTS", "PTE" ], "IELTS"), class: 'smallInput')
-    %><br><br>
+    <%= g.select_tag(:criteria, options_for_select(["IELTS", "PTE" ], "IELTS"), class: 'borderlessInputMedium')
+    %>
 
     <%= label_tag(:overall_band, "Overall Band:", class: 'labelLarge') %>
-    <%= g.text_field :overall_band, class: 'smallInput' %>
+    <%= g.number_field :overall_band, class: 'borderlessInputMedium' %>
 
     <%= label_tag(:speaking, "Speaking:", class: 'labelLarge') %>
-    <%= g.text_field :speaking, class: 'smallInput' %><br><br>
+    <%= g.number_field :speaking, class: 'borderlessInputMedium' %><br><br>
 
     <%= label_tag(:writing, "Writing:", class: 'labelLarge') %>
-    <%= g.text_field :writing, class: 'smallInput' %>
+    <%= g.number_field :writing, class: 'borderlessInputMedium' %>
 
     <%= label_tag(:reading, "Reading:", class: 'labelLarge') %>
-    <%= g.text_field :reading, class: 'smallInput' %><br><br>
+    <%= g.number_field :reading, class: 'borderlessInputMedium' %>
 
     <%= label_tag(:listening, "Listening:", class: 'labelLarge') %>
-    <%= g.text_field :listening, class: 'smallInput' %><br>
+    <%= g.number_field :listening, class: 'borderlessInputMedium' %><br>
   <% end %>
   <%= label_tag(:submit, "", class: 'labelLarge') %>
   <%= f.submit 'Add', class: 'mediumSubmit' %>
 <% end %><br>
 
-<table>
-  <tr>
+<table class="table", style="width: 100%;">
+  <tr style="height: 50px; background-color: #ddd;">
     <th>Type</th><th>Expiry</th><th>Overall
     Bank</th><th>Speaking</th><th>Writing</th><th>Reading</th><th>Listening</th><th>Action</th>
   </tr>

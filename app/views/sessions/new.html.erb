@@ -1,24 +1,27 @@
-<div class="loginBG">
-  <span class="alignCenter">
-    <div>
-      <% flash.each do |name, msg| %>
-        <div class='alert alert-<%= name %>'>
-          <%= msg %>
-        </div>
+<div class="header_length_top">
+  <div>
+    <% flash.each do |name, msg| %>
+      <div class='alert alert-<%= name %>'>
+        <%= msg %>
+      </div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form_for User.new, url: {action: :create, method: :post} do |f| %>
+      <%= label_tag(:email, "Email:", class: 'labelLarge') %>
+      <%= f.text_field :email, class: 'largeInput' %><br><br>
+
+      <%= label_tag(:password, "Password:", class: 'labelLarge') %>
+      <%= f.password_field :password, class: 'largeInput', autocomplete: "off"%><br>
+
+      <%= label_tag(:submit, "", class: 'labelLarge') %>
+      <%= f.submit 'Login', class: 'mediumSubmit' %>
       <% end %>
     </div>
-
-    <div>
-      <%= form_for User.new, url: {action: :create, method: :post} do |f| %>
-        <%= label_tag(:email, "Email:", class: 'labelLarge') %>
-        <%= f.text_field :email, class: 'largeInput' %><br><br>
-
-        <%= label_tag(:password, "Password:", class: 'labelLarge') %>
-        <%= f.password_field :password, class: 'largeInput', autocomplete: "off"%><br>
-
-        <%= label_tag(:submit, "", class: 'labelLarge') %>
-        <%= f.submit 'Login', class: 'mediumSubmit' %>
-        <% end %>
-      </div>
-  </span>
 </div>
+
+<script>
+  document.getElementById("third_tab").classList.add("active");
+  document.getElementById("sub_label").value = "Enter your credentails to login";
+</script>

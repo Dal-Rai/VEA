@@ -1,20 +1,60 @@
+<script>
+  document.getElementById('stud_fourth').classList.add("active");
+</script>
+
 <div class="col-lg-4">
   <%= label_tag :space, "" %>
 </div>
 
 <div class="col-lg-8">
-  <h2>
-    Course Name: "<%= @course.name %>"<br><br>
-    Total Fees: "<%= @course.total_fees %>"<br><br>
+  <p style="color: darkorange; font-size: 20px;">Course Details</p><br>
+  <b style="font-size: 16px;">Course Code:</b> <%= @course.code %><br><br>
+  <b style="font-size: 16px;">Course Name:</b> <%= @course.name %><br><br>
+  <b style="font-size: 16px;">Duration:</b> <%= @course.duration %> Semesters<br><br>
+  <b style="font-size: 16px;">Total Fees:</b> <%= @course.total_fees %><br><br>
+  <b style="font-size: 16px;">Course Level:</b> <%= CONSTANTS[@course.rank_before_type_cast]%>
 
-    <%= form_for ApplicationProgress.new, url: {controller: :application_progress, action: :create, method: :post} do |f| %>
-      <%= f.hidden_field :course_id, value: @course.id %>
-      <%= f.hidden_field :user_id, value: current_user.id %>
-      <%= f.fields_for :attachables_attributes do |g| %>
-        <%= g.file_field :file %>
-      <% end %>
+  <p style="color: darkorange; font-size: 20px; padding-top: 50px;">Unit Details</p><br>
+  <table class="table", style="width: 100%;">
+    <tr style="height: 50px; background-color: #ddd;">
+      <th width="300", height="40">Name</th>
+      <th width="200", height="40">Code</th>
+      <th width="200">Credit Point</th>
+      <th width="200">Level</th>
+    </tr>
+    <% @course.units.each do |cor_unit| %>
+      <tr>
+        <td height="40">
+          <%= cor_unit.code %>
+        </td>
 
-      <%= f.submit 'Apply', class: 'mediumSubmit' %>
-    <%end %>
-  </h2>
+        <td height="40">
+          <%= cor_unit.name %>
+        </td>
+
+        <td height="40">
+          <%= cor_unit.credit_point %>
+        </td>
+
+        <td height="40">
+          <%= cor_unit.level %>
+        </td>
+      </tr>
+    <%end%>
+
+  </table>
+
+
+  <p style="color: darkorange; font-size: 20px; padding-top: 50px;">Application Submission</p><br>
+  <%= form_for ApplicationProgress.new, url: {controller: :application_progress, action: :create, method: :post} do |f| %>
+    <%= f.hidden_field :course_id, value: @course.id %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.fields_for :attachables_attributes do |g| %>
+      <%= g.hidden_field(:name, value: 'Application File') %>
+      <%= g.label_tag(:file, "Application Form/Cover Letter") %><br>
+      <%= g.file_field(:file)%><br><br>
+    <% end %>
+
+    <%= f.submit 'Apply', class: 'mediumSubmit' %>
+  <%end %>
 </div>

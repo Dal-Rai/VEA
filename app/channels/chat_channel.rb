@@ -8,11 +8,12 @@ class ChatChannel < ApplicationCable::Channel
   end
 
   def speak(data)
+    return if data['message'][0].empty?
     Chat.create(
       message: data['message'][0],
       user_id: data['message'][1],
       chatable_id: data['message'][2],
-      chatable_type: 'Course'
+      chatable_type: 'ApplicationProgress'
     )
   end
 end

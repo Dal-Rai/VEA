@@ -3,14 +3,14 @@
 </div>
 
 <span class="alignCenter">
-  <h1>Faculty Creation</h1><br>
+  <p style="color: darkorange; font-size: 20px;">Faculty Creation</p><br>
 
   <%= form_for Faculty.new, url: {action: :create, method: :post} do |f| %>
     <%= label_tag(:name, "Code:", class: 'labelLarge') %>
-    <%= f.text_field :code, class: 'largeInput' %><br><br>
+    <%= f.text_field :code, class: 'borderlessInputLarge' %><br><br>
 
     <%= label_tag(:name, "Name:", class: 'labelLarge') %>
-    <%= f.text_field :name, class: 'largeInput' %><br><br>
+    <%= f.text_field :name, class: 'borderlessInputLarge' %><br><br>
 
     <%= label_tag(:submit, "", class: 'labelLarge') %>
     <%= f.submit 'Create', class: 'mediumSubmit' %>

@@ -1,0 +1,108 @@
+<div class="col-lg-2">
+  <%= label_tag nil %>
+</div>
+
+<div class="col-lg-10">
+  <h1>Academic Scores:</h1>
+
+  <div class="tab">
+    <button class="tablinks" id="english_tab" onclick="openAcademic(event, 'english')">English Competency</button>
+    <button class="tablinks" id="qualification_tab" onclick="openAcademic(event, 'academic')">Academic Scores</button>
+    <button class="tablinks" id="experience_tab" onclick="openAcademic(event, 'experience')">Experiences</button>
+    <button class="tablinks" id="preference_tab" onclick="openAcademic(event, 'preference')">Preference</button>
+  </div>
+
+  <div id="english" class="tabcontent">
+    <table class="table", style="width: 100%;">
+      <tr style="height: 50px; background-color: #ddd;">
+        <th>Type</th><th>Expiry</th><th>Overall
+        Bank</th><th>Speaking</th><th>Writing</th><th>Reading</th><th>Listening</th>
+      </tr>
+      <% @student.english_competencies.select(&:persisted?).each do |g| %>
+        <tr>
+          <th><%= g.competency_type %></th>
+          <td><%= g.expiry %></td>
+          <td><%= g.overall_band %></td>
+          <td><%= g.speaking %></td>
+          <td><%= g.writing %></td>
+          <td><%= g.reading %></td>
+          <td><%= g.listening %></td>
+        </tr>
+      <% end%>
+    </table>
+  </div>
+
+  <div id="academic" class="tabcontent">
+    <table class="table", style="width: 100%;">
+      <tr style="height: 50px; background-color: #ddd;">
+        <th>Qualification</th><th>Course</th><th>Percentage
+      </th><th>Completed Year</th><th>Subject Count</th>
+      </tr>
+      <% @student.qualifications.select(&:persisted?).each do |g| %>
+        <tr>
+          <th><%= g.level %></th>
+          <td><%= g.course %></td>
+          <td><%= g.overall_percentage %></td>
+          <td><%= g.completed_year %></td>
+          <td>
+            <%= render(partial: "users/profiles/student_readonly_subject_model", tabName: "Dal", locals: {qualification: g}) %>
+          </td>
+        </tr>
+      <% end%>
+    </table>
+  </div>
+
+  <div id="experience" class="tabcontent">
+    <table class="table", style="width: 100%;">
+      <tr style="height: 50px; background-color: #ddd;">
+        <th>Job Type</th><th>Start Date</th><th>End Date
+      </th><th>Company</th><th>Responsibility</th>
+      </tr>
+      <% @student.experiences.select(&:persisted?).each do |g| %>
+        <tr>
+          <th><%= g.job_type %></th>
+          <td><%= g.start %></td>
+          <td><%= g.end %></td>
+          <td><%= g.company %></td>
+          <td><%= g.responsibility %></td>
+        </tr>
+      <% end%>
+    </table>
+  </div>
+
+  <div id="preference" class="tabcontent">
+    <table class="table", style="width: 100%;">
+      <tr style="height: 50px; background-color: #ddd;">
+        <th>Category</th><th>Affordable fees</th><th>Description</th>
+      </tr>
+      <% @student.category_preferances.select(&:persisted?).each do |g| %>
+        <tr>
+          <th><%= g.course_category.name %></th>
+          <td><%= g.fees %></td>
+          <td><%= g.course_category.description %></td>
+        </tr>
+      <% end%>
+    </table>
+  </div>
+
+
+  <script>
+    function openAcademic(evt, academicName) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+      document.getElementById(academicName).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
+
+    document.getElementById("english_tab").click();
+  </script>
+</div>
+
+</div>

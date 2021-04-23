@@ -2,13 +2,14 @@ class ApplicationProgressController < ApplicationController
 
   def create
     @application = ApplicationProgress.new(progress_params)
-    form = ApplicationProgressForm.new(@application, params)
+    form = ApplicationProgressForm.new(@application, attachment_params)
+
     if form.save
       flash[:success] = 'Applied successfully'
     else
       flash[:danger] = 'Application failed'
     end
-    redirect_to(controller: :student, action: :recommendation, id: @application.course_id)
+    redirect_to(controller: :student, action: :application, id: current_user.id)
   end
 
   def show
@@ -16,11 +17,23 @@ class ApplicationProgressController < ApplicationController
   end
 
   def update
+    @application = ApplicationProgress.find_by(id: params[:id])
+    if params[:application_progress][:attachment][:file].present?
+      attachment = application.attachments.find_by(name: params[:application_progress][:attachment][:name])
+      attachment.update(file: params[:application_progress][:attachment][:file])
+    end
+
+    render :show
   end
 
   def transition
     if application.event(current_user, transition_params)
-      application.attachments.new(file: attachment_params).save
+      unless application.enrolled?
+        application.attachments.new(
+          file: attachment_params[:attachment][:file],
+          name: attachment_params[:attachment][:name]
+        ).save
+      end
       render :show
     else
       invalid_resource!(application)
@@ -47,7 +60,7 @@ class ApplicationProgressController < ApplicationController
   end
 
   def attachment_params
-    params[:application_progress][:attachment][:file]
+    params.require(:application_progress).permit(attachables_attributes: [:file, :name])
   end
 
 end

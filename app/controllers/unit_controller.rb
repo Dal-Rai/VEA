@@ -54,7 +54,7 @@ class UnitController < ApplicationController
   private
 
   def unit_params
-    params.require(:unit).permit(:name, :code, :credit_point, :level)
+    params.require(:unit).permit(:name, :code, :credit_point, :level).merge!(level: params[:level])
   end
 
   def course_id

@@ -23,6 +23,10 @@ class UsersController < ApplicationController
     @universities = University.all
   end
 
+  def student_details
+    @student = User.find_by(id: params[:student_id])
+  end
+
   def search
     @results = {
       universities: University.search(params["term"]),

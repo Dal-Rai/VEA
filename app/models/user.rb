@@ -15,6 +15,7 @@ class User < ApplicationRecord
 
   has_one :profile, inverse_of: :user, dependent: :destroy
   belongs_to :university, inverse_of: :users, optional: true
+  belongs_to :faculty, inverse_of: :users, optional: true
   has_one :address, as: :addressable, dependent: :destroy
   has_many :english_competencies, as: :competenciable, dependent: :destroy
   has_one :highest_english_competency, as: :competenciable, class_name: 'EnglishCompetency'

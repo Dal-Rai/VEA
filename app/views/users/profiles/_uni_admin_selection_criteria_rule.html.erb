@@ -27,18 +27,18 @@
 <%= form_for current_user.university, url: {controller: :university, action: :add_criteria, method: :patch, id:
   current_user.university_id} do |f| %>
   <div class="line">
-    Define Rules
+    <span style="color: darkorange; font-size: 20px;">Create Your Rule</span>
   </div><br><br><br><br><br>
 
   <%= f.fields_for current_user.university.criteria_rules.new do |g| %>
     <%= hidden_field(:type, value='rule') %>
     <%= label_tag(:criteria, "Criteria Type:", class: 'labelLarge') %>
     <%= g.select_tag(:criteria, options_for_select([["English Competency", "english"], ["Academic",
-      "academic"], ["Experience","experience"], ["Country","country"]]), class: 'mediumInput')
+      "academic"], ["Experience","experience"], ["Country","country"]]), class: 'borderlessInputLarge')
     %><br><br>
 
     <%= label_tag(:weightage, "Weightage:", class: 'labelLarge') %>
-    <%= g.text_field :weightage, class: 'mediumInput' %>
+    <%= g.text_field :weightage, class: 'borderlessInputLarge' %>
     <%= label_tag(:tooltip, "", id: 'tooltip') %>
     <br><br>
 
@@ -49,12 +49,12 @@
   <%= f.submit 'Add', class: 'mediumSubmit' %>
 <% end %><br>
 
-<table>
-  <tr>
+<table class="table", style="width: 100%;">
+  <tr style="height: 50px; background-color: #ddd;">
     <th>Criteria Type</th><th>Weightage</th><th>Description</th><th>Action</th>
   </tr>
   <% current_user.university.criteria_rules.select(&:persisted?).each do |g| %>
-    <tr>
+    <tr style="height: 50px;">
       <th><%= g.criteria %></th>
       <td><%= g.weightage %></td>
       <td><%= g.description %></td>
