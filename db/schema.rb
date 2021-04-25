@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210422153243) do
+ActiveRecord::Schema.define(version: 20210424235003) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -122,6 +122,8 @@ ActiveRecord::Schema.define(version: 20210422153243) do
     t.datetime "updated_at",                         null: false
     t.decimal  "total_fees",         default: "0.0"
     t.integer  "course_category_id"
+    t.decimal  "total_weightage"
+    t.integer  "semester_type",      default: 0
     t.index ["course_category_id"], name: "index_courses_on_course_category_id", using: :btree
   end
 
@@ -294,6 +296,8 @@ ActiveRecord::Schema.define(version: 20210422153243) do
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
     t.decimal  "semester_fees", default: "0.0"
+    t.integer  "university_id"
+    t.index ["university_id"], name: "index_units_on_university_id", using: :btree
   end
 
   create_table "universities", force: :cascade do |t|
@@ -339,6 +343,7 @@ ActiveRecord::Schema.define(version: 20210422153243) do
     t.decimal  "total_weightage",        default: "0.0"
     t.integer  "recent_qualification",   default: 5
     t.integer  "faculty_id"
+    t.boolean  "enroll",                 default: false
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["faculty_id"], name: "index_users_on_faculty_id", using: :btree
     t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true, using: :btree

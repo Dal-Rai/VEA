@@ -20,7 +20,11 @@
     <%= label_tag(:name, "Course Name:", class: 'labelExtraLarge') %>
     <%= f.text_field :name, class: 'borderlessInputLarge', readonly: 'readonly' %><br><br>
 
-    <%= label_tag(:duration, "Total Semester:", class: 'labelExtraLarge') %>
+    <%= label_tag(:semester_type, "Session Type:", class: 'labelExtraLarge') %>
+    <span class="borderlessInputMedium"><%= CONSTANTS[String(course.semester_type_before_type_cast)+"_semester"]
+    %></span><br><br>
+
+    <%= label_tag(:duration, "Total Sessions:", class: 'labelExtraLarge') %>
     <%= f.number_field :duration, class: 'borderlessInputMedium', readonly: 'readonly' %><br><br>
 
     <%= label_tag(:total_fees, "Total Fees:", class: 'labelExtraLarge') %>

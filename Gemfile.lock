@@ -144,7 +144,7 @@ GEM
     dotenv-rails (2.7.6)
       dotenv (= 2.7.6)
       railties (>= 3.2)
-    draper (3.1.0)
+    draper (4.0.1)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
       activemodel-serializers-xml (>= 1.0)
@@ -220,7 +220,7 @@ GEM
       character_set (~> 1.4)
       regexp_parser (~> 2.1)
       regexp_property_values (~> 1.0)
-    jwt (2.2.2)
+    jwt (2.2.3)
     kaminari (1.2.1)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.2.1)
@@ -268,6 +268,7 @@ GEM
     multipart-post (2.1.1)
     nenv (0.3.0)
     netrc (0.11.0)
+    nifty-generators (0.4.6)
     nio4r (2.5.7)
     nokogiri (1.11.3)
       mini_portile2 (~> 2.5.0)
@@ -331,7 +332,7 @@ GEM
     redis (3.3.5)
     regexp_parser (2.1.1)
     regexp_property_values (1.0.0)
-    request_store (1.4.1)
+    request_store (1.5.0)
       rack (>= 1.4)
     responders (3.0.1)
       actionpack (>= 5.0)
@@ -494,6 +495,7 @@ DEPENDENCIES
   letter_opener
   listen (~> 3.0.5)
   local_time
+  nifty-generators
   paperclip
   parallel_tests
   paypal-recurring

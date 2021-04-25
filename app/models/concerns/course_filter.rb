@@ -39,4 +39,21 @@ module CourseFilter
     academic_qualified?(user) && english_qualified?(user) && budget_qualified?(user)
   end
 
+  def course_acceptance_rate
+    total_accepted = application_progresses.enrolled.count
+    (total_accepted/course_popularity) * 100
+  end
+
+  def course_popularity
+    application_progresses.count
+  end
+
+  def faculty_popularity
+    course_category.application_progresses.count
+  end
+
+  def total_weightage
+
+  end
+
 end

@@ -5,6 +5,7 @@ class Unit < ApplicationRecord
 
   validates_presence_of :name, :code, :credit_point, :level
   has_many :course_units, inverse_of: :unit, dependent: :destroy
+  belongs_to :university, inverse_of: :units
 
   enum level: {high_school: 0, diploma: 1, graduate: 2, post_graduate: 3, phd: 4}
 

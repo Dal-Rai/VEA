@@ -3,5 +3,5 @@ class AcademicEligibility < ApplicationRecord
   belongs_to :university, inverse_of: :academic_eligibilities
   default_scope -> { order(code: :asc) }
 
-  enum code: { PG: 0, UG: 1, DIP: 2, HS: 3 }
+  enum code: {high_school: 0, diploma: 1, graduate: 2, post_graduate: 3, phd: 4}
 end

@@ -9,7 +9,7 @@ class StudentController < ApplicationController
     if @user.save
       redirect_to(controller: :home, action: :index)
     else
-      render json: {error: {message: 'Error creating Student'}, success: false}, status: :unprocessable_entity
+      render :new
     end
   end
 
@@ -108,7 +108,7 @@ class StudentController < ApplicationController
   private
 
   def stud_params
-    params.require(:user).permit(:id, :email, :password, :recent_qualification,
+    params.require(:user).permit(:id, :email, :password, :recent_qualification, :enroll,
       profile_attributes: [:id, :salutation, :firstname, :middlename, :lastname, :mobile_no, :gender, :passport_no,
         :avatar],
       address_attributes: [:id, :street_no, :street_name, :suburb, :post_code, :city, :country],

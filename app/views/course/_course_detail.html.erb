@@ -8,7 +8,12 @@
   <%= label_tag(:name, "Course Name:", class: 'labelExtraLarge') %>
   <%= f.text_field :name, class: 'borderlessInputLarge' %><br><br>
 
-  <%= label_tag(:duration, "Total Semester:", class: 'labelExtraLarge') %>
+  <%= label_tag(:semester_type, "Session Type:", class: 'labelExtraLarge') %>
+  <%= f.select_tag(:semester_type, options_for_select([["Semester", "semester"], ["Trimester", "tri_mester"]],
+      @course.semester_type), class: 'borderlessInputLarge')
+  %><br><br>
+
+  <%= label_tag(:duration, "Total Sessions:", class: 'labelExtraLarge') %>
   <%= f.number_field :duration, class: 'borderlessInputMedium' %><br><br>
 
   <%= label_tag(:total_fees, "Total Fees:", class: 'labelExtraLarge') %>
@@ -20,7 +25,7 @@
     'borderlessInputLarge') %><br><br>
 
   <%= label_tag(:rank, "Rank:", class: 'labelExtraLarge') %>
-  <%= f.text_field(:rank, options_for_select([["Certificate Or High School", "high_school"], ["Diploma", "diploma"],
+  <%= f.select_tag(:rank, options_for_select([["Certificate Or High School", "high_school"], ["Diploma", "diploma"],
     ["Under Graduate", "graduate"], ["Post Graduate", "post_graduate"], ["PHD", "phd"]], @course.rank), class: 'borderlessInputLarge')
   %><br><br>
 

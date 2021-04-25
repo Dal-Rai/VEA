@@ -7,7 +7,6 @@ class University < ApplicationRecord
 
   has_one :focal_contact, inverse_of: :university, dependent: :destroy
   has_one :address, as: :addressable, dependent: :destroy
-  has_one :selection_criteria, inverse_of: :university, dependent: :destroy
   has_one :wallet, as: :payee, dependent: :destroy
   has_many :users, inverse_of: :university, dependent: :destroy
   has_many :faculties, inverse_of: :university, dependent: :destroy
@@ -19,7 +18,7 @@ class University < ApplicationRecord
   has_one :experience_criteria, inverse_of: :university, dependent: :destroy
   has_many :qualification_criterias, inverse_of: :university, dependent: :destroy
   has_one :membership, as: :memberable, dependent: :destroy
-
+  has_many :units, inverse_of: :university, dependent: :destroy
   accepts_nested_attributes_for(
   :focal_contact,
     :address,
@@ -47,7 +46,7 @@ class University < ApplicationRecord
   end
 
   def notify_portal_admin
-    UniversityMailer.notify_portal_admin(self).deliver_now
+    # UniversityMailer.notify_portal_admin(self).deliver_now
   end
 
   def english_competencies
@@ -76,10 +75,10 @@ class University < ApplicationRecord
     return super unless super.empty?
     super.build(
            [
-             { eligibility_type: 'Post Graduate', minimum_score: 60, code: 'PG' },
-             { eligibility_type: 'Under Graduate', minimum_score: 60, code: 'UG'},
-             { eligibility_type: 'Diploma', minimum_score: 60, code: 'DIP' },
-             { eligibility_type: 'Certificate Or High School', minimum_score: 60, code: 'HS' }
+             { eligibility_type: 'Post Graduate', minimum_score: 60, code: 'post_graduate' },
+             { eligibility_type: 'Under Graduate', minimum_score: 60, code: 'graduate'},
+             { eligibility_type: 'Diploma', minimum_score: 60, code: 'diploma' },
+             { eligibility_type: 'Certificate Or High School', minimum_score: 60, code: 'high_school' }
            ]
     )
   end

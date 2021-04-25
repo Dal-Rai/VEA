@@ -27,6 +27,8 @@ class User < ApplicationRecord
   has_one  :highest_qualification, :class_name=> "Qualification"
   has_many :chats, inverse_of: :user
   has_many :category_preferances, inverse_of: :user
+  has_many :course_categories, through: :category_preferances
+  has_many :courses, through: :course_categories
   has_many :application_progresses, inverse_of: :user
   has_one :membership, as: :memberable, dependent: :destroy
   accepts_nested_attributes_for :profile, allow_destroy: true

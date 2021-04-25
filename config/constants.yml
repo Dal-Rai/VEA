@@ -4,6 +4,9 @@ graduate: 2
 post_graduate: 3
 phd: 4
 
+0_semester: 'Semester'
+1_semester: 'Trimester'
+
 0: 'High School'
 1: 'Diploma'
 2: 'Gradudate'

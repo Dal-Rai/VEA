@@ -63,10 +63,12 @@ class CourseController < ApplicationController
   end
 
   def course_params
-    params.require(:course).permit(:name, :code, :duration, :rank, :faculty_id, :total_fees, :course_category_id,
+    params.require(:course).permit(:name, :code, :duration, :semester_type, :rank, :faculty_id, :total_fees,
+      :course_category_id,
       english_competencies_attributes: [:id, :overall_band, :expiry, :competency_type, :speaking, :listening, :writing,
         :reading],
       academic_eligibilities_attributes: [:id, :code, :eligibility_type, :minimum_score])
+      .merge!(semester_type: params[:semester_type])
   end
 
 end

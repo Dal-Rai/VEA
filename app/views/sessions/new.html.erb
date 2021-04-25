@@ -8,7 +8,7 @@
   </div>
 
   <div>
-    <%= form_for User.new, url: {action: :create, method: :post} do |f| %>
+    <%= form_for User.new, :validate => true, url: {action: :create, method: :post} do |f| %>
       <%= label_tag(:email, "Email:", class: 'labelLarge') %>
       <%= f.text_field :email, class: 'largeInput' %><br><br>
 

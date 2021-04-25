@@ -18,9 +18,9 @@ class ApplicationProgressController < ApplicationController
 
   def update
     @application = ApplicationProgress.find_by(id: params[:id])
-    if params[:application_progress][:attachment][:file].present?
-      attachment = application.attachments.find_by(name: params[:application_progress][:attachment][:name])
-      attachment.update(file: params[:application_progress][:attachment][:file])
+    if attachment_params[:attachables_attributes][:file].present?
+      attachment = application.attachments.find_by(name: attachment_params[:attachables_attributes][:name])
+      attachment.update(file: attachment_params[:attachables_attributes][:file])
     end
 
     render :show
@@ -30,8 +30,8 @@ class ApplicationProgressController < ApplicationController
     if application.event(current_user, transition_params)
       unless application.enrolled?
         application.attachments.new(
-          file: attachment_params[:attachment][:file],
-          name: attachment_params[:attachment][:name]
+          file: attachment_params[:attachables_attributes][:file],
+          name: attachment_params[:attachables_attributes][:name]
         ).save
       end
       render :show

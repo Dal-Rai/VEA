@@ -22,6 +22,12 @@
       <%= g.text_field :lastname, class: 'borderlessInputMedium' %>
       <%= label_tag(:mobile_no, "Mobile No:", class: 'labelLarge') %>
       <%= g.text_field :mobile_no, class: 'borderlessInputMedium' %><br><br>
+
+      <%= label_tag(:enroll, "Enrolled?", class: 'labelLarge') %>
+      <label class="switch">
+        <%= f.check_box :enroll, checked: current_user.enroll %>
+        <span class="slider round"></span>
+      </label>
     <% end %><br><br>
 
     <div class="line">

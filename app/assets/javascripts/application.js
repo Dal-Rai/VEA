@@ -25,3 +25,5 @@
 //= require local-time
 //= require chosen-jquery
 //= require jquery3
+//= require rails.validations
+//=require('@client-side-validations/client-side-validations')

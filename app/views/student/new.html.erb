@@ -1,5 +1,5 @@
 <div class="header_length_top">
-  <%= form_for @user, url: {controller: :student, action: :create, method: :post} do |f| %>
+  <%= form_for @user, :validte=>true, url: {controller: :student, action: :create, method: :post} do |f| %>
     <%= label_tag(:email, "Email:", class: 'labelLarge') %>
     <%= f.text_field :email, class: 'borderlessInputLarge' %><br><br>
     <%= f.fields_for :profile do |g| %>

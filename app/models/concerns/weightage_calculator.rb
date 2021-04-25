@@ -45,4 +45,13 @@ module WeightageCalculator
       calc_experience_weightage(university) + calc_country_weightage(university)
   end
 
+  def total_faculty_base_applications
+    total_applications = 0
+    course_categories.each do |cate|
+      total_applications += cate.application_progresses.count
+    end
+
+    total_applications
+  end
+
 end

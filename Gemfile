@@ -106,5 +106,10 @@ gem 'delayed_job_active_record'
 gem 'eps'
 
 #validation
+gem 'nifty-generators'
 gem 'client_side_validations'
+
+#Pagination
+#gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
+# gem 'jquery-ui-rails'
 

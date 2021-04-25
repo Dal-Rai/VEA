@@ -9,6 +9,7 @@ module ApplicationProgressState
     sop_submission: 3,
     coe_received: 4,
     enrolled: 5,
+    completed: 6,
     rejected: 0
   }
 
@@ -23,10 +24,11 @@ module ApplicationProgressState
       state :sop_submission
       state :coe_received
       state :enrolled
+      state :completed
       state :rejected
 
       # before_all_events :assign_params
-      # after_all_events :transition_callback
+      after_all_events :transition_callback
 
       event :offering do
         transitions from: :applied, to: :offer_received
@@ -42,6 +44,10 @@ module ApplicationProgressState
 
       event :enrolling do
         transitions from: :coe_received, to: :enrolled
+      end
+
+      event :completing do
+        transitions from: :enrolled, to: :completed
       end
 
       event :rejecting do
@@ -63,27 +69,17 @@ module ApplicationProgressState
 
   end
 
-  # def transition_callback(*args)
-  #   user, _ = args
-  #   callback = "after_#{aasm.current_event}"
-  #   send(callback, *args) if respond_to?(callback)
-  #
-  #   order.update_attributes(percentage: order.sites.average(:state)) if order.present?
-  #   state = OPERATIONAL_STATES.include?(aasm.to_state) ? :operational : :production
-  #   user.activity_logs.create(
-  #     site: self,
-  #     action: :changed_quote_status,
-  #     status_from: aasm.from_state,
-  #     status_to: aasm.to_state,
-  #     state_type: state
-  #   )
-  #   update_assignee
-  #   update_site_visits
-  # end
+  def transition_callback(*args)
+    user, _ = args
+    callback = "after_#{aasm.current_event}"
+    send(callback, *args) if respond_to?(callback)
 
-  def assign_params(user, params)
-    update_attributes(params)
+    self.user.update(enroll: true) if self.enrolled?
   end
+
+  # def assign_params(user, params)
+  #   update_attributes(params)
+  # end
 
   # def states
   #   site_states = PRODUCTION_STATES.keys

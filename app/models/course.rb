@@ -17,6 +17,7 @@ class Course < ActiveRecord::Base
   accepts_nested_attributes_for :academic_eligibilities, allow_destroy: true
 
   enum rank: {high_school: 0, diploma: 1, graduate: 2, post_graduate: 3, phd: 4}
+  enum semester_type: {semester: 0, tri_semester: 1}
 
   settings do
     mappings dynamic: false do
