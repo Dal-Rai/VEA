@@ -47,7 +47,7 @@ class UsersController < ApplicationController
   def invite
     User.new(user_params).save
     flash[:success] = 'User invited successfully'
-
+    render :show, type: 'proile'
   end
 
   private

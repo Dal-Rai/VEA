@@ -7,11 +7,11 @@ class ChatsController < ApplicationController
   def application
     if current_user.student?
       @applications = ApplicationProgress.joins(:chats).where('application_progresses.user_id =? ', current_user.id)
-                        .order('chats.created_at desc')
+                        .uniq
     elsif current_user.uni_admin?
       application_ids = ApplicationProgress.joins(course: :faculty).where('faculties.university_id = ?',
         current_user.university_id).pluck(:id)
-      @applications = ApplicationProgress.joins(:chats).where(id: application_ids).order('chats.created_at desc')
+      @applications = ApplicationProgress.joins(:chats).where(id: application_ids).uniq
     end
   end
 end

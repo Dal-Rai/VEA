@@ -1,44 +1,50 @@
-<br><br>
-<%= form_for @course, url: {action: :update, method: :put} do |f| %>
-  <%= f.fields_for :english_competencies_attributes do |g| %>
-    <%= hidden_field(:type, value='english') %>
-    <%= label_tag(:competency_type, "Type:", class: 'labelLarge') %>
-    <%= select_tag(:competency_type, options_for_select(["IELTS", "PTE" ], "IELTS"), class: 'borderlessInputMedium') %>
+<div style="padding-bottom: 50px; padding-top: 25px;">
+  <span style="color: darkorange; font-size: 20px;">Update English Competency</span>
+</div>
 
-    <%= label_tag(:overall_band, "Overall Band:", class: 'labelLarge') %>
-    <%= g.number_field :overall_band, class: 'borderlessInputMedium' %>
-    <%= label_tag(:speaking, "Speaking:", class: 'labelLarge') %>
-    <%= g.number_field :speaking, class: 'borderlessInputMedium' %><br>
+<div>
+  <%= form_for @course, url: {action: :update, method: :put} do |f| %>
+    <%= f.fields_for :english_competencies_attributes do |g| %>
+      <%= hidden_field(:type, value='english') %>
+      <%= label_tag(:competency_type, "Type:", class: 'labelLarge') %>
+      <%= select_tag(:competency_type, options_for_select(["IELTS", "PTE" ], "IELTS"), class: 'borderlessInputMedium') %>
 
-    <%= label_tag(:writing, "Writing:", class: 'labelLarge') %>
-    <%= g.number_field :writing, class: 'borderlessInputMedium' %>
+      <%= label_tag(:overall_band, "Overall Band:", class: 'labelLarge') %>
+      <%= g.number_field :overall_band,  step: :any, class: 'borderlessInputMedium' %>
+      <%= label_tag(:speaking, "Speaking:", class: 'labelLarge') %>
+      <%= g.number_field :speaking, step: :any, class: 'borderlessInputMedium' %><br>
 
-    <%= label_tag(:reading, "Reading:", class: 'labelLarge') %>
-    <%= g.number_field :reading, class: 'borderlessInputMedium' %>
+      <%= label_tag(:writing, "Writing:", class: 'labelLarge') %>
+      <%= g.number_field :writing, step: :any, class: 'borderlessInputMedium' %>
 
-    <%= label_tag(:listening, "Listening:", class: 'labelLarge') %>
-    <%= g.number_field :listening, class: 'borderlessInputMedium' %><br>
-    <%= label_tag(:submit, "", class: 'labelLarge') %>
-    <%= f.submit 'Add', class: 'mediumSubmit' %><br><br>
-  <% end %>
-<% end %><br><br>
+      <%= label_tag(:reading, "Reading:", class: 'labelLarge') %>
+      <%= g.number_field :reading, step: :any, class: 'borderlessInputMedium' %>
+
+      <%= label_tag(:listening, "Listening:", class: 'labelLarge') %>
+      <%= g.number_field :listening, step: :any, class: 'borderlessInputMedium' %><br>
+      <%= label_tag(:submit, "", class: 'labelLarge') %>
+      <%= f.submit 'Add', class: 'mediumSubmit' %><br><br>
+    <% end %>
+  <% end %><br><br>
 
 
-<table class="table", style="width: 100%;">
-  <tr style="height: 50px; background-color: #ddd;">
-    <th>Type</th><th>Expiry</th><th>Overall
-    Bank</th><th>Speaking</th><th>Writing</th><th>Reading</th><th>Listening</th><th>Action</th>
-  </tr>
-  <% @course.english_competencies.select(&:persisted?).each do |g| %>
-    <tr>
-      <th><%= g.competency_type %></th>
-      <td><%= g.expiry %></td>
-      <td><%= g.overall_band %></td>
-      <td><%= g.speaking %></td>
-      <td><%= g.writing %></td>
-      <td><%= g.reading %></td>
-      <td><%= g.listening %></td>
-      <td><a href="<%= root_url %>/student/<%= current_user.id %>/reload?destroy=true&type=english&type_id=<%= g.id %>">delete</a></td>
+  <table class="table", style="width: 100%;">
+    <tr style="height: 50px; background-color: #ddd;">
+      <th>Type</th><th>Expiry</th><th>Overall
+      Bank</th><th>Speaking</th><th>Writing</th><th>Reading</th><th>Listening</th><th>Action</th>
     </tr>
-  <% end%>
-</table>
+    <% @course.english_competencies.select(&:persisted?).each do |g| %>
+      <tr>
+        <th><%= g.competency_type %></th>
+        <td><%= g.expiry %></td>
+        <td><%= g.overall_band %></td>
+        <td><%= g.speaking %></td>
+        <td><%= g.writing %></td>
+        <td><%= g.reading %></td>
+        <td><%= g.listening %></td>
+        <td><a style="color: red;" href="<%= root_url %>university/<%= current_user.university_id
+        %>/reload?destroy=true&type=english&type_id=<%= g.id %>&course_id=<%= @course.id %>">delete</a></td>
+      </tr>
+    <% end%>
+  </table>
+</div>

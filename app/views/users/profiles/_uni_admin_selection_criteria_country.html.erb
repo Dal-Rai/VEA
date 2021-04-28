@@ -6,9 +6,9 @@
   <% end %>
 </div>
 
-<div class="line">
-  <span style="color: darkorange; font-size: 20px;">Set weightage for countries</span>
-</div><br><br><br><br><br>
+<div  style="color: darkorange; font-size: 20px; padding-bottom: 50px;">
+  Set weightage for Countries
+</div>
 
 <%= form_for current_user.university, url: {controller: :university, action: :add_criteria, method: :patch, id:
   current_user
@@ -40,7 +40,7 @@
       <th><%= g.country %></th>
       <td><%= g.weightage %></td>
       <td><%= g.description %></td>
-      <td><a href="<%= root_url %>/university/<%= current_user.university_id
+      <td><a style="color: red;" href="<%= root_url %>/university/<%= current_user.university_id
       %>/reload?destroy=true&type=country&type_id=<%= g.id %>">delete</a></td>
     </tr>
   <% end%>

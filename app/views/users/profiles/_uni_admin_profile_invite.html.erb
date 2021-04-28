@@ -1,7 +1,7 @@
 <div class="top-space">
-  <div class="line">
-    Invite your staff
-  </div><br><br><br><br><br>
+  <div class="subject_title" style="padding-bottom: 50px;">
+    Invite Your Staff
+  </div>
 
   <div>
     <% flash.each do |name, msg| %>
@@ -29,10 +29,12 @@
       <%= g.text_field :mobile_no, class: 'borderlessInputLarge' %><br><br>
 
       <%= label_tag(:faculty, "Faculty:", class: 'labelLarge') %>
-      <%= collection_select(:user, :faculty_id, @current_user.university.faculties, :id, :name, class: 'borderlessInputLarge') %><br><br>
+<!--      <%#= collection_select(:user, :faculty_id, current_user.university.faculties, :id, :name, class: 'borderlessInputLarge') %><br><br>-->
+      <%= select_tag(:faculty_id, options_from_collection_for_select(current_user.university.faculties, :id,
+        :name), class: 'borderlessInputLarge') %><br>
     <% end %>
 
     <%= label_tag(:submit, "", class: 'labelLarge') %>
-    <%= f.submit 'Update', class: 'largeSubmit' %>
+    <%= f.submit 'Invite', class: 'largeSubmit' %>
   <% end %>
 </div>

@@ -3,36 +3,42 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </div>
 
-<%= form_for current_user, url: {controller: :student, action: :add_academic, method: :patch, id: current_user.id} do
-|f| %>
+<div class="line">
+  <p style="color: darkorange; font-size: 20px;">Set Your Career Goals and Budget Limit</p>
+</div><br><br>
 
-  <%= f.fields_for current_user.category_preferances.new  do |g| %>
-    <%= hidden_field(:type, value='preferance') %>
+<div>
+  <%= form_for current_user, url: {controller: :student, action: :add_academic, method: :patch, id: current_user.id} do
+  |f| %>
 
-    <%= label_tag(:course_category, "Category:", class: 'labelExtraLarge') %>
-    <%= select_tag(:course_category_id, options_from_collection_for_select(CourseCategory.all, "id", "name"), class:
-      'borderlessInputLarge') %><br><br>
+    <%= f.fields_for current_user.category_preferances.new  do |g| %>
+      <%= hidden_field(:type, value='preferance') %>
 
-    <%= label_tag(:fees, "Affordable fees:", class: 'labelExtraLarge') %>
-    <%= number_field_tag(:fees, nil, class: 'borderlessInputLarge') %><br><br>
-  <% end %>
+      <%= label_tag(:course_category, "Category:", class: 'labelExtraLarge') %>
+      <%= select_tag(:course_category_id, options_from_collection_for_select(CourseCategory.all, "id", "name"), class:
+        'borderlessInputLarge') %><br><br>
 
-  <%= label_tag(:submit, "", class: 'labelLarge') %>
-  <%= f.submit 'Add', class: 'mediumSubmit' %>
-<% end %><br>
+      <%= label_tag(:fees, "Affordable fees:", class: 'labelExtraLarge') %>
+      <%= number_field_tag(:fees, nil, step: :any, class: 'borderlessInputLarge') %><br><br>
+    <% end %>
 
-<table class="table", style="width: 100%;">
-  <tr style="height: 50px; background-color: #ddd;">
-    <th>Category</th><th>Affordable fees</th><th>Description</th><th>Action</th>
-  </tr>
-  <% current_user.category_preferances.select(&:persisted?).each do |g| %>
-    <tr>
-      <th><%= g.course_category.name %></th>
-      <td><%= g.fees %></td>
-      <td><%= g.course_category.description %></td>
-      <td><a href="<%= root_url %>/student/<%= current_user.id
-      %>/reload?destroy=true&type=category&type_id=<%=
-        g.id %>">delete</a></td>
+    <%= label_tag(:submit, "", class: 'labelLarge') %>
+    <%= f.submit 'Add', class: 'mediumSubmit' %>
+  <% end %><br>
+
+  <table class="table", style="width: 100%;">
+    <tr style="height: 50px; background-color: #ddd;">
+      <th>Category</th><th>Affordable fees</th><th>Description</th><th>Action</th>
     </tr>
-  <% end%>
-</table>
+    <% current_user.category_preferances.select(&:persisted?).each do |g| %>
+      <tr>
+        <th><%= g.course_category.name %></th>
+        <td><%= g.fees %></td>
+        <td><%= g.course_category.description %></td>
+        <td><a style="color: red;" href="<%= root_url %>/student/<%= current_user.id
+        %>/reload?destroy=true&type=category&type_id=<%=
+          g.id %>">delete</a></td>
+      </tr>
+    <% end%>
+  </table>
+</div>

@@ -1,22 +1,17 @@
-<div style="padding-top: 250px; padding-left: 300px;">
-  <div class="line">
-    <p style="color: darkorange">Activate account if you have registered</p>
-  </div><br><br><br><br><br>
+<div style="padding-top: 200px; padding-left: 300px; padding-bottom: 20px;">
+  <div class="line" style="line-height: 1.6; font-size: 16px;">
+    <p>Register your university and instantly start receiving prospective student's application from
+    across the globe. Once you register your university,<br>you will receive an approval token from admin in
+      your email with authorization to go ahead and setup your profile.
+    <a href="<%= root_url %>university/search">Activate your account if you<br> receive your token after
+      registration</a></p>
+  </div>
 
-  <div>
-    <p>You will receive a token from portal admin once your university is approved</p>
-    <%= form_tag(root_url+"/university/search", method: :get) do %>
-      <%= label_tag(:token, "Token:", class: "labelLarge") %>
-     <%= text_field_tag :token, params[:token], class: 'largeInput' %>
-      <%= submit_tag('search', class: "mediumSubmit") %>
-     <% end %>
-  </div><br><br>
+  <div class="subject_title">
+    University Registration Form
+  </div>
 
-  <div class="line">
-    <p style="color: darkorange">Register University</p>
-  </div><br><br><br><br><br>
-
-  <%= form_for @uni, url: {action: :create, method: :post} do |f| %>
+  <%= form_for @uni, validate: true, url: {action: :create, method: :post} do |f| %>
     <%= label_tag(:uni_name, "University Name:", class: 'labelExtraLarge') %>
     <%= f.text_field :name, class: 'borderlessInputLarge' %>
 
@@ -28,11 +23,10 @@
 
 
     <%= label_tag(:remark, "Remark:", class: 'labelExtraLarge') %>
-    <%= f.text_area :remark, class: 'extraLargeInput' %><br><br>
-
-    <div class="line">
-      <p style="color: darkorange">Focal Contact</p>
-    </div><br><br><br><br><br>
+    <%= f.text_area :remark, class: 'texareaMediumInput' %><br><br>
+    <div class="subject_title">
+      Focal Contact
+    </div>
 
     <%= f.fields_for :focal_contact do |g| %>
       <%= label_tag(:firstname, "First Name:", class: 'labelLarge') %>
@@ -44,16 +38,18 @@
       <%= label_tag(:lastname, "Last Name:", class: 'labelLarge') %>
       <%= g.text_field :lastname, class: 'borderlessInputMedium' %><br><br>
 
+      <%= label_tag(:phone_no, "Phone No:", class: 'labelLarge') %>
+      <%= g.text_field :phone_number, class: 'borderlessInputMedium' %>
+
       <%= label_tag(:email, "Email:", class: 'labelLarge') %>
       <%= g.text_field :email, class: 'borderlessInputLarge' %>
 
-      <%= label_tag(:phone_no, "Phone No:", class: 'labelLarge') %>
-      <%= g.text_field :phone_number, class: 'borderlessInputMedium' %><br><br>
+
     <% end %>
 
-    <div class="line">
-      <p style="color: darkorange">University Address</p>
-    </div><br><br><br><br><br>
+    <div class="subject_title">
+      University Address
+    </div>
 
     <%= f.fields_for :address do |g| %>
       <%= label_tag(:street_no, "Street No:", class: 'labelLarge') %>
@@ -75,9 +71,10 @@
       <%= g.text_field :country, class: 'borderlessInputMedium' %><br><br>
     <% end %>
 
-
-    <%= label_tag(:submit, "", class: 'labelLarge') %>
-    <%= f.submit 'Create Account', class: 'largeSubmit' %>
+    <span style="padding-left: 100px;">
+      <%= label_tag(:submit, "", class: 'labelLarge') %>
+      <%= f.submit 'Create Account', class: 'largeSubmit' %>
+    </span>
   <% end %>
 </div>
 

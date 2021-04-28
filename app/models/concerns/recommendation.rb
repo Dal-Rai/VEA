@@ -6,7 +6,9 @@ module Recommendation
   end
 
   def non_member?
-    self.wallet.end_date >= DateTime.current
+    return true if self.wallet.nil?
+    return true unless self.wallet.persisted?
+    self.wallet.end_date <= DateTime.current
   end
 
   def basic_member?

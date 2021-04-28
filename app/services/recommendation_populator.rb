@@ -25,7 +25,15 @@ class RecommendationPopulator
 
   def filter_courses(courses)
     filtered_courses = courses.select{|course| course.qualifies?(student)}
-    filtered_courses.order(total_weightage: :desc)
+    mla_courses = select_courses_mla(filtered_courses)
+    final_courses = mla_courses.empty? ? filtered_courses : mla_courses
+    Course.where(id: final_courses.map(&:id)).order(total_weightage: :desc)
+  end
+
+  def select_courses_mla(courses)
+    return [] if student.highest_english_competency.nil? || student.highest_qualification.nil?
+    ml_courses = KnnBallAlgorithm.new({courses: courses, user_data: user_data}).limit_result(10)
+    Course.where(id: ml_courses.map{|x| x[:id]})
   end
 
   private
@@ -40,5 +48,13 @@ class RecommendationPopulator
   def suggested_courses
     Course.where(rank: student.future_qualification_number)
   end
+
+  private
+
+  def user_data
+    [student.highest_english_competency&.overall_band, student.highest_qualification&.overall_percentage]
+  end
+
+
 
 end

@@ -1,3 +1,7 @@
+<script>
+  document.getElementById('uni_fourth').classList.add("active");
+</script>
+
 <div class="col-lg-3">
   <%= label_tag nil %>
 </div>
@@ -12,7 +16,7 @@
       <%= f.text_field :code, class: 'borderlessInputMedium' %><br>
 
       <%= label_tag(:credit_point, "Credit Point:", class: 'labelLarge') %>
-      <%= f.number_field :credit_point, class: 'borderlessInputMedium' %><br>
+      <%= f.number_field :credit_point,  step: :any, class: 'borderlessInputMedium' %><br>
 
       <%= label_tag(:name, "Unit Name:", class: 'labelLarge') %>
       <%= f.text_field :name, class: 'borderlessInputLarge' %><br><br>
@@ -55,11 +59,10 @@
           </td>
 
           <td height="40">
-            <a href="<%= root_url %>course/<%= params[:course_id] %>/unit/<%= unit.id %>">Edit</a>
+            <a style="color: dodgerblue" href="<%= root_url %>course/<%= params[:course_id] %>/unit/<%= unit.id %>">Edit</a>
             ||
-            <%= link_to "Delete", course_unit_path(course_id: params[:course_id], id: unit.id), method: :delete, data: {
-              confirm: 'Are you sure?'
-            }%>
+            <%= link_to "Delete", course_unit_path(course_id: params[:course_id], id: unit.id), method: :delete,
+              :style=> "color: red;", data: { confirm: 'Are you sure?' }%>
           </td>
         </tr>
       <%end%>

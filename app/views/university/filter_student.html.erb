@@ -1,3 +1,7 @@
+<script>
+  document.getElementById('uni_fifth').classList.add("active");
+</script>
+
 <div class="col-lg-2">
   <%= label_tag :space, "" %>
 </div>
@@ -24,8 +28,12 @@
         <td><%= g.highest_qualification_name %></td>
         <td><%= g.highest_english_competency_name %></td>
         <td><%= g.total_experience %></td>
-        <td><a href="<%= root_url %>users/student_details?student_id=<%= g.id %>">View</a></td>
+        <td><a style="color: dodgerblue;" href="<%= root_url %>users/student_details?student_id=<%= g.id %>">View</a></td>
       </tr>
     <% end%>
   </table>
+  <div style="width: 100%; height: 30px; background-color: lightgrey;">
+    <%= will_paginate @students %>
+  </div>
+
 </div>

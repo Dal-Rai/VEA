@@ -13,7 +13,7 @@ class ApplicationProgress < ApplicationRecord
     errors.add(:application_progress, 'You have already applied to this course') if applied?
   end
 
-  def applied?
+  def course_applied?
     ApplicationProgress
       .where(user_id: self.user_id, course_id: self.course_id, state: [1,2,3,4]).present?
   end

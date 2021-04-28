@@ -19,10 +19,12 @@ module CourseFilter
 
   def academic_qualified?(user)
     qualified = true
+
     subjects.each do |sub|
       user_sub = user.subjects.find_by(name: sub.name)
       qualified = false if user_sub.nil? || user_sub.percentage < sub.percentage
     end
+
     return qualified
   end
 

@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 <style>
   body {
     margin: 0;
@@ -7,41 +8,57 @@
     list-style-type: none;
     margin: 0;
     padding: 0;
-    width: 15%;
-    background-color: #f1f1f1;
+    background-color: #59cde2;
     position: fixed;
     height: auto;
     overflow: auto;
+    color: white;
+    text-align: center;
   }
 
   li a {
+    height: 50px;
     display: block;
-    color: #000;
-    padding: 8px 16px;
+    font-size: 16px;
     text-decoration: none;
+
   }
 
   li a.active {
-    background-color: #4CAF50;
-    color: white;
+    background-color: white;
+    color: #59cde2;
   }
 
   li a:hover:not(.active) {
-    background-color: #555;
+    background-color: #59cde2;
+    color: red;
+  }
+  a:not(.active){
     color: white;
+    background-color: transparent;
+    text-decoration: none;
   }
 </style>
 
 <h2>
-  <ul>
-    <li><a id="uni_first" href="<%= root_url %>/users/<%= current_user.id%>?type=profile">Profile</a></li><br>
-    <li><a id="uni_second" href="<%= root_url %>/users/<%= current_user.university_id%>?type=university">University</a></li><br>
-    <li><a id="uni_third" href="<%= root_url %>/users/<%= current_user.university_id%>?type=rule">Criteria</a></li><br>
-    <li><a id="uni_fourth" href="<%= root_url %>/university/<%= current_user.university_id%>/faculty?type=faculty">Courses</a></li><br>
-    <li><a id="uni_fifth" href="<%= root_url %>/university/<%= current_user.university_id %>/prospective_student">students</a></li><br>
-    <li><a id="uni_sixth" href="<%= root_url %>/university/<%= current_user.university_id%>/application?type=application">Application</a></li><br>
-    <li><a href="<%= root_url %>/chats/application">Chats</a></li><br>
-    <li><%= button_to "logout", destroy_user_session_path, method: :delete  %></li>
+  <ul style="width: 10%;">
+    <li> <%= image_tag("vea.png", size: "206x147", alt: "VEA") %></li>
+    <li><a id="uni_first" href="<%= root_url %>users/<%= current_user.id%>?type=profile"><i
+      class="fa fa-user-circle fa-lg" style="padding-top: 10px;"><br>Profile</i></a></li><br>
+    <li><a id="uni_second" href="<%= root_url %>users/<%= current_user.university_id%>?type=university"><i class="fa
+    fa-university fa-lg" style="padding-top: 10px;"><br>University</i></a></li><br>
+    <li><a id="uni_third" href="<%= root_url %>users/<%= current_user.university_id%>?type=rule"><i class="fa
+    fa-user-cog fa-lg" style="padding-top: 10px;"><br>Criteria</i></a></li><br>
+    <li><a id="uni_fourth" href="<%= root_url %>university/<%= current_user.university_id%>/faculty?type=faculty"><i class="fa
+    fa-book-reader fa-lg" style="padding-top: 10px;"><br>Courses</i></a></li><br>
+    <li><a id="uni_fifth" href="<%= root_url %>university/<%= current_user.university_id %>/prospective_student"><i class="fa
+    fa-user-graduate fa-lg" style="padding-top: 10px;"><br>students</i></a></li><br>
+    <li><a id="uni_sixth" href="<%= root_url %>university/<%= current_user.university_id%>/application?type=application"><i class="fa
+    fa-server fa-lg" style="padding-top: 10px;"><br>Application</i></a></li><br>
+    <li><a href="<%= root_url %>chats/application"><i class="fa
+    fa-inbox fa-lg" style="padding-top: 10px;"><br>Chats</i></a></li><br>
+    <li><i class="fa fa-power-off fa-sm"><br>
+      <%= button_to "logout", destroy_user_session_path, method: :delete, class: "borderless-button" %></i></li>
   </ul>
 </h2>
 

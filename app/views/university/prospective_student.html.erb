@@ -29,4 +29,7 @@
       </tr>
     <% end%>
   </table>
+  <div style="width: 50px;">
+    <%= paginate @students if @students.present? %>
+  </div>
 </div>

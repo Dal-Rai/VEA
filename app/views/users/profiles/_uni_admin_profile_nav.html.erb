@@ -14,7 +14,7 @@
   /* Style the buttons inside the tab */
   .tab button {
     background-color: inherit;
-    float: left;
+    float: right;
     border: none;
     outline: none;
     cursor: pointer;
@@ -30,7 +30,7 @@
 
   /* Create an active/current tablink class */
   .tab button.active {
-    border: 1px solid #ccc;
+    /*border: 1px solid #ccc;*/
     background-color: #ccc;
   }
 
@@ -43,21 +43,21 @@
   }
 </style>
 
-<span style="color: darkorange; font-size: 20px;">Personal Information</span>
+<h1>Personal Information:</h1>
 
 <div class="tab" style="padding-top: 20px;" >
-  <button class="tablinks" id="profile_tab" onclick="openAcademic(event, 'profile')"><p style="color: dodgerblue">Personal
-    Profile</p></button>
   <button class="tablinks" id="invite_tab" onclick="openAcademic(event, 'invite')"><p style="color: dodgerblue">Invite
     User</p></button>
-</div>
-
-<div id="profile" class="tabcontent">
-  <%= render(partial: "users/profiles/uni_admin_profile_personal") %>
+  <button class="tablinks" id="profile_tab" onclick="openAcademic(event, 'profile')"><p style="color: dodgerblue">Personal
+    Profile</p></button>
 </div>
 
 <div id="invite" class="tabcontent">
   <%= render(partial: "users/profiles/uni_admin_profile_invite") %>
+</div>
+
+<div id="profile" class="tabcontent">
+  <%= render(partial: "users/profiles/uni_admin_profile_personal") %>
 </div>
 
 <script>

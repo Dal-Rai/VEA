@@ -19,6 +19,11 @@ class Course < ActiveRecord::Base
   enum rank: {high_school: 0, diploma: 1, graduate: 2, post_graduate: 3, phd: 4}
   enum semester_type: {semester: 0, tri_semester: 1}
 
+  delegate :university_name, to: :faculty, prefix: false, allow_nil: :false
+
+  after_save    { Indexer.perform_async(:index,  self.id) }
+  after_destroy { Indexer.perform_async(:delete, self.id) }
+
   settings do
     mappings dynamic: false do
       indexes :code, type: :text
@@ -27,7 +32,8 @@ class Course < ActiveRecord::Base
   end
 
   def search_detail
-    "#{code}  #{name} is offered in #{faculty.university.name}"
+    "#{name} is offered in #{university_name} and has #{units.count} units.
+      For details you can visit this link..."
   end
 
   def as_indexed_json(options={})

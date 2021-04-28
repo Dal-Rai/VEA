@@ -1,4 +1,5 @@
-<% @url = root_url+"search_engine/search_unit" %>
+<div>
+  <% @url = root_url+"search_engine/search_unit" %>
   <%= form_tag(@url, method: :get) do %>
     <%= hidden_field_tag(:course_id, @course.id) %>
     <%= label_tag(:search, "Unit Code/Name:", class: "labelExtraLarge") %>

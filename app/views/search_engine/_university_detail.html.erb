@@ -1,8 +1,12 @@
-<div style="padding-top: 250px;">
-  <div class="line">
-    <span style="color: darkorange; font-size: 20px;"> University Detail </span>
-  </div><br><br>
+<% if current_user.present? %>
+  <div style="color: darkorange; font-size: 20px; padding-top: 50px; padding-bottom: 50px; padding-right: 400px;
+  ">University Detail:</div>
+<%else%>
+  <div style="color: darkorange; font-size: 20px; padding-top: 200px; padding-bottom: 50px; padding-right: 400px;
+  ">University Detail:</div>
+<%end%>
 
+<div>
   <span class="labelExtraLarge"><b>University Name:</b></span>
   <span class="borderlessInputLarge"><%= university.name%></span><br><br>
   <span class="labelExtraLarge" style="padding-top: 10px;"><b>Website Link:</b></span>

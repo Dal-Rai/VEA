@@ -1,7 +1,9 @@
 <% if current_user.present? %>
-  <h1>Course Details:</h1>
+  <div style="color: darkorange; font-size: 20px; padding-top: 50px; padding-bottom: 50px; padding-right: 400px;
+  ">Course Details:</div>
 <%else%>
-  <h1 style="padding-top: 200px; padding-right: 400px;">Course Details:</h1>
+  <div style="color: darkorange; font-size: 20px; padding-top: 200px; padding-bottom: 50px; padding-right: 400px;
+  ">Course Details:</div>
 <%end%>
 
 <div class="tab">
@@ -25,7 +27,7 @@
     %></span><br><br>
 
     <%= label_tag(:duration, "Total Sessions:", class: 'labelExtraLarge') %>
-    <%= f.number_field :duration, class: 'borderlessInputMedium', readonly: 'readonly' %><br><br>
+    <%= f.number_field :duration, step: :any, class: 'borderlessInputMedium', readonly: 'readonly' %><br><br>
 
     <%= label_tag(:total_fees, "Total Fees:", class: 'labelExtraLarge') %>
     <%= f.text_field :total_fees, class: 'borderlessInputMedium', readonly: 'readonly' %><br><br>

@@ -2,6 +2,10 @@
   <%= label_tag nil %>
 </span>
 
+<script>
+  document.getElementById('stud_sixth').classList.add("active");
+</script>
+
 <div class="col-lg-9">
   <table class="table", style="width: 100%;">
     <tr style="height: 50px; background-color: #ddd;">
@@ -13,7 +17,7 @@
         <td><%= g.user.name %></td>
         <td><%= g.user.email %></td>
         <td><%= g.state %></td>
-        <td><a href="<%= root_url %>/chats?application_id=<%= g.id %>"><%= g.chats.count %></a></td>
+        <td><a style="color: red;" href="<%= root_url %>/chats?application_id=<%= g.id %>"><%= g.chats.count %></a></td>
       </tr>
     <% end%>
   </table>

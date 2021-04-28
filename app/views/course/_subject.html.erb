@@ -6,7 +6,7 @@
     <%= g.text_field :name, class: 'borderlessInputLarge' %><br><br>
 
     <%= label_tag(:percentage, "Score:", class: 'labelLarge') %>
-    <%= g.number_field :percentage, class: 'borderlessInputMedium' %><br><br>
+    <%= g.number_field :percentage, step: :any, class: 'borderlessInputMedium' %><br><br>
 
     <%= label_tag(:description, "Description:", class: 'labelLarge') %>
     <%= g.text_area :description, class: 'extraLargeInput' %><br><br>
@@ -25,7 +25,8 @@
       <th><%= g.name %></th>
       <td><%= g.percentage %></td>
       <td><%= g.description %></td>
-      <td><a href="<%= root_url %>/student/<%= current_user.id %>/reload?destroy=true&type=english&type_id=<%= g.id %>">delete</a></td>
+      <td><a style="color: red;" href="<%= root_url %>/university/<%= current_user.university_id
+      %>/reload?destroy=true&type=subject&type_id=<%= g.id %>&course_id=<%= @course.id %>">delete</a></td>
     </tr>
   <% end%>
 </table>

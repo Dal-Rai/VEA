@@ -30,6 +30,9 @@ class University < ApplicationRecord
   before_create :assign_token
   after_create :notify_portal_admin
 
+  after_save    { Indexer.perform_async(:index,  self.id) }
+  after_destroy { Indexer.perform_async(:delete, self.id) }
+
   settings do
     mappings dynamic: false do
       indexes :name, type: :text
@@ -38,7 +41,8 @@ class University < ApplicationRecord
   end
 
   def search_detail
-    "#{name} has #{faculties.count} departments"
+    "#{name} is locacated at #{address.full_address} and offers #{courses.count} courses at different levels. For
+     details please visit the link..."
   end
 
   def assign_token

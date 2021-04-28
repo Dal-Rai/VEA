@@ -68,7 +68,7 @@
           <%= g.email_field :email,  placeholder: "Email", required: 'required' %>
         </div>
         <div class="form-group">
-          <%= g.number_field :phone,  placeholder: "Phone", required: 'required' %>
+          <%= g.number_field :phone, step: :any, placeholder: "Phone", required: 'required' %>
         </div>
         <div class="form-group">
           <%= g.url_field :website, placeholder: "Website", required: 'required' %>

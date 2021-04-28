@@ -6,9 +6,9 @@
   <% end %>
 </div>
 
-<div class="line">
-  <span style="color: darkorange; font-size: 20px;">Set weightage for experience</span>
-</div><br><br><br><br><br>
+<div  style="color: darkorange; font-size: 20px; padding-bottom: 50px;">
+  Set Weightage for Experience
+</div>
 
 <%= form_for current_user.university, url: {controller: :university, action: :add_criteria, method: :patch, id:
   current_user
@@ -22,7 +22,7 @@
       ["Certificate Or High School", "high_school"]]), class: 'borderlessInputLarge' %>
 
     <%= label_tag(:weightage, "Weightage:", class: 'labelLarge') %>
-    <%= g.number_field :weightage, class: 'borderlessInputMedium' %><br><br>
+    <%= g.number_field :weightage, step: :any, class: 'borderlessInputMedium' %><br><br>
 
     <%= label_tag(:description, "Description:", class: 'labelLarge') %>
     <%= g.text_area :description, class: 'extraLargeInput' %><br><br>
@@ -39,10 +39,10 @@
   </tr>
   <% current_user.university.qualification_criterias.select(&:persisted?).each do |g| %>
     <tr>
-      <th><%= g.qualification_type %></th>
+      <th><%= CONSTANTS[g.qualification_type_before_type_cast] %></th>
       <td><%= g.weightage %></td>
       <td><%= g.description %></td>
-      <td><a href="<%= root_url %>/university/<%= current_user.university_id
+      <td><a style="color: red;" href="<%= root_url %>/university/<%= current_user.university_id
       %>/reload?destroy=true&type=qualification&type_id=<%= g.id %>">delete</a></td>
     </tr>
   <% end%>

@@ -21,7 +21,7 @@
     <%= f.text_field :weblink, class: 'borderlessInputLarge' %><br><br>
 
     <%= label_tag(:semester_living_expenses, "Living expenses:", class: 'labelExtraLarge') %>
-    <%= f.number_field :semester_living_expenses, placeholder: "Uni logde per semester", class: 'borderlessInputMedium' %>
+    <%= f.number_field :semester_living_expenses, step: :any, placeholder: "Uni logde per semester", class: 'borderlessInputMedium' %>
     (Average uni logde expenses per semester)
     <br><br>
 

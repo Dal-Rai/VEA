@@ -2,15 +2,23 @@
   document.getElementById('uni_fourth').classList.add("active");
 </script>
 
+<style>
+  ul.override  {
+  width: 200px;
+  }
+</style>
+
 <div class="col-lg-2">
   <%= label_tag nil %>
 </div>
 
 <div class="col-lg-10">
-  <span style="color: darkorange; font-size: 20px;"> Faculty Details </span>
-  <span style="color: blue; font-size: 20px; padding-left: 77%">
-    <a href="<%= root_url %>university/<%= @university.id %>/faculty/new">Create Faculty</a>
-  </span>
+  <div style="padding-top: 50px;">
+    <span style="color: darkorange; font-size: 20px; padding-bottom: 50px;"> Faculty Details </span>
+    <span style="color: blue; font-size: 20px; padding-left: 77%">
+      <a style="color: dodgerblue" href="<%= root_url %>university/<%= @university.id %>/faculty/new">Create Faculty</a>
+    </span>
+  </div>
 
   <table id="facultyIndex", class="display", style="width: 100%;">
     <thead>
@@ -33,22 +41,21 @@
         </td>
 
         <td height="40">
-          <a href="<%= root_url %>course?faculty_id=<%= faculty.id %>">
+          <a style="color: dodgerblue;" href="<%= root_url %>course?faculty_id=<%= faculty.id %>">
           <%= faculty.courses.count %></a>
         </td>
 
         <td height="40">
-          <a href="<%= root_url %>university/<%= @university.id %>/faculty/<%= faculty.id %>">Edit</a>
+          <a style="color: dodgerblue" href="<%= root_url %>university/<%= @university.id %>/faculty/<%= faculty.id %>">Edit</a>
           ||
           <%= link_to "Delete", university_faculty_path(id: faculty.id, university_id: @university.id),
-            method: :delete,
-              data: { confirm: 'Are you sure?' }%>
+            method: :delete, :style=> "color: red;", data: { confirm: 'Are you sure?' }%>
         </td>
       </tr>
     <%end%>
     </tbody>
   </table>
-  <div>
+  <div style="width: 50px;">
     <%= paginate @faculties %>
   </div>
 </div>

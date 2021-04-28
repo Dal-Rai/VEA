@@ -41,7 +41,7 @@
       <td>
         <%= render(partial: "users/profiles/student_academic_subject_modal", tabName: "Dal", locals: {qualification: g}) %>
       </td>
-      <td><a href="<%= root_url %>/student/<%= current_user.id
+      <td><a style="color: red; " href="<%= root_url %>/student/<%= current_user.id
       %>/reload?destroy=true&type=qualification&type_id=<%=
         g.id %>">delete</a></td>
     </tr>

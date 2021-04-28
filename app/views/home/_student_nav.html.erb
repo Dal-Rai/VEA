@@ -1,5 +1,4 @@
 <style>
-
   body {
     margin: 0;
   }
@@ -8,40 +7,58 @@
     list-style-type: none;
     margin: 0;
     padding: 0;
-    width: 20%;
-    background-color: #f1f1f1;
+    width: 12%;
+    background-color: #59cde2;
     position: fixed;
     height: auto;
     overflow: auto;
+    color: white;
+    text-align: center;
   }
 
   li a {
+    height: 50px;
     display: block;
-    color: #000;
-    padding: 8px 16px;
+    font-size: 16px;
     text-decoration: none;
+
   }
 
   li a.active {
-    background-color: #4CAF50;
-    color: white;
+    background-color: white;
+    color: #59cde2;
   }
 
   li a:hover:not(.active) {
-    background-color: #555;
+    background-color: #59cde2;
+    color: red;
+  }
+  a:not(.active){
     color: white;
+    background-color: transparent;
+    text-decoration: none;
   }
 </style>
 
 <h3>
   <ul>
-    <li><a id='stud_first' href="<%= root_url %>users/<%= current_user.id%>?type=search">Search</a></li><br>
-    <li><a id='stud_second' href="<%= root_url %>users/<%= current_user.id%>?type=profile">Profile</a></li><br>
-    <li><a id='stud_third' href="<%= root_url %>users/<%= current_user.id%>?type=portfolio">Academic Portfolio</a></li><br>
-    <li><a id='stud_fourth' href="<%= root_url %>student/<%= current_user.id%>/recommendation?type=recommendation">Recommendation</a></li><br>
-    <li><a id='stud_fifth' href="<%= root_url %>student/<%= current_user.id%>/application?type=application">Application</a></li><br>
-    <li><a href="<%= root_url %>chats/application">Chats</a></li><br>
-    <li><%= button_to "logout", destroy_user_session_path, method: :delete  %></li>
+    <li> <%= image_tag("vea.png", size: "206x147", alt: "VEA") %></li>
+    <li><a id='stud_first' href="<%= root_url %>users/<%= current_user.id%>?type=search">
+      <i class="fa fa-search fa-lg" style="padding-top: 10px;"><br>Search</i></a></li><br>
+    <li><a id='stud_second' href="<%= root_url %>users/<%= current_user.id%>?type=profile">
+      <i class="fa fa-user-circle fa-lg" style="padding-top: 10px;"><br>Profile</i></a></li><br>
+    <li><a id='stud_third' href="<%= root_url %>users/<%= current_user.id%>?type=portfolio">
+      <i class="fa fa-book fa-lg" style="padding-top: 10px;"><br>Academic</i></a></li><br>
+    <% unless current_user.non_member? %>
+      <li><a id='stud_fourth' href="<%= root_url %>student/<%= current_user.id%>/recommendation?type=recommendation">
+        <i class="fa fa-info fa-lg" style="padding-top: 10px;"><br>Recommendation</i></a></li><br>
+    <%end%>
+    <li><a id='stud_fifth' href="<%= root_url %>student/<%= current_user.id%>/application?type=application"><i class="fa
+    fa-server fa-lg" style="padding-top: 10px;"><br>Application</i></a></li><br>
+    <li><a id="stud_sixth" href="<%= root_url %>chats/application"><i class="fa
+    fa-inbox fa-lg" style="padding-top: 10px;"><br>Chats</i></a></li><br>
+    <li><i class="fa fa-power-off fa-sm"><br>
+      <%= button_to "logout", destroy_user_session_path, method: :delete, class: "borderless-button" %></i></li>
   </ul>
 </h3>
 </div>

@@ -1,8 +1,8 @@
-<div class="col-lg-4">
+<div class="col-lg-3">
   <%= label_tag :space, "" %>
 </div>
 
-<div class="col-lg-8">
+<div class="col-lg-9">
   <% if params[:type].eql? 'profile' %>
     <%= render(partial: "users/profiles/student_profile") %>
   <%elsif params[:type].eql? 'portfolio'%>

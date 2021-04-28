@@ -24,14 +24,35 @@
     </div>
   </div>
 
-  <div style="padding-top: 50px;">
-    <p style="color: darkorange; font-size: 20px;">Attached Files</p><br>
-    <% @application.attachments.each do |attachment| %>
-      <p style="font-size: 18px;">File Name:  <span style="padding-left: 30px;"><%= attachment.name %></span>
-      <span style="padding-left: 30px;"><%= link_to("Click to download", attachment.file(:original,
-        false), download: attachment.name) %></span></p>
+  <div><p style="color: <%= status_color(1) %>; font-size: 20px;">Application Submitted</p>
+    <% @application.attachments.where(name: 'Application File').each do |attachment| %>
+      <p style="font-size: 18px; padding-left: 25px;">File Name:  <span style="padding-left: 30px;"><%= attachment.name
+      %></span><span style="padding-left: 30px;"><%= link_to("Click to download", attachment.file(:original,
+          false), download: attachment.name, :style => "color: blue") %></span></p>
     <% end %>
   </div>
+  <div><p style="color: <%= status_color(2) %>; font-size: 20px;">Offer Letter Received</p>
+    <% @application.attachments.where(name: 'Offer Letter').each do |attachment| %>
+      <p style="font-size: 18px; padding-left: 25px;">File Name:  <span style="padding-left: 30px;"><%= attachment.name %></span>
+        <span style="padding-left: 30px;"><%= link_to("Click to download", attachment.file(:original,
+          false), download: attachment.name, :style => "color: blue") %></span></p>
+    <% end %>
+  </div>
+  <div><p style="color: <%= status_color(3) %>; font-size: 20px;">Sop Sumitted</p>
+    <% @application.attachments.where(name: 'SOP File').each do |attachment| %>
+      <p style="font-size: 18px; padding-left: 25px;">File Name:  <span style="padding-left: 30px;"><%= attachment.name %></span>
+        <span style="padding-left: 30px;"><%= link_to("Click to download", attachment.file(:original,
+          false), download: attachment.name, :style => "color: blue") %></span></p>
+    <% end %>
+  </div>
+  <div><p style="color: <%= status_color(4) %>; font-size: 20px;">COE Received</p>
+    <% @application.attachments.where(name: 'COE Letter').each do |attachment| %>
+      <p style="font-size: 18px; padding-left: 25px;">File Name:  <span style="padding-left: 30px;"><%= attachment.name %></span>
+        <span style="padding-left: 30px;"><%= link_to("Click to download", attachment.file(:original,
+          false), download: attachment.name, :style => "color: blue") %></span></p>
+    <% end %></div>
+  <div><p style="color: <%= status_color(5) %>; font-size: 20px;">Enrolled</p></div>
+
 
   <% if current_user.uni_admin? %>
     <% if @application.applied? %>
@@ -55,7 +76,7 @@
           <%= g.label_tag(:file, "Re-upload Offer Letter") %><br>
           <%= g.file_field :file %>
         <% end %>
-        <%= f.submit 'Upload', class: 'mediumSubmit' %>
+        <%= f.submit 'Re-Upload', class: 'mediumSubmit' %>
       <%end %>
 
     <% elsif @application.sop_submission? %>
@@ -80,7 +101,7 @@
           <%= g.label_tag(:file, "Re-upload COE Letter") %><br>
           <%= g.file_field :file %>
         <% end %>
-        <%= f.submit 'Upload', class: 'mediumSubmit' %>
+        <%= f.submit 'Re-Upload', class: 'mediumSubmit' %>
       <%end %>
 
       <p style="color: red; font-size: 15px; padding-top: 25px;">Enroll Applicant</p><br>
@@ -100,7 +121,7 @@
           <%= g.label_tag(:file, "Re-upload Application File") %><br>
           <%= g.file_field(:file)%><br><br>
         <% end %>
-        <%= f.submit 'Upload', class: 'mediumSubmit' %>
+        <%= f.submit 'Re-Upload', class: 'mediumSubmit' %>
       <% end %>
 
     <% elsif @application.sop_submission? %>
@@ -112,7 +133,7 @@
           <%= g.label_tag(:file, "Re-upload SOP File") %><br>
           <%= g.file_field(:file)%><br><br>
         <% end %>
-        <%= f.submit 'Upload', class: 'mediumSubmit' %>
+        <%= f.submit 'Re-Upload', class: 'mediumSubmit' %>
       <% end %>
 
       <% elsif @application.offer_received? %>
@@ -129,15 +150,11 @@
     <% end %>
   <% end %>
 
-  <% if @application.created_at + @application.total_session_months.months  %>
-    <p style="color: red; font-size: 15px;">Provide Offer Letter</p><br>
+  <% if @application.created_at + @application.total_session_months.months < DateTime.current  %>
+    <p style="color: red; font-size: 15px;">Course Complete</p><br>
     <%= form_for @application, url: {controller: :application_progress, action: :transition, method: :put, id:
       @application.id} do |f| %>
-      <%= f.hidden_field :event, value: "offering" %>
-      <%= f.fields_for :attachables_attributes do |g| %>
-        <%= g.hidden_field(:name, value: 'Offer Letter') %>
-        <%= g.file_field :file %>
-      <% end %>
+      <%= f.hidden_field :event, value: "completing" %>
       <%= f.submit 'Upload', class: 'mediumSubmit' %>
     <%end %>
    <%end%>

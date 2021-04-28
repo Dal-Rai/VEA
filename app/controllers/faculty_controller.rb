@@ -29,7 +29,7 @@ class FacultyController < ApplicationController
 
   def index
     @user = User.uni_admin.first
-    @faculties = @university.faculties.page(params[:page]).per(1)
+    @faculties = @university.faculties.page(params[:page])
   end
 
 

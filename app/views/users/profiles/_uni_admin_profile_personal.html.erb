@@ -1,7 +1,7 @@
 <div class="top-space">
-  <div class="line">
-    Personal Detail
-  </div><br><br><br><br><br>
+  <div class="subject_title" style="padding-bottom: 50px;">
+    Your details
+  </div>
 
   <div>
     <% flash.each do |name, msg| %>
@@ -11,7 +11,7 @@
     <% end %>
   </div>
 
-  <%= form_for current_user, url: { action: :update, method: :put, id: current_user.id} do |f| %>
+  <%= form_for current_user, validate: true, url: { action: :update, method: :put, id: current_user.id} do |f| %>
     <%= label_tag(:email, "Email:", class: 'labelLarge') %>
     <%= f.text_field :email, class: 'borderlessInputLarge' %><br><br>
     <%= f.fields_for :profile do |g| %>

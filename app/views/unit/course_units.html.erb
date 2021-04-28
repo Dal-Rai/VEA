@@ -1,3 +1,7 @@
+<script>
+  document.getElementById('uni_fourth').classList.add("active");
+</script>
+
 <div class="col-lg-2">
   <%= label_tag nil %>
 </div>
@@ -8,12 +12,14 @@
     <%= render(partial: "unit/text_change") %>
   </div>
 
- <div style="padding-top: 40px">
-  <span style="color: darkorange; font-size: 20px;"> Unit Details </span>
-  <span style="color: blue; font-size: 20px; padding-left: 80%">
-    <a href="<%= root_url %>course/<%= @course.id %>/unit/new">Create Unit</a>
-  </span>
+  <div style="padding-top: 40px">
+    <span style="color: darkorange; font-size: 20px;"> Unit Details </span>
+    <span style="color: blue; font-size: 20px; padding-left: 80%">
+      <a style="color: dodgerblue" href="<%= root_url %>course/<%= @course.id %>/unit/new">Create Unit</a>
+    </span>
+  </div>
 
+  <div>
    <table class="table", style="width: 100%;">
      <tr style="height: 50px; background-color: #ddd;">
       <th width="300", height="40">Name</th>
@@ -41,12 +47,10 @@
         </td>
 
         <td height="40">
-          <a href="<%= root_url %>course/<%= @course.id %>/unit/<%= cor_unit.unit.id %>">Edit</a>
+          <a style="color: dodgerblue" href="<%= root_url %>course/<%= @course.id %>/unit/<%= cor_unit.unit.id %>">Edit</a>
           ||
           <%= link_to "Delete", courses_unit_path(id: cor_unit.id, login_aei: params[:login_aei]), method: :delete,
-            data: {
-            confirm: 'Are you sure?'
-          }%>
+            :style=> "color: red;", data: { confirm: 'Are you sure?' }%>
         </td>
       </tr>
     <%end%>

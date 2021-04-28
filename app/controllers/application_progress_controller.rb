@@ -28,7 +28,7 @@ class ApplicationProgressController < ApplicationController
 
   def transition
     if application.event(current_user, transition_params)
-      unless application.enrolled?
+      unless (application.enrolled? || application.completed?)
         application.attachments.new(
           file: attachment_params[:attachables_attributes][:file],
           name: attachment_params[:attachables_attributes][:name]

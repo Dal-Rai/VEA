@@ -40,7 +40,7 @@ class CourseController < ApplicationController
 
   def index
     @faculty = find_faculty
-    @courses = @faculty.courses
+    @courses = @faculty.courses.page(params[:page])
   end
 
   def destroy

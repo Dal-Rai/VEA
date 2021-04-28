@@ -24,8 +24,8 @@
   <% end %>
 </div>
 
-<%= form_for current_user.university, url: {controller: :university, action: :add_criteria, method: :patch, id:
-  current_user.university_id} do |f| %>
+<%= form_for current_user.university, validate: true, url: {controller: :university, action: :add_criteria, method:
+  :patch, id: current_user.university_id} do |f| %>
   <div class="line">
     <span style="color: darkorange; font-size: 20px;">Create Your Rule</span>
   </div><br><br><br><br><br>
@@ -58,8 +58,7 @@
       <th><%= g.criteria %></th>
       <td><%= g.weightage %></td>
       <td><%= g.description %></td>
-      <td><a href="<%= root_url %>/university/<%= g.university_id
-      %>/reload?destroy=true&type=rule&type_id=<%= g.id %>">delete</a></td>
+      <td><a style="color: red;" href="<%= root_url %>university/<%= g.university_id %>/reload?destroy=true&type=rule&type_id=<%= g.id %>">Delete</a></td>
     </tr>
   <% end%>
 </table>

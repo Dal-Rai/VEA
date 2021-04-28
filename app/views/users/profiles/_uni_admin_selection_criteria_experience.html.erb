@@ -1,3 +1,7 @@
+<div  style="color: darkorange; font-size: 20px; padding-bottom: 50px;">
+  Set weightage for Experience
+</div>
+
 <div>
   <% flash.each do |name, msg| %>
     <div class='alert alert-<%= name %>'>
@@ -12,16 +16,16 @@
   <%= f.fields_for current_user.university.experience_criteria do |g| %>
     <%= hidden_field(:type, value='experience') %>
 
-    <%= label_tag(:related_experience, "Course related experience:", class: 'labelExtraLarge') %>
-    <%= g.text_field :related_experience, class: 'mediumInput' %><br><br>
+    <%= label_tag(:related_experience, "Course related experience:", class: 'label-extra-extra-large') %>
+    <%= g.text_field :related_experience, class: 'borderlessInputMedium' %><br><br>
 
-    <%= label_tag(:unrelated_experience, "Course unrelated experience:", class: 'labelExtraLarge') %>
-    <%= g.text_field :unrelated_experience, class: 'mediumInput' %><br><br>
+    <%= label_tag(:unrelated_experience, "Course unrelated experience:", class: 'label-extra-extra-large') %>
+    <%= g.text_field :unrelated_experience, class: 'borderlessInputMedium' %><br><br>
 
-    <%= label_tag(:description, "Description:", class: 'labelExtraLarge') %>
+    <%= label_tag(:description, "Description:", class: 'label-extra-extra-large') %>
     <%= g.text_area :description, class: 'extraLargeInput' %><br><br>
   <% end %>
 
-  <%= label_tag(:submit, "", class: 'labelLarge') %>
+  <%= label_tag(:submit, "", class: 'label-extra-extra-large') %>
   <%= f.submit 'Add', class: 'mediumSubmit' %>
 <% end %><br>

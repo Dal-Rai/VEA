@@ -4,6 +4,8 @@
       <title>Virtual Education Agent</title>
       <%= csrf_meta_tags %>
       <meta content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
       <%= action_cable_meta_tag %>
       <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -12,16 +14,24 @@
 
     <body>
       <header>
-        <div class="claim">
-          <div class="center">
-            <div class="text">Find your dream course through Virtual Education Agent</div>
+        <% if current_user.nil? %>
+          <div class="claim">
+            <div class="center">
+              <div class="text">Find your dream course through Virtual Education Agent</div>
+            </div>
           </div>
-        </div>
-
+        <% end %>
         <%= header_nav %>
       </header>
+
       <main role="main">
         <%= yield %>
       </main>
+
+      <%# if current_user.nil? %>
+<!--        <footer>-->
+          <%#= render(partial: "layouts/footer") %>
+<!--        </footer>-->
+      <%# end %>
     </body>
 </html>

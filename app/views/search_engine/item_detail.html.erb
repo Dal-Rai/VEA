@@ -1,7 +1,7 @@
 <div>
   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <div style="padding-left: 25%; padding-right: 10%;">
-      <span class="search-center">
+      <span>
         <% if @result.class.name.eql?("Course") %>
           <%= render(partial: "search_engine/course_detail", locals: {course: @result}) %>
         <% elsif @result.class.name.eql?("University") %>

@@ -1,35 +1,39 @@
-<h1>Course Update</h1><br>
+<div style="padding-bottom: 50px; padding-top: 25px;">
+  <span style="color: darkorange; font-size: 20px;">Update Course Update</span>
+</div>
 
-<%= form_for @course, url: {action: :update, method: :put} do |f| %>
-  <%= hidden_field(:type, value='course') %>
-  <%= label_tag(:name, "Course Code:", class: 'labelExtraLarge') %>
-  <%= f.text_field :code, class: 'borderlessInputMedium' %><br><br>
+<div>
+  <%= form_for @course, url: {action: :update, method: :put} do |f| %>
+    <%= hidden_field(:type, value='course') %>
+    <%= label_tag(:name, "Course Code:", class: 'labelExtraLarge') %>
+    <%= f.text_field :code, class: 'borderlessInputMedium' %><br><br>
 
-  <%= label_tag(:name, "Course Name:", class: 'labelExtraLarge') %>
-  <%= f.text_field :name, class: 'borderlessInputLarge' %><br><br>
+    <%= label_tag(:name, "Course Name:", class: 'labelExtraLarge') %>
+    <%= f.text_field :name, class: 'borderlessInputLarge' %><br><br>
 
-  <%= label_tag(:semester_type, "Session Type:", class: 'labelExtraLarge') %>
-  <%= f.select_tag(:semester_type, options_for_select([["Semester", "semester"], ["Trimester", "tri_mester"]],
-      @course.semester_type), class: 'borderlessInputLarge')
-  %><br><br>
+    <%= label_tag(:semester_type, "Session Type:", class: 'labelExtraLarge') %>
+    <%= f.select_tag(:semester_type, options_for_select([["Semester", "semester"], ["Trimester", "tri_mester"]],
+        @course.semester_type), class: 'borderlessInputLarge')
+    %><br><br>
 
-  <%= label_tag(:duration, "Total Sessions:", class: 'labelExtraLarge') %>
-  <%= f.number_field :duration, class: 'borderlessInputMedium' %><br><br>
+    <%= label_tag(:duration, "Total Sessions:", class: 'labelExtraLarge') %>
+    <%= f.number_field :duration, class: 'borderlessInputMedium' %><br><br>
 
-  <%= label_tag(:total_fees, "Total Fees:", class: 'labelExtraLarge') %>
-  <%= f.text_field :total_fees, class: 'borderlessInputMedium' %><br><br>
+    <%= label_tag(:total_fees, "Total Fees:", class: 'labelExtraLarge') %>
+    <%= f.text_field :total_fees, class: 'borderlessInputMedium' %><br><br>
 
-  <%= label_tag(:course_category, "Category:", class: 'labelExtraLarge') %>
-  <%= select_tag(:course_category_id, options_from_collection_for_select(@course_categories, "id", "name", @course
-    .course_category_id), class:
-    'borderlessInputLarge') %><br><br>
+    <%= label_tag(:course_category, "Category:", class: 'labelExtraLarge') %>
+    <%= select_tag(:course_category_id, options_from_collection_for_select(@course_categories, "id", "name", @course
+      .course_category_id), class:
+      'borderlessInputLarge') %><br><br>
 
-  <%= label_tag(:rank, "Rank:", class: 'labelExtraLarge') %>
-  <%= f.select_tag(:rank, options_for_select([["Certificate Or High School", "high_school"], ["Diploma", "diploma"],
-    ["Under Graduate", "graduate"], ["Post Graduate", "post_graduate"], ["PHD", "phd"]], @course.rank), class: 'borderlessInputLarge')
-  %><br><br>
+    <%= label_tag(:rank, "Rank:", class: 'labelExtraLarge') %>
+    <%= f.select_tag(:rank, options_for_select([["Certificate Or High School", "high_school"], ["Diploma", "diploma"],
+      ["Under Graduate", "graduate"], ["Post Graduate", "post_graduate"], ["PHD", "phd"]], @course.rank), class: 'borderlessInputLarge')
+    %><br><br>
 
-  <%= label_tag(:submit, "", class: 'labelLarge') %>
-  <%= f.submit 'Update', class: 'mediumSubmit' %>
-<% end %>
+    <%= label_tag(:submit, "", class: 'labelLarge') %>
+    <%= f.submit 'Update', class: 'mediumSubmit' %>
+  <% end %>
+</div>
 

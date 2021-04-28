@@ -9,8 +9,8 @@
     </div>
 
     <div>
-      <div class="col-lg-8 search-center">
-        <form method="get" action="search_engine" id="search-form">
+      <div class="<%= search_position %>">
+        <form method="get" id="search-form">
           <div class="input-group main-form-inputs search-text">
             <input type="text" name="term" id="term" class="form-control search-text" value="<%= params[:term] %>"
                    placeholder="search by name">
@@ -27,10 +27,10 @@
     </div>
 
   <% else %>
-    <div class="col-lg-4">
+    <div class="col-lg-3">
       <%= label_tag :space, "" %>
     </div>
-    <div class="col-lg-8">
+    <div class="col-lg-9">
       <span class="search-center">
         <br>
         <form method="get" action="search_engine" id="search-form">
@@ -50,8 +50,4 @@
     </div>
   <% end %>
 </div>
-
-  <%# else %>
-    <%# controller.redirect_to(controller: :users, action: :show, id: current_user.id) %>
-  <%# end %>
 </div>

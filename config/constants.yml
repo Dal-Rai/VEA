@@ -7,8 +7,8 @@ phd: 4
 0_semester: 'Semester'
 1_semester: 'Trimester'
 
-0: 'High School'
-1: 'Diploma'
+0: 'High School Or Diploma'
+1: 'High School Or Diploma'
 2: 'Gradudate'
 3: 'Post Graduate'
 4: 'PHD'
@@ -55,3 +55,20 @@ basic_stud_yearly_duration: 12
 premium_stud_quarterly_duration: 3
 premium_stud_half_yearly_duration: 6
 premium_stud_yearly_duration: 12
+
+basic_uni_quarterly_text: 'Basic Membership, Quarterly'
+basic_uni_half_yearly_text: 'Basic Membership, Half Yearly'
+basic_uni_yearly_text: 'Basic Membership, Yearly'
+
+premium_uni_quarterly_text: 'Premium Membership, Quarterly'
+premium_uni_half_yearly_text: 'Premium Membership, Half Yearly'
+premium_uni_yearly_text: 'Premium Membership, Yearly'
+
+basic_stud_quarterly_text: 'Basic Membership, Quarterly'
+basic_stud_half_yearly_text: 'Basic Membership, Half Yearly'
+basic_stud_yearly_text: 'Basic Membership, Yearly'
+
+premium_stud_quarterly_text: 'Premium Membership, Quarterly'
+premium_stud_half_yearly_text: 'Premium Membership, Half Yearly'
+premium_stud_yearly_text: Premium Membership, Yearly'
+

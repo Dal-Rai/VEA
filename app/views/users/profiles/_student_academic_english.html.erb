@@ -12,19 +12,23 @@
     <%= g.date_field :expiry, class: 'borderlessInputMedium' %><br><br>
 
     <%= label_tag(:overall_band, "Overall Band:", class: 'labelLarge') %>
-    <%= g.number_field :overall_band, class: 'borderlessInputMedium' %>
+    <%= g.number_field :overall_band, step: :any, class: 'borderlessInputMedium' %>
 
     <%= label_tag(:speaking, "Speaking:", class: 'labelLarge') %>
-    <%= g.number_field :speaking, class: 'borderlessInputMedium' %><br><br>
+    <%= g.number_field :speaking,  step: :any, class: 'borderlessInputMedium' %><br><br>
 
     <%= label_tag(:writing, "Writing:", class: 'labelLarge') %>
-    <%= g.number_field :writing, class: 'borderlessInputMedium' %>
+    <%= g.number_field :writing,  step: :any, class: 'borderlessInputMedium' %>
 
     <%= label_tag(:reading, "Reading:", class: 'labelLarge') %>
-    <%= g.number_field :reading, class: 'borderlessInputMedium' %><br><br>
+    <%= g.number_field :reading, step: :any, class: 'borderlessInputMedium' %><br><br>
 
     <%= label_tag(:listening, "Listening:", class: 'labelLarge') %>
-    <%= g.number_field :listening, class: 'borderlessInputMedium' %><br>
+    <%= g.number_field :listening, step: :any, class: 'borderlessInputMedium' %><br>
+
+
+
+
   <% end %>
   <%= label_tag(:submit, "", class: 'labelLarge') %>
   <%= f.submit 'Add', class: 'mediumSubmit' %>
@@ -44,7 +48,7 @@
       <td><%= g.writing %></td>
       <td><%= g.reading %></td>
       <td><%= g.listening %></td>
-      <td><a href="<%= root_url %>/student/<%= current_user.id %>/reload?destroy=true&type=english&type_id=<%= g.id %>">delete</a></td>
+      <td><a style="color: red;" href="<%= root_url %>/student/<%= current_user.id %>/reload?destroy=true&type=english&type_id=<%= g.id %>">delete</a></td>
     </tr>
   <% end%>
 </table>

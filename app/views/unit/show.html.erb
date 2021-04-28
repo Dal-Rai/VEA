@@ -11,7 +11,7 @@
     <%= f.text_field :code, class: 'borderlessInputMedium' %><br>
 
     <%= label_tag(:credit_point, "Credit Point:", class: 'labelLarge') %>
-    <%= f.number_field :credit_point, class: 'borderlessInputMedium' %><br>
+    <%= f.number_field :credit_point,  step: :any, class: 'borderlessInputMedium' %><br>
 
     <%= label_tag(:name, "Unit Name:", class: 'labelLarge') %>
     <%= f.text_field :name, class: 'borderlessInputLarge' %><br><br>

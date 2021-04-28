@@ -2,6 +2,7 @@
 
 body {
   font-family: montserrat;
+  height:100%;
   //background-color: #99CED3;
 }
 
@@ -56,13 +57,25 @@ body {
   min-width: 1046px;
 }
 
+.user-claim {
+  height: 80px;
+  background-color: white;
+}
+
+.user-center {
+  margin: 0 auto;
+  padding-left: 10px;
+  max-width: 1180px;
+  min-width: 1046px;
+}
+
 .claim.text {
   float: left;
   min-width: 400px;
 }
 
 .top {
-  height: 120px;
+  height: 80px;
 }
 
 .sub {
@@ -75,18 +88,15 @@ body {
 }
 
 .logo {
+  padding-top: 10px;
   float: left;
   width: 206px;
-  height: 120px;
-}
-
-a {
-  color: #025499;
+  height: 80px;
 }
 
 .top nav {
   float: right;
-  margin-top: 80px;
+  margin-top: 42px;
   text-align: right;
 }
 
@@ -129,19 +139,45 @@ a {
   margin-left: 300px
 }
 
+.search-top {
+  margin-top: 150px;
+  margin-left: 300px
+}
+
+.subject_title{
+  padding-top: 50px;
+  padding-bottom: 20px;
+  font-size: 20px;
+  color: darkorange;
+}
+
+.subject-title-no-topspace{
+  padding-bottom: 20px;
+  font-size: 20px;
+  color: darkorange;
+}
+
 
 .labelExtraLarge{
   width: 150px;
-  padding-left: 20px;
-  height: 40px;
+  padding-left: 0px;
+  height: 30px;
+  outline: none;
+  font-size: 16px;
+}
+
+.label-extra-extra-large{
+  width: 250px;
+  padding-left: 0px;
+  height: 30px;
   outline: none;
   font-size: 16px;
 }
 
 .labelLarge{
   width: 125px;
-  padding-left: 20px;
-  height: 40px;
+  padding-left: 0px;
+  height: 30px;
   outline: none;
   font-size: 16px;
 }
@@ -149,7 +185,7 @@ a {
 .labelSmall{
   width: 75px;
   padding: 0px;
-  height: 40px;
+  height: 30px;
   outline: none;
   font-size: 16px;
 }
@@ -163,6 +199,13 @@ a {
   height:100px;
   width: 300px;
   font-size: 14px;
+}
+
+.texareaMediumInput{
+  width: 585px;
+  height: 76px;
+  outline: none;
+  font-size: 16px;
 }
 
 .chatBox{
@@ -187,6 +230,17 @@ a {
   font-size: 14px;
 }
 
+.borderless-input-extralarge{
+  width: 450px;
+  height: 30px;
+  border: 1px solid #dbdfea;
+  font-size: 14px;
+
+  border-top-color: white;
+  border-left-color: white;
+  border-right-color: white
+}
+
 .borderlessInputLarge{
   width: 295px;
   height: 30px;
@@ -201,6 +255,17 @@ a {
 .borderlessInputMedium{
   min-width: 150px;
   height: 30px;
+  border: 1px solid #dbdfea;
+  font-size: 14px;
+
+  border-top-color: white;
+  border-left-color: white;
+  border-right-color: white
+}
+
+.borderless-button{
+  background-color: #59cde2;
+  color: white;
   border: 1px solid #dbdfea;
   font-size: 14px;
 
@@ -251,9 +316,14 @@ a {
   border: 1px solid #848484;
   outline:0;
   height:40px;
-  width: 200px;
-  background-color: #2e6da4;
+  width: 150px;
+  background-color: green;
   font-size: 16px;
+}
+
+input[type=submit] {
+  background-color: #ace4ef;
+  color: green;
 }
 
 .alignCenter{
@@ -712,3 +782,33 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
+footer {
+  text-align: center;
+  padding: 3px;
+  background-color: #f5f5f5;
+  color: #e7f5ff;
+  bottom:0;
+  width: 100%;
+}
+
+//Scroll bar
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+

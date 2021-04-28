@@ -1,98 +1,117 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
-  $(document).ready(function(){
-    $("#university_wallet_temp_amount").change(function(){
-      var oED = new Date("<%= @uni.wallet.end_date || DateTime.now %>");
-      var tempAmount = document.getElementById("university_wallet_temp_amount").value;
-      var noOfDays = tempAmount/"<%= CONSTANTS['university_per_day'] %>";
-      var newExpiryDate=new Date(oED.getFullYear(),oED.getMonth(),oED.getDate()+noOfDays);
-      document.getElementById("university_wallet_end_date").value = newExpiryDate.toISOString().slice(0, 10);
-    });
-  });
-</script>
 
-
-<div class="header_length_top">
-  <%= form_for @uni, url: {controller: :paypals, action: :start_payment, method: :post} do |f| %>
-    <%= f.hidden_field :token %>
-    <%= label_tag(:uni_name, "University Name:", class: 'labelExtraLarge') %>
-    <%= f.text_field :name, class: 'borderlessInputLarge', readonly: "readonly" %><br><br>
-
-    <%= f.fields_for :focal_contact do |g| %>
-      <%= label_tag(:name, "Focal Contact:", class: 'labelExtraLarge') %>
-      <%= g.text_field :name, class: 'borderlessInputLarge', readonly: "readonly" %><br><br>
-
-      <%= label_tag(:email, "Email:", class: 'labelExtraLarge') %>
-      <%= g.text_field :email, class: 'borderlessInputLarge', readonly: "readonly" %><br><br>
-
-      <%= label_tag(:phone_no, "Phone No:", class: 'labelExtraLarge') %>
-      <%= g.text_field :phone_number, class: 'borderlessInputLarge', readonly: "readonly" %><br><br>
-
-    <% end %>
-
-    <b>Membership Details</b><br>
-    <% if @uni.wallet.present? %>
-      Membership Type: <%= @uni.wallet.package %> || Membership Duration: <%= @uni.wallet.end_date %>
-    <% end %>
-
-
-    <div class="subscription-container">
-      <input type="radio" name="radio" id="option1" value="basic_uni_quarterly">
-      <label for="option1" class="subscription__button">
-        <h3 class="subscription__title">basic</h3>
-        <p class="subscription__main-feature">Accept Application</p>
-        <p class="subscription__main-feature">Reject Application</p>
-        <span class="subscription__price">$<%= CONSTANTS['basic_uni_quarterly'] %>/Quarterly</span>
-      </label>
-
-      <input type="radio" name="radio" id="option2" value="basic_uni_half_yearly">
-      <label for="option2" class="subscription__button">
-        <h3 class="subscription__title">basic</h3>
-        <p class="subscription__main-feature">Accept Application</p>
-        <p class="subscription__main-feature">Reject Application</p>
-        <span class="subscription__price">$<%= CONSTANTS['basic_uni_half_yearly'] %>/Half Yearly</span>
-      </label>
-
-      <input type="radio" name="radio" id="option3" value="basic_uni_yearly">
-      <label for="option3" class="subscription__button">
-        <h3 class="subscription__title">basic</h3>
-        <p class="subscription__main-feature">Accept Application</p>
-        <p class="subscription__main-feature">Reject Application</p>
-        <span class="subscription__price">$<%= CONSTANTS['basic_uni_yearly'] %>/Yearly</span>
-      </label><br><br>
-
-
-      <input type="radio" name="radio" id="option4"  value="premium_uni_quarterly">
-      <label for="option4" class="subscription__button">
-        <h3 class="subscription__title">premium</h3>
-        <p class="subscription__main-feature">Accept Application</p>
-        <p class="subscription__main-feature">Reject Application</p>
-        <p class="subscription__main-feature">Filter Application</p>
-        <span class="subscription__price">$<%= CONSTANTS['premium_uni_quarterly'] %>/Quarterly</span>
-      </label>
-
-      <input type="radio" name="radio" id="option5" value="premium_uni_half_yearly">
-      <label for="option5" class="subscription__button">
-        <h3 class="subscription__title">premium</h3>
-        <p class="subscription__main-feature">Accept Application</p>
-        <p class="subscription__main-feature">Reject Application</p>
-        <p class="subscription__main-feature">Filter Application</p>
-        <span class="subscription__price">$<%= CONSTANTS['premium_uni_half_yearly'] %>/Half Yearly</span>
-      </label>
-
-      <input type="radio" name="radio" id="option6" checked="checked" value="premium_uni_yearly">
-      <label for="option6" class="subscription__button">
-        <h3 class="subscription__title">premium</h3>
-        <p class="subscription__main-feature">Accept Application</p>
-        <p class="subscription__main-feature">Reject Application</p>
-        <p class="subscription__main-feature">Filter Application</p>
-        <span class="subscription__price">$<%= CONSTANTS['premium_uni_yearly'] %>/Yearly</span>
-      </label>
-    </div>
-
-
-    <%= label_tag(:submit, "", class: 'labelLarge') %>
-    <%= f.submit 'Activate', class: 'largeSubmit' %>
+<div style="padding-top: 200px; padding-left: 300px;">
+  <div class="subject-title-no-topspace">
+    Enter your token
+  </div>
+  <%= form_tag(root_url+"/university/search", method: :get) do %>
+  <%= label_tag(:token, "Token:", class: "labelSmall") %>
+  <%= text_field_tag :token, params[:token], class: 'borderless-input-extralarge' %>
+  <%= submit_tag('Search', class: "mediumSubmit") %>
   <% end %>
 </div>
+
+<% unless @uni.nil? %>
+  <div style="padding-left: 300px;">
+    <div class="subject_title">
+      University Details
+    </div>
+
+    <%= form_for @uni, url: {controller: :paypals, action: :start_payment, method: :post} do |f| %>
+      <%= f.hidden_field :token %>
+      <%= label_tag(:uni_name, "University Name:", class: 'labelExtraLarge') %>
+      <%= f.text_field :name, class: 'borderlessInputLarge', readonly: "readonly" %><br><br>
+      <%= label_tag(:weblin, "Website:", class: 'labelExtraLarge') %>
+      <%= f.text_field :weblink, class: 'borderlessInputLarge', readonly: "readonly" %><br><br>
+
+      <%= f.fields_for :focal_contact do |g| %>
+        <%= label_tag(:name, "Focal Contact:", class: 'labelExtraLarge') %>
+        <%= g.text_field :name, class: 'borderlessInputLarge', readonly: "readonly" %><br><br>
+
+        <%= label_tag(:email, "Email:", class: 'labelExtraLarge') %>
+        <%= g.text_field :email, class: 'borderlessInputLarge', readonly: "readonly" %><br><br>
+
+        <%= label_tag(:phone_no, "Phone No:", class: 'labelExtraLarge') %>
+        <%= g.text_field :phone_number, class: 'borderlessInputLarge', readonly: "readonly" %><br><br>
+
+      <% end %>
+
+      <div>
+        <div class="subject_title">
+          Membership Details
+        </div>
+
+        <div>
+          <% if @uni.wallet.present? %>
+            <b style="color: green"> <%= CONSTANTS[@uni.wallet.package+"_text"] %></b> ||
+            <b>Membership Duration:</b> <%= "#{date_format(@uni.wallet.end_date, '%d %b, %Y')}" %>
+          <% end %>
+
+          <div class="subscription-container">
+            <input type="radio" name="radio" id="option1" value="basic_uni_quarterly">
+            <label for="option1" class="subscription__button">
+              <h3 class="subscription__title">basic</h3>
+              <p class="subscription__main-feature">Accept Application</p>
+              <p class="subscription__main-feature">Reject Application</p>
+              <span class="subscription__price">$<%= CONSTANTS['basic_uni_quarterly'] %>/Quarterly</span>
+            </label>
+
+            <input type="radio" name="radio" id="option2" value="basic_uni_half_yearly">
+            <label for="option2" class="subscription__button">
+              <h3 class="subscription__title">basic</h3>
+              <p class="subscription__main-feature">Accept Application</p>
+              <p class="subscription__main-feature">Reject Application</p>
+              <span class="subscription__price">$<%= CONSTANTS['basic_uni_half_yearly'] %>/Half Yearly</span>
+            </label>
+
+            <input type="radio" name="radio" id="option3" value="basic_uni_yearly">
+            <label for="option3" class="subscription__button">
+              <h3 class="subscription__title">basic</h3>
+              <p class="subscription__main-feature">Accept Application</p>
+              <p class="subscription__main-feature">Reject Application</p>
+              <span class="subscription__price">$<%= CONSTANTS['basic_uni_yearly'] %>/Yearly</span>
+            </label><br><br>
+
+
+            <input type="radio" name="radio" id="option4"  value="premium_uni_quarterly">
+            <label for="option4" class="subscription__button">
+              <h3 class="subscription__title">premium</h3>
+              <p class="subscription__main-feature">Accept Application</p>
+              <p class="subscription__main-feature">Reject Application</p>
+              <p class="subscription__main-feature">Filter Application</p>
+              <span class="subscription__price">$<%= CONSTANTS['premium_uni_quarterly'] %>/Quarterly</span>
+            </label>
+
+            <input type="radio" name="radio" id="option5" value="premium_uni_half_yearly">
+            <label for="option5" class="subscription__button">
+              <h3 class="subscription__title">premium</h3>
+              <p class="subscription__main-feature">Accept Application</p>
+              <p class="subscription__main-feature">Reject Application</p>
+              <p class="subscription__main-feature">Filter Application</p>
+              <span class="subscription__price">$<%= CONSTANTS['premium_uni_half_yearly'] %>/Half Yearly</span>
+            </label>
+
+            <input type="radio" name="radio" id="option6" checked="checked" value="premium_uni_yearly">
+            <label for="option6" class="subscription__button">
+              <h3 class="subscription__title">premium</h3>
+              <p class="subscription__main-feature">Accept Application</p>
+              <p class="subscription__main-feature">Reject Application</p>
+              <p class="subscription__main-feature">Filter Application</p>
+              <span class="subscription__price">$<%= CONSTANTS['premium_uni_yearly'] %>/Yearly</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+
+        <%= label_tag(:submit, "", class: 'labelLarge') %>
+        <%= f.submit 'Activate', class: 'largeSubmit' %>
+      <% end %>
+  </div>
+  <% else %>
+    <div style="padding-bottom: 370px;">
+    </div>
+<% end %>
+
+
 

@@ -104,12 +104,12 @@ gem 'delayed_job_active_record'
 
 #ml recommendation
 gem 'eps'
+gem 'knnball', '~> 0.1.0'
 
 #validation
 gem 'nifty-generators'
 gem 'client_side_validations'
 
 #Pagination
-#gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
-# gem 'jquery-ui-rails'
+gem 'will_paginate', "~> 3.0.5"
 

@@ -2,11 +2,11 @@
   document.getElementById('stud_fourth').classList.add("active");
 </script>
 
-<div class="col-lg-4">
+<div class="col-lg-3">
   <%= label_tag :space, "" %>
 </div>
 
-<div class="col-lg-8">
+<div class="col-lg-9">
   <table class="table", style="width: 100%;">
     <tr style="height: 50px; background-color: #ddd;">
       <th>Name</th><th>Fees</th><th>Details</th>
@@ -15,7 +15,7 @@
 
           <th> <%= course.name %></th>
           <td> <%= course.total_fees %></td>
-          <td><a href="<%= root_url %>course/<%= course.id %>/detail">View</a></td>
+          <td><a style="color: dodgerblue;" href="<%= root_url %>course/<%= course.id %>/detail">View</a></td>
         </tr>
       <% end %>
     </tr>

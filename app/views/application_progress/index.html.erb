@@ -14,7 +14,7 @@
         <td><%= app.user.email %></td>
         <td><%= app.course.total_fees %></td>
         <td><%= CONSTANTS[String(app.state_before_type_cast)+"_status"] %></td>
-        <td><a href="<%= root_url %>application_progress/<%= app.id %>">view</a></td>
+        <td><a style="color: dodgerblue;" href="<%= root_url %>application_progress/<%= app.id %>">view</a></td>
       </tr>
     <% end %>
   </table>

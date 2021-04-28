@@ -1,4 +1,6 @@
 class UniversityController < ApplicationController
+  require 'will_paginate/array'
+
   def create
     @uni = University.new(uni_params)
 
@@ -24,8 +26,10 @@ class UniversityController < ApplicationController
   end
 
   def search
+    if params[:token].present?
      @uni = University.find_by(token: params[:token])
-     @uni.build_wallet if @uni.wallet.nil?
+     @uni.build_wallet if @uni.present? && @uni.wallet.nil?
+    end
   end
 
   def activate
@@ -70,13 +74,21 @@ class UniversityController < ApplicationController
     elsif params[:type].eql?('country')
       country = CountryCriteria.find_by(id: params[:type_id])
       country.destroy unless country.nil?
+    elsif params[:type].eql?('subject')
+      subject = Subject.find_by(id: params[:type_id])
+      subject.destroy unless subject.nil?
     end
     flash[:success] = 'Delete Successful'
+
+    if params[:course_id].present?
+      redirect_to(controller: :course, action: :show, id: params[:course_id], params:{type: 'english'})
+    end
   end
 
   def prospective_student
     qualification_ids = User.student.map(&:highest_qualification_id).compact
-    @students = User.student.joins(:qualifications).where('qualifications.id IN (?) AND level = ?',qualification_ids, 4)
+    students = User.student.joins(:qualifications).where('qualifications.id IN (?) AND level = ?',qualification_ids, 4)
+    @students = students.paginate(:page=> params[:page], per_page: 4)
   end
 
   def filter_student
@@ -85,11 +97,13 @@ class UniversityController < ApplicationController
       CONSTANTS[params[:criteria]])
 
     students = students.select{|u| u.calc_weightage(current_user.university)}
-    @students = students.sort_by{|m| m.total_weightage}.reverse!
+    students = students.sort_by{|m| m.total_weightage}.reverse!
+    @students = students.paginate(:page=> params[:page], per_page: 4)
   end
 
   def application
     @courses = Course.joins(:faculty, :application_progresses).where('faculties.university_id = ?', params[:id]).uniq
+                 .paginate(:page=> params[:page], per_page: 2)
   end
 
   private
