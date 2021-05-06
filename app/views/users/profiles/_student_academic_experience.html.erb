@@ -7,10 +7,10 @@
 
   <%= f.fields_for current_user.experiences.new do |g| %>
     <%= hidden_field(:type, value='experience') %>
-    Course related experience     :
-    <%= g.radio_button(:related, 'true', :checked => true, class: 'mediumInput') %><br>
-    Course unrelated experience:
-    <%= g.radio_button :related, 'false', :checked => false %><br><br>
+<!--    Course related experience     :-->
+<!--    <%#= g.radio_button(:related, 'true', :checked => true, class: 'mediumInput') %><br>-->
+<!--    Course unrelated experience:-->
+<!--    <%#= g.radio_button :related, 'false', :checked => false %><br><br>-->
 
     <%= label_tag(:job_type, "Job Name:", class: 'labelExtraLarge') %>
     <%= g.text_field :job_type, class: 'borderlessInputMedium'%><br><br>

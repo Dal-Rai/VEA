@@ -44,7 +44,7 @@ class UniversityController < ApplicationController
   def new
     @uni = University.new
     @focal_contact = @uni.build_focal_contact
-    @address = @uni.build_address
+    @address = @uni.build_address(street_no: '', suburb: '', post_code: '')
   end
 
   def add_criteria

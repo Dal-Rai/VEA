@@ -17,7 +17,7 @@ class Unit < ApplicationRecord
   end
 
   def search_detail
-    "#{code}  #{name} is offered in #{course_units.first.course.faculty.university.name}"
+    "#{code}  #{name} is offered in #{university.name}"
   end
 
   def code_name

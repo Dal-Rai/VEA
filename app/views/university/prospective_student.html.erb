@@ -17,7 +17,7 @@
   <table class="table", style="width: 100%;">
     <tr style="height: 50px; background-color: #ddd;">
       <th>Student Name</th><th>Email</th><th>Country
-    </th><th>Academic Score</th><th>English Competency</th>
+    </th><th>Academic Score</th><th>English Competency</th><th>Total Experience</th><th>Ation</th>
     </tr>
     <% @students.each do |g| %>
       <tr>
@@ -26,6 +26,8 @@
         <td><%= g.country %></td>
         <td><%= g.highest_qualification_name %></td>
         <td><%= g.highest_english_competency_name %></td>
+        <td><%= g.total_experience %></td>
+        <td><a style="color: dodgerblue;" href="<%= root_url %>users/student_details?student_id=<%= g.id %>">View</a></td>
       </tr>
     <% end%>
   </table>

@@ -1,7 +1,11 @@
-Please check university <%= @uni.name %> with weblink <%= @uni.weblink %> and respond back
+<p>Please check university <%= @uni.name %> with weblink <%= @uni.weblink %> and respond back
 <br> to  <%= @uni.focal_contact.email %> ASAP after reading their remark as <%= @uni.remark %>
-<br>
-Uni token is <%= @uni.token %>
+</p>
+<p>
+  Before verifying, please consider their intensions and check whether the unversity qualifies<br>
+  for the membership or not
+</p>
+<p>Uni token is <span style="color: blue"> <%= @uni.token %></span></p>
 <br>
 <br>
 

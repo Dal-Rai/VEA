@@ -30,8 +30,8 @@ class University < ApplicationRecord
   before_create :assign_token
   after_create :notify_portal_admin
 
-  after_save    { Indexer.perform_async(:index,  self.id) }
-  after_destroy { Indexer.perform_async(:delete, self.id) }
+  # after_save    { Indexer.perform_async(:index,  self.id) }
+  # after_destroy { Indexer.perform_async(:delete, self.id) }
 
   settings do
     mappings dynamic: false do
@@ -50,7 +50,7 @@ class University < ApplicationRecord
   end
 
   def notify_portal_admin
-    # UniversityMailer.notify_portal_admin(self).deliver_now
+    UniversityMailer.notify_portal_admin(self).deliver_now
   end
 
   def english_competencies

@@ -20,6 +20,16 @@ module ApplicationHelper
     Course.find_by(id: id)
   end
 
+  def parent_type(record)
+    record.faculty_id.nil? ? "University" : "Course"
+  end
+
+  def search_details(record)
+    binding.pry
+    data = parent_type(record).eql?('University') ? find_university(record.id) : find_course(record.id)
+    data.search_detail
+  end
+
   def search_position
     if @results.empty?
       "search-center"

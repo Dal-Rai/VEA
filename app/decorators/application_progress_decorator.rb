@@ -2,7 +2,7 @@ class ApplicationProgressDecorator < ApplicationDecorator
   delegate_all
 
   def current_value
-    value = self.rejected? ? 100 : self.state_before_type_cast * 25
+    value = self.rejected? ? 100 : self.state_before_type_cast * 20
     "#{value}"
   end
 

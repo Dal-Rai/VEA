@@ -11,6 +11,7 @@ class SessionsController <  Devise::SessionsController
       if self.resource.university.activated?
        redirect_to(controller: :users, action: :show, id: self.resource.id)
       else
+        flash[:danger] = 'Please upgrade your membership'
         sign_out self.resource
        redirect_to new_user_session_path, danger: 'Please upgrade your membership'
      end

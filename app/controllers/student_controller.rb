@@ -124,6 +124,7 @@ class StudentController < ApplicationController
   def english_params
     params[:user][:english_competency]
       .permit(:id, :overall_band, :expiry, :competency_type, :speaking, :listening, :writing, :reading)
+      .merge!(attachments_attributes: [params[:user][:english_competency][:attachments_attributes]])
   end
 
   def experience_params
@@ -134,6 +135,7 @@ class StudentController < ApplicationController
   def qualification_params
     params[:user][:qualification]
       .permit(:id, :level, :course, :overall_percentage, :completed_year)
+      .merge!(attachments_attributes: [params[:user][:qualification][:attachments_attributes]])
   end
 
   def preferance_params

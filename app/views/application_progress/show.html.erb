@@ -1,3 +1,13 @@
+<% if current_user.student? %>
+  <script>
+    document.getElementById('stud_fifth').classList.add("active");
+  </script>
+<% else %>
+  <script>
+    document.getElementById('uni_sixth').classList.add("active");
+  </script>
+<%end%>
+
 <div class="col-lg-4">
   <%= label_tag :space, "" %>
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,7 +22,24 @@
   <b style="font-size: 16px;">Course Name:</b> <%= @application.course.name %><br><br>
   <b style="font-size: 16px;">Duration:</b> <%= @application.course.duration %> Semesters<br><br>
   <b style="font-size: 16px;">Total Fees:</b> <%= @application.course.total_fees %><br><br>
-  <b style="font-size: 16px;">Course Level:</b> <%= CONSTANTS[@application.course.rank_before_type_cast]%>
+  <b style="font-size: 16px;">Course Level:</b> <%= CONSTANTS[@application.course
+  .rank_before_type_cast]%><br>
+
+  <% if current_user.uni_admin? %>
+    <div style="padding-top: 50px;">
+      <p style="color: darkorange; font-size: 20px;">Student Details</p><br>
+      <b style="font-size: 16px;">Student Name:</b> <%= @application.user.name %><br><br>
+      <b style="font-size: 16px;">Student Email:</b> <%= @application.user.email %><br><br>
+      <a style="color: dodgerblue;" href="<%= root_url %>users/student_details?student_id=<%= @application.user.id
+      %>">View full details</a>
+    </div>
+  <% end %>
+
+  <div style="padding-top: 50px;">
+    <b><a style="font-size: 15px; padding-top: 25px; color: red;" href="<%= root_url
+    %>/chats?application_id=<%=
+      @application.id %>">LIVE CHAT</a></b>
+  </div>
 
   <div style="padding-top: 50px">
     <p style="color: darkgreen; font-size: 20px;">Progress Status</p>
@@ -158,7 +185,4 @@
       <%= f.submit 'Upload', class: 'mediumSubmit' %>
     <%end %>
    <%end%>
-
-  <p style="color: red; font-size: 15px; padding-top: 25px;">Send Message|Start Chat</p><br>
-  <a href="<%= root_url %>/chats?application_id=<%= @application.id %>">Start Chating</a>
 </div>

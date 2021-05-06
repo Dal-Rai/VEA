@@ -52,10 +52,10 @@
     <li><a id="uni_fourth" href="<%= root_url %>university/<%= current_user.university_id%>/faculty?type=faculty"><i class="fa
     fa-book-reader fa-lg" style="padding-top: 10px;"><br>Courses</i></a></li><br>
     <li><a id="uni_fifth" href="<%= root_url %>university/<%= current_user.university_id %>/prospective_student"><i class="fa
-    fa-user-graduate fa-lg" style="padding-top: 10px;"><br>students</i></a></li><br>
+    fa-user-graduate fa-lg" style="padding-top: 10px;"><br>Students</i></a></li><br>
     <li><a id="uni_sixth" href="<%= root_url %>university/<%= current_user.university_id%>/application?type=application"><i class="fa
     fa-server fa-lg" style="padding-top: 10px;"><br>Application</i></a></li><br>
-    <li><a href="<%= root_url %>chats/application"><i class="fa
+    <li><a id="uni_seventh" href="<%= root_url %>chats/application"><i class="fa
     fa-inbox fa-lg" style="padding-top: 10px;"><br>Chats</i></a></li><br>
     <li><i class="fa fa-power-off fa-sm"><br>
       <%= button_to "logout", destroy_user_session_path, method: :delete, class: "borderless-button" %></i></li>

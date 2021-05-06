@@ -1,6 +1,50 @@
+<% if current_user.student? %>
+  <script>
+    document.getElementById('stud_sixth').classList.add("active");
+  </script>
+<% else %>
+  <script>
+    document.getElementById('uni_seventh').classList.add("active");
+  </script>
+<%end%>
+
 <div class="message">
-  <strong><%= chat.user.email %></strong> says:
-  <%= chat.message %>
-  <br>
-  <small>at <%= l chat.created_at, format: :short %></small>
+  <table style="width: 100%">
+    <tr style="width: 100%;">
+      <% if current_user.eql?(chat.user) %>
+        <th></th>
+        <th width="20%"></th>
+        <th width="40%"  style="background-color: #bce8f1">
+          <strong><%= chat.user.email %></strong> says:
+          <%= chat.message %>
+          <br>
+          <small>at <%= l chat.created_at, format: :short %></small>
+        </th>
+      <% else %>
+        <th width="40%" style="background-color: lightgrey">
+          <strong><%= chat.user.email %></strong> says:
+          <%= chat.message %>
+          <br>
+          <small>at <%= l chat.created_at, format: :short %></small>
+        </th>
+        <th></th>
+        <th width="50%"></th>
+       <% end %>
+  </table>
+  <%# if current_user.eql?(chat.user) %>
+<!--    <div style="padding-left: 80%; padding-right: 20px;">-->
+<!--      <strong><%#= chat.user.email %></strong> says:-->
+      <%#= chat.message %>
+<!--      <br>-->
+<!--      <small>at <%#= l chat.created_at, format: :short %></small>-->
+<!--    </div>-->
+  <%# else %>
+<!--    <div style="padding-right: 80%; padding-left: 20px;">-->
+<!--      <strong><%#= chat.user.email %></strong> says:-->
+      <%#= chat.message %>
+<!--      <br>-->
+<!--      <small>at <%#= l chat.created_at, format: :short %></small>-->
+<!--    </div>-->
+
+  <%# end %>
 </div>

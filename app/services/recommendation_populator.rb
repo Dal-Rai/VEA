@@ -9,18 +9,18 @@ class RecommendationPopulator
 
   def recommended_courses
     courses = preferred_courses
-    if courses.empty?
-      courses = suggested_courses
-    end
-    courses = filter_courses(courses)
-
-    if student.premium_member?
-      courses
-    elsif student.basic_member?
-      courses.take(10)
-    else
-      courses.take(5)
-    end
+    # if courses.empty?
+    #   courses = suggested_courses
+    # end
+    # courses = filter_courses(courses)
+    #
+    # if student.premium_member?
+    #   courses
+    # elsif student.basic_member?
+    #   courses.take(10)
+    # else
+    #   courses.take(5)
+    # end
   end
 
   def filter_courses(courses)

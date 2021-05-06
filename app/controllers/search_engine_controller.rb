@@ -6,12 +6,17 @@ class SearchEngineController < ApplicationController
   end
 
   def index
+    results = Course.where('name ILIKE ?', "%#{params['term']}%")
+    @results = results.paginate(page: params[:page], per_page: 10)
+
+
     results = []
-    @universities = University.search(params["term"]).records.records
-    @courses = Course.search(params["term"]).records.records
-    @units = Unit.search(params["term"]).records.records
-    results.push(@universities).push(@courses).push(@units)
-    @results = single_array(results).paginate(page: params[:page], per_page: 2)
+    # @universities = University.search(params["term"]).records.records
+    # @courses = Course.search(params["term"]).records.records
+    # @units = Unit.search(params["term"]).records.records
+    # results.push(@universities).push(@courses).push(@units)
+
+    # @results = single_array(results).paginate(page: params[:page], per_page: 100)
   end
 
   def item_detail

@@ -1,5 +1,7 @@
 class EnglishCompetency < ApplicationRecord
   validates_presence_of :overall_band
+  has_many :attachments, as: :attachable
+  accepts_nested_attributes_for :attachments, allow_destroy: true
   belongs_to(
     :competenciable,
     polymorphic: true,

@@ -9,7 +9,7 @@
             <div class=" faculty-details search-result" style="background-color: lightblue;">
               <a style="color: dodgerblue;" href="search_engine/item_detail?name=<%= record.class.name %>&id=<%= record.id %>"
                  class="list-group-item">
-                <h4 class="list-group-item-heading"><%= record.name %></h4>
+                <h4 class="list-group-item-heading"><%= record.course_name %></h4>
                 <p class="list-group-item-text"><%= record.search_detail %>
                 </p>
               </a>
@@ -19,9 +19,12 @@
       <% else %>
         <h3> No results found.</h3>
       <% end %>
-      <div style="background-color: lightgrey; color: dodgerblue; height: 25px; width: 100%;">
-        <%= will_paginate @results %>
-      </div>
+
+      <% if @results.total_entries > 10 %>
+        <div style="background-color: lightgrey; color: dodgerblue; height: 25px; width: 100%;">
+          <%= will_paginate @results %>
+        </div>
+      <% end %>
     </div>
   </div>
 <% end %>

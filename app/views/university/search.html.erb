@@ -42,7 +42,7 @@
         </div>
 
         <div>
-          <% if @uni.wallet.present? %>
+          <% if @uni.wallet.persisted? %>
             <b style="color: green"> <%= CONSTANTS[@uni.wallet.package+"_text"] %></b> ||
             <b>Membership Duration:</b> <%= "#{date_format(@uni.wallet.end_date, '%d %b, %Y')}" %>
           <% end %>

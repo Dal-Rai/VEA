@@ -20,8 +20,13 @@
     <%= g.text_field :overall_percentage, class: 'borderlessInputMedium' %><br><br>
 
     <%= label_tag(:completed_year, "Completed Year:", class: 'labelExtraLarge') %>
-    <%= g.date_field :completed_year, class: 'borderlessInputMedium' %><br><br>
-  <% end %>
+    <%= g.date_field :completed_year, class: 'borderlessInputMedium' %>
+
+    <%= g.fields_for :attachments_attributes do |g| %>
+      <%= g.hidden_field(:name, value: 'English Competency') %>
+      <%= g.file_field :file %>
+    <% end %>
+  <% end %><br>
 
   <%= label_tag(:submit, "", class: 'labelExtraLarge') %>
   <%= f.submit 'Add', class: 'mediumSubmit' %>
@@ -30,7 +35,7 @@
 <table class="table", style="width: 100%;">
   <tr style="height: 50px; background-color: #ddd;">
     <th>Qualification</th><th>Course</th><th>Percentage
-    </th><th>Completed Year</th><th>Subject Count</th><th>Action</th>
+    </th><th>Completed Year</th><th>Subject Count</th><th>File</th><th>Action</th>
   </tr>
   <% current_user.qualifications.select(&:persisted?).each do |g| %>
     <tr>
@@ -41,6 +46,8 @@
       <td>
         <%= render(partial: "users/profiles/student_academic_subject_modal", tabName: "Dal", locals: {qualification: g}) %>
       </td>
+      <td><%= link_to("download", g.attachments.first.file(:original, false),
+        download: g.attachments.first.name, :style => "color: blue") unless g.attachments.first.nil? %></td>
       <td><a style="color: red; " href="<%= root_url %>/student/<%= current_user.id
       %>/reload?destroy=true&type=qualification&type_id=<%=
         g.id %>">delete</a></td>

@@ -10,7 +10,7 @@ class ApplicationProgress < ApplicationRecord
   accepts_nested_attributes_for :attachments, allow_destroy: true
 
   def uniq_application
-    errors.add(:application_progress, 'You have already applied to this course') if applied?
+    errors.add(:application_progress, 'You have already applied to this course') if course_applied?
   end
 
   def course_applied?

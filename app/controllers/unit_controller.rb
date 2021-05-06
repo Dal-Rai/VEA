@@ -19,7 +19,7 @@ class UnitController < ApplicationController
   def new
     @unit = Unit.new
     @course = Course.find(course_id)
-    @units = Unit.all
+    @units = Unit.where(university_id: current_user.university_id)
   end
 
   def search
@@ -30,7 +30,8 @@ class UnitController < ApplicationController
   def course_units
     @course = Course.find(course_id)
     @course_units = @course.course_units
-    @units = Unit.where("code ILIKE ?", "%#{params[:login_aei]}%") if params[:login_aei].present?
+    @units = Unit.where("code ILIKE ? AND university_id = ?", "%#{params[:login_aei]}%", current_user.university_id) if
+      params[:login_aei].present?
   end
 
   def update

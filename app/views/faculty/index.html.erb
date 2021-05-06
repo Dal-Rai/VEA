@@ -20,16 +20,14 @@
     </span>
   </div>
 
-  <table id="facultyIndex", class="display", style="width: 100%;">
-    <thead>
+  <table class="table", style="width: 100%;">
     <tr style="height: 50px; background-color: #ddd;">
       <th width="300", height="40">Name</th>
       <th width="200", height="40">Code</th>
       <th width="200">Course Count</th>
       <th width="200">Action</th>
     </tr>
-    </thead>
-    <tbody>
+
     <% @faculties.each do |faculty| %>
       <tr>
         <td height="40">
@@ -53,7 +51,6 @@
         </td>
       </tr>
     <%end%>
-    </tbody>
   </table>
   <div style="width: 50px;">
     <%= paginate @faculties %>

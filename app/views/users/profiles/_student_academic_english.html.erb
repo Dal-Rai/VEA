@@ -24,11 +24,12 @@
     <%= g.number_field :reading, step: :any, class: 'borderlessInputMedium' %><br><br>
 
     <%= label_tag(:listening, "Listening:", class: 'labelLarge') %>
-    <%= g.number_field :listening, step: :any, class: 'borderlessInputMedium' %><br>
+    <%= g.number_field :listening, step: :any, class: 'borderlessInputMedium' %>
 
-
-
-
+    <%= g.fields_for :attachments_attributes do |g| %>
+        <%= g.hidden_field(:name, value: 'English Competency') %>
+        <%= g.file_field :file %>
+      <% end %>
   <% end %>
   <%= label_tag(:submit, "", class: 'labelLarge') %>
   <%= f.submit 'Add', class: 'mediumSubmit' %>
@@ -37,7 +38,7 @@
 <table class="table", style="width: 100%;">
   <tr style="height: 50px; background-color: #ddd;">
     <th>Type</th><th>Expiry</th><th>Overall
-    Bank</th><th>Speaking</th><th>Writing</th><th>Reading</th><th>Listening</th><th>Action</th>
+    Bank</th><th>Speaking</th><th>Writing</th><th>Reading</th><th>Listening</th><th>File</th><th>Action</th>
   </tr>
   <% current_user.english_competencies.select(&:persisted?).each do |g| %>
     <tr>
@@ -48,6 +49,8 @@
       <td><%= g.writing %></td>
       <td><%= g.reading %></td>
       <td><%= g.listening %></td>
+      <td><%= link_to("download", g.attachments.first.file(:original, false),
+        download: g.attachments.first.name, :style => "color: blue") unless g.attachments.first.nil? %></td>
       <td><a style="color: red;" href="<%= root_url %>/student/<%= current_user.id %>/reload?destroy=true&type=english&type_id=<%= g.id %>">delete</a></td>
     </tr>
   <% end%>

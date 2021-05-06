@@ -55,7 +55,7 @@
   </tr>
   <% current_user.university.criteria_rules.select(&:persisted?).each do |g| %>
     <tr style="height: 50px;">
-      <th><%= g.criteria %></th>
+      <th><%= g.criteria.titlecase %></th>
       <td><%= g.weightage %></td>
       <td><%= g.description %></td>
       <td><a style="color: red;" href="<%= root_url %>university/<%= g.university_id %>/reload?destroy=true&type=rule&type_id=<%= g.id %>">Delete</a></td>

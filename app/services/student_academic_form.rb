@@ -17,11 +17,13 @@ class StudentAcademicForm < SimpleDelegator
   def assign_default_english
     self.competenciable = current_user
     self.competency_type = criteria_type
+    attachment_files
   end
 
   def assign_default_qualification
     self.user = current_user
     self.level = criteria_type
+    attachment_files
   end
 
   def assign_default_experience
@@ -49,5 +51,10 @@ class StudentAcademicForm < SimpleDelegator
     elsif type.eql?('preferance')
       __setobj__(CategoryPreferance.new)
     end
+  end
+
+  def attachment_files
+    self.attachments.first.file = selection_params[:attachments_attributes][0][:file]
+    self.attachments.first.name = selection_params[:attachments_attributes][0][:name]
   end
 end

@@ -17,8 +17,9 @@
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Subject Details</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+
         </div>
         <div class="modal-body">
           <div>
@@ -40,7 +41,7 @@
             <% qualification.subjects.select(&:persisted?).each do |sub| %>
             <tr>
               <th><%= sub.name %></th><td><%= sub.percentage %></td><td><%= sub.description %></td>
-              <td><%= link_to "Delete", subjects_path(id: sub.id), method: :delete, data: {
+              <td><%= link_to "Delete", subjects_path(id: sub.id), method: :delete, :style=> "color: red;", data: {
                 confirm: 'Are you sure?'
               }%></td>
             </tr>

@@ -1,15 +1,20 @@
 <span class="col-lg-3">
   <%= label_tag nil %>
 </span>
-
-<script>
-  document.getElementById('stud_sixth').classList.add("active");
-</script>
+<% if current_user.student? %>
+  <script>
+    document.getElementById('stud_sixth').classList.add("active");
+  </script>
+ <% else %>
+  <script>
+  document.getElementById('uni_seventh').classList.add("active");
+  </script>
+<%end%>
 
 <div class="col-lg-9">
   <table class="table", style="width: 100%;">
     <tr style="height: 50px; background-color: #ddd;">
-      <th>Course Name</th><th>Student Name</th><th>Email</th><th>Application Status</th><th>Unread chat</th>
+      <th>Course Name</th><th>Student Name</th><th>Email</th><th>Application Status</th><th>Messages</th>
     </tr>
     <% @applications.each do |g| %>
       <tr>

@@ -7,12 +7,12 @@ class Course < ActiveRecord::Base
   validates_presence_of :name, :code, :duration, :rank
   belongs_to :faculty, inverse_of: :courses
   belongs_to :course_category, inverse_of: :courses
-  has_many :course_units, inverse_of: :course
+  has_many :course_units, inverse_of: :course, dependent: :destroy
   has_many :units, through: :course_units
-  has_many :application_progresses, inverse_of: :course
+  has_many :application_progresses, inverse_of: :course, dependent: :destroy
   has_many :english_competencies, as: :competenciable, dependent: :destroy
   has_many :academic_eligibilities, as: :eligiable, dependent: :destroy
-  has_many :subjects, as: :subjectable, class_name: 'Subject'
+  has_many :subjects, as: :subjectable, class_name: 'Subject', dependent: :destroy
   accepts_nested_attributes_for :english_competencies, allow_destroy: true
   accepts_nested_attributes_for :academic_eligibilities, allow_destroy: true
 
@@ -21,8 +21,8 @@ class Course < ActiveRecord::Base
 
   delegate :university_name, to: :faculty, prefix: false, allow_nil: :false
 
-  after_save    { Indexer.perform_async(:index,  self.id) }
-  after_destroy { Indexer.perform_async(:delete, self.id) }
+  # after_save    { Indexer.perform_async(:index,  self.id) }
+  # after_destroy { Indexer.perform_async(:delete, self.id) }
 
   settings do
     mappings dynamic: false do
@@ -36,6 +36,10 @@ class Course < ActiveRecord::Base
       For details you can visit this link..."
   end
 
+  def course_name
+    "#{name} at #{university_name}"
+  end
+
   def as_indexed_json(options={})
     self.as_json(
       include: {
@@ -44,11 +48,13 @@ class Course < ActiveRecord::Base
   end
 
   def english_competencies
-    super.present? ? super : super.build(competency_attributes)
+    super
+    # super.present? ? super : super.build(competency_attributes)
   end
 
   def academic_eligibilities
-    super.present? ? super : super.build(academic_attributes)
+    super
+    # super.present? ? super : super.build(academic_attributes)
   end
 
   def competency_attributes
